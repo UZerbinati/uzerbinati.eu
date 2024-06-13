@@ -1,17 +1,16 @@
-#remote_theme: PaulSt/eleven
 theme: eleven-theme
 
 eleven:
-  name: Paul Stocker
+  name: Umberto Zerbinati
   date_format: "%b %d, %Y"
-  #logo:  "assets/logo.png" 
+  logo:  "assets/logo.jpeg"
 
 permalink: post/:title
 
-title: "Paul Stocker"
-description: "Paul Stocker, mathematician, Post-Doc Uni Göttingen, Mail: p.stocker@math.uni-goettingen.de"
+title: "Umberto Zerbinati"
+description: "Umberto Zerbinati, DPhil student Oxford University"
 webmaster_verifications:
-  google: "ByYdzwgMKaBTrHM7VNNajWnJg8yfcSU41D7OF6E_p1Q"
+  #google: "ByYdzwgMKaBTrHM7VNNajWnJg8yfcSU41D7OF6E_p1Q"
 
 excerpt_separator: <!--more-->
 page_excerpts: true
