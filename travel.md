@@ -1,7 +1,4 @@
 ---
-layout: block
+layout: hidden
 order: 4
 ---
-
-# Research visits
-# Conferences and Workshops
