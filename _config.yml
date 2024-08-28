@@ -5,7 +5,7 @@ eleven:
   date_format: "%b %d, %Y"
   logo:  "assets/logo.jpeg"
 
-#permalink: post/:title
+permalink: /
 
 title: "Umberto Zerbinati"
 description: "Umberto Zerbinati, DPhil student Oxford University"

@@ -1,5 +1,5 @@
 ---
-layout: hidden
+layout: block
 title: Preprints 
 order: 4
 ---
