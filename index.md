@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: home
 title: Umberto Zerbinati
 ---
 
