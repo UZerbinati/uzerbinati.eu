@@ -1,0 +1,48 @@
+---
+layout: default
+---
+
+<main class="page-content" aria-label="Content">
+    <div class="w">
+    <img src="{{ site.eleven.logo  | relative_url }}" class="logo"> 
+        {{ content }}
+    <div style="clear: both;"></div> 
+    </div>
+    {% assign sorted_pages = site.pages | sort:"order" %}
+    {% for page in sorted_pages %}
+    {% if page.layout == 'block' %}
+    {% unless page.content contains site.excerpt_separator %}
+    <div class="box">
+        <h1>{{ page.title }}</h1>
+        {{ page.content | markdownify }}
+    </div>
+    {% endunless %}
+    {% endif %}
+    {% if page.layout == 'block' and page.content contains site.excerpt_separator %}
+    <div class="box">
+        <h1>{{ page.title }}</h1>
+        {{ page.excerpt }}
+        <p><a href="{{ page.url | relative_url }}">Read more</a></p>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% for collection in site.collections %}
+    {% unless collection.label == 'posts' %}
+        <div class="box">
+            {% if collection.title %}
+            <h1>{{ collection.title }}</h1>
+            {% else %}
+            <h1>{{ collection.label }}</h1>
+            {% endif %}
+            <ul>
+            {% for entry in site[collection.label] %}
+                <li><a href="{{ entry.url  | relative_url }}">{{ entry.title }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endunless %}
+    {% endfor %}
+</main>
+
+
