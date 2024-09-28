@@ -10,6 +10,6 @@ Stefano Zampini, UZ, George Turkyyiah, David Elliot Keyes
 
   2. _PINNs and GaLS: A Priori Error Estimates for Shallow Physics Informed Neural Networks Applied to Elliptic Problems_ 
 UZ
-[IFAC-PapersOnLine](https://doi.org/10.1016/j.ifacol.2022.09.072), 2020  [[pdf](https://arxiv.org/pdf/2202.01059),[cite](./cite#item1)]  
+[IFAC-PapersOnLine](https://doi.org/10.1016/j.ifacol.2022.09.072), 2022  [[pdf](https://arxiv.org/pdf/2202.01059),[cite](./cite#item1)]  
 
 <!--more-->
