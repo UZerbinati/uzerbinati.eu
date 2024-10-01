@@ -5,16 +5,19 @@ order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2024
+  * Prague Material Modelling Seminar
+    23/10
+    Prague, CZ.
   * Firedrake User Meeting
     16/09 - 18/09
     Oxford, UK [slides](./assets/slides/firedrake2024.pdf).
   * Gottingen Internal Seminar 
     4/09
     Gottingen, DE.
+<!--more-->
   * SciCADE 2024
     15/07 - 19/07
     Singapor, SG [slides](./assets/slides/scicade.pdf).
-<!--more-->
   * GIMC SIMAI Yung 2024
     10/07 - 12/07
     Napoli, IT [slides](./assets/slides/gimc.pdf). 
