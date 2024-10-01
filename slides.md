@@ -13,7 +13,7 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
     Oxford, UK [slides](./assets/slides/firedrake2024.pdf).
   * Gottingen Internal Seminar 
     4/09
-    Gottingen, DE.
+    Gottingen, DE [picture](./assets/images/gottingen.jpeg).
 <!--more-->
   * SciCADE 2024
     15/07 - 19/07
