@@ -7,7 +7,7 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2024
   * Prague Material Modelling Seminar
     23/10
-    Prague, CZ.
+    Prague, CZ [slides](.assets/slides/prague.pdf), [zoom](https://cesnet.zoom.us/j/98814314557?pwd=hkGpVKn9NKKAFVcJQ5WF5k3sWLIjqK.1).
   * Firedrake User Meeting
     16/09 - 18/09
     Oxford, UK [slides](./assets/slides/firedrake2024.pdf).
