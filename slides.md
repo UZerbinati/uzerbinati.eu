@@ -13,15 +13,15 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
     Oxford, UK [slides](./assets/slides/firedrake2024.pdf).
   * Gottingen Internal Seminar 
     4/09
-    Gottingen, DE [picture](./assets/images/gottingen.jpeg).
+    Gottingen, DE [picture](https://www.uzerbinati.eu/assets/images/gottingen.jpeg).
 <!--more-->
   * SciCADE 2024
     15/07 - 19/07
-    Singapor, SG [slides](./assets/slides/scicade.pdf).
+    Singapor, SG [slides](https://www.uzerbinati.eu/assets/slides/scicade.pdf).
   * GIMC SIMAI Yung 2024
     10/07 - 12/07
-    Napoli, IT [slides](./assets/slides/gimc.pdf). 
+    Napoli, IT [slides](https://www.uzerbinati.eu/assets/slides/gimc.pdf). 
   * PDESoft 
     01/07 - 03/07
-    Cambridge, UK [slides](./assets/slides/pdesoft.pdf). 
+    Cambridge, UK [slides](https://www.uzerbinati.eu/assets/slides/pdesoft.pdf). 
 

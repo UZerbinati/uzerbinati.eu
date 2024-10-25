@@ -6,7 +6,7 @@ order: 4
 
   1. _ngsPETSc: A coupling between NETGEN/NGSolve and PETSc_  
 Jack Betteridge, Patrick E. Farrell, Joachim Schöberl, Stefano Zampini, UZ
-[PDF](./assets/draft/joss.pdf), [GitHub](https://github.com/openjournals/joss-reviews/issues/7014), 2024.
+[PDF](https://www.uzerbinati.eu/assets/draft/joss.pdf), [GitHub](https://github.com/openjournals/joss-reviews/issues/7014), 2024.
 
 <!--more-->
 
