@@ -7,7 +7,7 @@ order: 2
   
   1. _When rational functions meet virtual elements: the lightning virtual element method_  
 Manuel Trezzi, UZ
-[CALCOLO](https://doi.org/10.1007/s10092-024-00585-1), 2024  [[ArXiv](https://arxiv.org/pdf/2308.03560), [cite](./cite#item3), [errata](./assets/notes/erratalightningVEM.pdf)].
+[CALCOLO](https://doi.org/10.1007/s10092-024-00585-1), 2024  [[ArXiv](https://arxiv.org/pdf/2308.03560), [cite](./cite#item3), [errata](./assets/notes/erratalightningvem.pdf)].
   
 
 <!--more-->
