@@ -20,7 +20,4 @@ Tim van Beeck, UZ
   5. _A nodal ghost method based on variational formulation and regular square grid for elliptic problems on arbitrary domains in two space dimensions_  
 Clarissa Astuto, Daniele Boffi, Giovanni Russo, UZ
 [arXiv](https://arxiv.org/abs/2402.04048), 2024.
-  5. _Kinetic derivation of a compressible Leslie--Ericksen equation for rarified calamitic gases_ 
-Patrick E Farrell, Giovanni Russo, UZ
-[arXiv](https://arxiv.org/abs/2312.15210), 2023.
 

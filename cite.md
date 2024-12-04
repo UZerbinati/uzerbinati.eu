@@ -2,8 +2,23 @@
 layout: page
 title: BibTeXs
 ---
+4. ```
+@article{doi:10.1137/24M1630529,
+author = {Farrell, Patrick E. and Russo, Giovanni and Zerbinati, Umberto},
+title = {Kinetic Derivation of an Inviscid Compressible Leslie–Ericksen Equation for Rarified Calamitic Gases},
+journal = {Multiscale Modeling \& Simulation},
+volume = {22},
+number = {4},
+pages = {1585-1607},
+year = {2024},
+doi = {10.1137/24M1630529},
+URL = {https://doi.org/10.1137/24M1630529},
+eprint = {https://doi.org/10.1137/24M1630529}
+}
+```
+
 3. ```
-@Article{trezziZerbinati2024,
+@article{trezziZerbinati2024,
 author={Trezzi, Manuel
 and Zerbinati, Umberto},
 title={When rational functions meet virtual elements: the lightning virtual element method},
