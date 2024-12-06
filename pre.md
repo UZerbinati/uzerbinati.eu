@@ -9,7 +9,7 @@ order: 4
 [arXiv](https://arxiv.org/abs/2411.13354), 2024.
 <!--more-->
   2. _ngsPETSc: A coupling between NETGEN/NGSolve and PETSc_  
-Jack Betteridge, Patrick E. Farrell, Joachim Schöberl, Stefano Zampini, UZ
+Jack Betteridge, Patrick E. Farrell, Matthias Hochsteger, Christopher Lackner, Joachim Schöberl, Stefano Zampini, UZ
 [PDF](https://www.uzerbinati.eu/assets/draft/joss.pdf), [GitHub](https://github.com/openjournals/joss-reviews/issues/7014), 2024.
   3. _A comparison of the Coco-Russo scheme and $\protect\mathghost$-FEM for elliptic equations in arbitrary domains_  
 Clarissa Astuto, Armando Coco, UZ
