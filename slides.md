@@ -7,13 +7,13 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2024
   * Oxford-RAL Reading Group
     5/12
-    Oxford, UK [slides](./assets/slides/oxral.pdf).
+    Oxford, UK [slides](https://www.uzerbinati.eu/assets/slides/oxral.pdf).
   * Prague Material Modelling Seminar
     23/10
-    Prague, CZ [slides](./assets/slides/prague.pdf).
+    Prague, CZ [slides](https://www.uzerbinati.eu/assets/slides/prague.pdf).
   * Firedrake User Meeting
     16/09 - 18/09
-    Oxford, UK [slides](./assets/slides/firedrake2024.pdf).
+    Oxford, UK [slides](https://www.uzerbinati.eu/assets/slides/firedrake2024.pdf).
 <!--more-->
   * Gottingen Internal Seminar 
     4/09
