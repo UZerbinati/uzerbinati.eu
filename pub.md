@@ -12,6 +12,10 @@ Manuel Trezzi, UZ
   2. _Kinetic Derivation of an Inviscid Compressible Leslie–Ericksen Equation for Rarified Calamitic Gases_ 
 Patrick E Farrell, Giovanni Russo, UZ
 [SIAM MMS](https://doi.org/10.1137/24M1630529), 2024 [[arXiv](https://arxiv.org/abs/2312.15210), [cite](./cite#item4)].
+
+  3. _ngsPETSc: A coupling between NETGEN/NGSolve and PETSc_  
+Jack Betteridge, Patrick E. Farrell, Matthias Hochsteger, Christopher Lackner, Joachim Schöberl, Stefano Zampini, UZ
+[JOSS](https://doi.org/10.21105/joss.07359), [GitHub](https://github.com/NGSolve/ngsPETSc), 2024.
   
 
 <!--more-->
