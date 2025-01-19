@@ -4,6 +4,11 @@ title: Talks
 order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
+### 2025
+  * Due Giorni Di Algebra Lineare Numerica
+    20/01
+    Pisa, IT [slides](https://www.uzerbinati.eu/assets/slides/duegiorni.pdf).
+<!--more-->
 ### 2024
   * Oxford-RAL Reading Group
     5/12
@@ -14,7 +19,6 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
   * Firedrake User Meeting
     16/09 - 18/09
     Oxford, UK [slides](https://www.uzerbinati.eu/assets/slides/firedrake2024.pdf).
-<!--more-->
   * Gottingen Internal Seminar 
     4/09
     Gottingen, DE [picture](https://www.uzerbinati.eu/assets/images/gottingen.jpeg).
