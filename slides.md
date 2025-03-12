@@ -33,5 +33,9 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
     Napoli, IT [slides](https://www.uzerbinati.eu/assets/slides/gimc.pdf). 
   * PDESoft 
     01/07 - 03/07
-    Cambridge, UK [slides](https://www.uzerbinati.eu/assets/slides/pdesoft.pdf). 
+    Cambridge, UK [slides](https://www.uzerbinati.eu/assets/slides/pdesoft.pdf).
+### 2023
+  * PDESoft 
+    18/09 - 22/09
+    Siena, IT [slides](https://www.uzerbinati.eu/assets/slides/siena.pdf).
 
