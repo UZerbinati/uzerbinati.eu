@@ -12,6 +12,7 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
     20/01
     Pisa, IT [slides](https://www.uzerbinati.eu/assets/slides/duegiorni.pdf).
 <!--more-->
+
 ### 2024
   * Oxford-RAL Reading Group
     05/12
