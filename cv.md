@@ -9,5 +9,6 @@ order: 1
 * 2020--2022 MSc Applied Mathematics @ [KAUST](https://www.kaust.edu.sa/en/) 
 * 2016--2020 BSc Mathematics @ [University Of Pavia](https://matematica.unipv.it/en/homepage-english/) 
 
+I'm a member of the European Mathematical Society (EMS) and of the Society of Industrial and Applied Mathematics (SIAM).
 <!--more-->
 You can find my full CV [here](https://uzerbinati.eu/assets/cv.pdf).
