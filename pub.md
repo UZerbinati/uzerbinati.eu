@@ -7,7 +7,7 @@ order: 2
 
   1. _Time-harmonic waves in Korteweg and nematic-Korteweg fluids_ 
 Patrick E Farrell, UZ
-[PRE](https://doi.org/10.1103/PhysRevE.111.035413), 2024 [[arXiv](https://arxiv.org/abs/2411.13354)].
+[PRE](https://doi.org/10.1103/PhysRevE.111.035413), 2025 [[arXiv](https://arxiv.org/abs/2411.13354)].
 
   2. _ngsPETSc: A coupling between NETGEN/NGSolve and PETSc_  
 Jack Betteridge, Patrick E. Farrell, Matthias Hochsteger, Christopher Lackner, Joachim Schöberl, Stefano Zampini, UZ
