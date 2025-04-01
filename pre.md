@@ -10,7 +10,7 @@ order: 4
 <!--more-->
   2. _Preconditioned normal equations for solving discretised partial differential equations_
   Lorenzo Lazzarino, Yuji Nakatsukasa, UZ
-[arXiv](https://arxiv.org/abs/2411.13354), 2024.
+[arXiv](https://arxiv.org/abs/2502.17626), 2025.
   3. _A comparison of the Coco-Russo scheme and $\protect\mathghost$-FEM for elliptic equations in arbitrary domains_  
 Clarissa Astuto, Armando Coco, UZ
 [arXiv](https://arxiv.org/abs/2405.16582), 2024.
