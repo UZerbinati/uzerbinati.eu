@@ -5,6 +5,9 @@ order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2025
+  * Internal seminar, University of Catania
+    04/04
+    Catania, IT [slides](https://www.uzerbinati.eu/assets/slides/catania.pdf).
   * TAG Mixtures
     07/02
     Prague, CZ [slides](https://www.uzerbinati.eu/assets/slides/mixtures.pdf).
