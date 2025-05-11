@@ -2,9 +2,6 @@
 layout: page
 title: Spectral Theory and Spectral Practices
 ---
-
-Spectral Theory and Spectral Practices
-========================================
 I've been invited to teach a minicourse on Finite Element approximations of eigenvalues problems at the University of Edinburgh, UK, by Prof. [Kaibo Hu](https://kaibohu.github.io/). The course was supported by the [ERC Starting Grant GeoFEM (Geometric Finite Element Methods)](https://kaibohu.github.io/geofem/).
 The courses composes of 4 lectures, each lasting one hour and of practical exercises making use of the finite element library [Firedrake](https://www.firedrakeproject.org/).
 
@@ -19,4 +16,4 @@ Course Materials:
 - [Lecture 2: Spectra and Pseudospectra](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture2.pdf)
 - [Lecture 3: Approximation of Compact non-Normal Operators](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture3.pdf)
 - Lecture 4: The Advection-Diffusion Equation
-- [Appendix B: The Rayleigh quotient](https://www.uzerbinati.eu/assets/teaching/notes/st_appendix_B.pdf)
+- [Appendix B: The Rayleigh quotient](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixB.pdf)
