@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: page
 title: Spectral Theory and Spectral Practices
 ---
 
@@ -19,4 +19,4 @@ Course Materials:
 - [Lecture 2: Spectra and Pseudospectra](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture2.pdf)
 - [Lecture 3: Approximation of Compact non-Normal Operators](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture3.pdf)
 - Lecture 4: The Advection-Diffusion Equation
-- [Appendix B: The Rayleigh quotient](https://www.uzerbinati.eu/assets/teaching/notes/st_rayleigh_quotient.pdf)
+- [Appendix B: The Rayleigh quotient](https://www.uzerbinati.eu/assets/teaching/notes/st_appendix_B.pdf)
