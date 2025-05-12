@@ -16,4 +16,8 @@ Course Materials:
 - [Lecture 2: Spectra and Pseudospectra](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture2.pdf)
 - [Lecture 3: Approximation of Compact non-Normal Operators](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture3.pdf)
 - Lecture 4: The Advection-Diffusion Equation
+- [Appendix A: Laplace Eigenproblem on a Pizza Slice](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixA.pdf)
 - [Appendix B: The Rayleigh quotient](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixB.pdf)
+
+Exercises and Solutions:
+- [Exercise 1: FEM Approximation of the Laplace Eigenproblem](https://www.uzerbinati.eu/assets/teaching/sheets/st_sheet1.pdf): In this problem sheet, we will implement the finite element method (FEM) to approximate the eigenvalues and eigenfunctions of the Laplace operator on an interval. The convergence rate of the FEM is computed for both eigenvalues and eigenfunctions. We then consider the Laplace operator on the square and on the pizza slice. Answers: [Q1-Q4](https://www.uzerbinati.eu/assets/teaching/sheets/solutions/eig_laplace_interval.py)
