@@ -19,7 +19,7 @@ Patrick E Farrell, Giovanni Russo, UZ
 <!--more-->
   4. _When rational functions meet virtual elements: the lightning virtual element method_  
 Manuel Trezzi, UZ
-[CALCOLO](https://doi.org/10.1007/s10092-024-00585-1), 2024  [[arXiv](https://arxiv.org/pdf/2308.03560), [errata](./assets/notes/erratalightningvem.pdf)].
+[CALCOLO](https://doi.org/10.1007/s10092-024-00585-1), 2024  [[arXiv](https://arxiv.org/pdf/2308.03560), [errata](https://www.uzerbinati.eu/assets/notes/erratalightningvem.pdf)].
 
 See also 
 [google-scholar](https://scholar.google.es/citations?user=bLUNjmgAAAAJ&hl=it)
