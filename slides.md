@@ -7,7 +7,7 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2025
   * SIAM Students Chapter, King Abdullah University of Science and Technology
     04/08
-    Catania, IT [slides](https://www.uzerbinati.eu/assets/slides/kaust.pdf), [more info](https://cemse.kaust.edu.sa/events/by-type/seminar/2025/04/08/helmholtz-korteweg-equations-modeling-analysis-and-applications).
+    Jeddah, SA [slides](https://www.uzerbinati.eu/assets/slides/kaust.pdf), [more info](https://cemse.kaust.edu.sa/events/by-type/seminar/2025/04/08/helmholtz-korteweg-equations-modeling-analysis-and-applications).
   * Internal seminar, University of Catania
     04/04
     Catania, IT [slides](https://www.uzerbinati.eu/assets/slides/catania.pdf).
