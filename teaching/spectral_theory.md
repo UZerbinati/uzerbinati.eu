@@ -10,6 +10,7 @@ In this short course, we explore finite element discretisations of eigenvalue pr
 Lectures Times:
 - May 13, 2025, 10:00 AM - 12:00 PM
 - May 14, 2025, 2:00 PM - 4:00 PM
+- May 16, 2025, 3:00 PM - 5:00 PM
 
 Course Materials:
 - [Lecture 1: Preliminaries, Self-Adjointness and Normality](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture1.pdf)
@@ -23,3 +24,6 @@ Course Materials:
 Exercises and Solutions:
 - [Exercise 1: FEM Approximation of the Laplace Eigenproblem](https://www.uzerbinati.eu/assets/teaching/sheets/st_sheet1.pdf): In this problem sheet, we will implement the finite element method (FEM) to approximate the eigenvalues and eigenfunctions of the Laplace operator on an interval. The convergence rate of the FEM is computed for both eigenvalues and eigenfunctions. We then consider the Laplace operator on the square and on the pizza slice. Answers: [Q1-Q4](https://www.uzerbinati.eu/assets/teaching/sheets/solutions/eig_laplace_interval.py), [Q5-Q6](https://www.uzerbinati.eu/assets/teaching/sheets/solutions/eig_laplace_square.py), [Q7](https://www.uzerbinati.eu/assets/teaching/sheets/solutions/eig_laplace_pizza.py)
 - [Exercise 2: FEM Approximation of the Advection-Diffusion Eigenproblem](https://www.uzerbinati.eu/assets/teaching/sheets/st_sheet2.pdf): In this problem sheet, we will implement the finite element method (FEM) to approximate the eigenvalues and eigenfunctions of the advection-diffusion operator on an interval. The convergence rate of the FEM is computed for both eigenvalues and eigenfunctions. We then discuss the implication that the pseudospectra has on the solution of the Helmholtz equation. Answers: [Q1-Q3](https://www.uzerbinati.eu/assets/teaching/sheets/solutions/eig_advection_interval.py), [Q5-Q7](https://www.uzerbinati.eu/assets/teaching/sheets/solutions/eig_advection_square.py).
+
+![Dinner Picutre](../assets/images/edinburgo.jpeg)
+{: .align-center}
