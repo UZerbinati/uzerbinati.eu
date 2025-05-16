@@ -15,7 +15,8 @@ Course Materials:
 - [Lecture 1: Preliminaries, Self-Adjointness and Normality](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture1.pdf)
 - [Lecture 2: Spectra and Pseudospectra](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture2.pdf)
 - [Lecture 3: Approximation of Compact non-Normal Operators](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture3.pdf)
-- [Lecture 4: Spectra and Pseudospecra of the Advection-Diffusion Operator](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture4.pdf)
+- [Lecture 4: Variationally posed eigenvalue problems](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture4.pdf)
+- [Lecture 5: Spectra and Pseudospectra of the Advection-Diffusion Operator](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture5.pdf)
 - [Appendix A: Laplace Eigenproblem on a Pizza Slice](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixA.pdf)
 - [Appendix B: The Rayleigh quotient](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixB.pdf)
 
