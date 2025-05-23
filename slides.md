@@ -7,7 +7,7 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2025
   * European Finite Element Fair
     24/05
-    Trieste, IT [slides](https://www.uzerbinati.eu/assets/slides/efef2025.pdf).
+    Trieste, IT [slides](https://www.uzerbinati.eu/assets/slides/efef25.pdf).
   * SIAM Students Chapter, King Abdullah University of Science and Technology
     04/08
     Jeddah, SA [slides](https://www.uzerbinati.eu/assets/slides/kaust.pdf), [more info](https://cemse.kaust.edu.sa/events/by-type/seminar/2025/04/08/helmholtz-korteweg-equations-modeling-analysis-and-applications).
