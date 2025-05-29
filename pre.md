@@ -17,7 +17,4 @@ Clarissa Astuto, Armando Coco, UZ
   4. _An adaptive mesh refinement strategy to ensure quasi-optimality of the conforming finite element method for the Helmholtz equation via T-coercivity_  
 Tim van Beeck, UZ
 [arXiv](https://arxiv.org/abs/2403.06266), 2024.
-  5. _A nodal ghost method based on variational formulation and regular square grid for elliptic problems on arbitrary domains in two space dimensions_  
-Clarissa Astuto, Daniele Boffi, Giovanni Russo, UZ
-[arXiv](https://arxiv.org/abs/2402.04048), 2024.
 
