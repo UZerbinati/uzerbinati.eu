@@ -51,7 +51,36 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
     01/07 - 03/07
     Cambridge, UK [slides](https://www.uzerbinati.eu/assets/slides/pdesoft.pdf).
 ### 2023
-  * PDESoft 
+  * Yang Applied Mathematics Conference, 
     18/09 - 22/09
     Siena, IT [slides](https://www.uzerbinati.eu/assets/slides/siena.pdf).
-
+  * Firedrake Hackathon,
+    13/09
+    Great Missenden, UK [slides](https://www.uzerbinati.eu/assets/slides/greatmissenden.pdf).
+  * Numerical Analysis in the 21st Century,
+    15/08,
+    Oxford, UK [slides](https://www.uzerbinati.eu/assets/slides/trefethen.pdf).
+  * NGSolve User Meeting,
+    10/07
+    Vienna, AT [slides](https://www.uzerbinati.eu/assets/slides/portland.pdf).
+  * FEniCS 2023,
+    14/06
+    Cagliari, IT [slides](https://www.uzerbinati.eu/assets/slides/fenics2023.pdf).
+  * European Finite Element Fair,
+    12/05
+    Twente, NL [slides](https://www.uzerbinati.eu/assets/slides/efef23.pdf).
+  * Numerical Analysis Internal Seminar University of Oxford,
+    02/05
+    Oxford, UK [slides](https://www.uzerbinati.eu/assets/slides/oxford.pdf).
+  * SIAM UK-Ireland Annual Meeting,
+    23/04
+    Dublin, IR [slides](https://www.uzerbinati.eu/assets/slides/siamuk2023.pdf).
+  * PRISM Hackathon,
+    19/04
+    Great Missenden, UK [slides](https://www.uzerbinati.eu/assets/slides/prism.pdf).
+  * Internal Seminar University of Catania,
+    16/03
+    Catania, IT [slides](https://www.uzerbinati.eu/assets/slides/unict.pdf).
+  * Firedrake User Meeting,
+    06/01
+    Exeter, UK [slides](https://www.uzerbinati.eu/assets/slides/firedrake2023.pdf).
