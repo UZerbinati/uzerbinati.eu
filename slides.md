@@ -5,16 +5,19 @@ order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2025
+  * Mathematical Modelling, Numerical Analysis and Scientific Computing 
+    15/06 - 20/06
+    Kacov, CZ [slides](https://www.uzerbinati.eu/assets/slides/kacov.pdf).
   * Mathematical Methods for Wave Problems, University of Leicester
     10/06
     Leicester, UK [slides](https://www.uzerbinati.eu/assets/slides/leicester.pdf).
   * Bath Royal Literary and Scientific Institution, Internal Seminar
     06/06
     Bath, UK [slides](https://www.uzerbinati.eu/assets/slides/bath.pdf).
+<!--more-->
   * European Finite Element Fair
     24/05
     Trieste, IT [slides](https://www.uzerbinati.eu/assets/slides/efef25.pdf).
-<!--more-->
   * SIAM Students Chapter, King Abdullah University of Science and Technology
     04/08
     Jeddah, SA [slides](https://www.uzerbinati.eu/assets/slides/kaust.pdf), [more info](https://cemse.kaust.edu.sa/events/by-type/seminar/2025/04/08/helmholtz-korteweg-equations-modeling-analysis-and-applications).
