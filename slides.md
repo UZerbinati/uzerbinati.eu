@@ -5,16 +5,19 @@ order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2025
+  * 29th International Conference on Domain Decomposition Methods 
+    23/06 - 27/06
+    Milan, IT [slides](https://www.uzerbinati.eu/assets/slides/dd29.pdf).
   * Mathematical Modelling, Numerical Analysis and Scientific Computing 
     15/06 - 20/06
     Kacov, CZ [slides](https://www.uzerbinati.eu/assets/slides/kacov.pdf).
   * Mathematical Methods for Wave Problems, University of Leicester
     10/06
     Leicester, UK [slides](https://www.uzerbinati.eu/assets/slides/leicester.pdf).
+<!--more-->
   * Bath Royal Literary and Scientific Institution, Internal Seminar
     06/06
     Bath, UK [slides](https://www.uzerbinati.eu/assets/slides/bath.pdf).
-<!--more-->
   * European Finite Element Fair
     24/05
     Trieste, IT [slides](https://www.uzerbinati.eu/assets/slides/efef25.pdf).
@@ -53,6 +56,9 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
   * PDESoft 
     01/07 - 03/07
     Cambridge, UK [slides](https://www.uzerbinati.eu/assets/slides/pdesoft.pdf).
+  * 28th International Conference on Domain Decomposition Methods 
+    28/02 - 1/02
+    Jeddah, SA [[slides](https://www.uzerbinati.eu/assets/slides/dd28.pdf), [NACA simulation](https://youtu.be/ZIuJaF8if6M)].
     
 ### 2023
   * Yang Applied Mathematics Conference, 
