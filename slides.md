@@ -5,16 +5,22 @@ order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2025
+  * Guest Lecture, SIMULA 
+    14/08
+    Oslo, NO [slides](https://www.uzerbinati.eu/assets/slides/simula.pdf).
+  * Visiting Paul Stocker, University of Vienna 
+    21/07 - 26/07
+    Vienna, AT.
   * ICOSAHOM 
     13/07 - 18/07
     Montreal, CA [slides](https://www.uzerbinati.eu/assets/slides/montreal.pdf).
+<!--more-->
   * Gordon Research Conference on Liquid Crystals 
     06/07 - 11/07
     Manchester, US.
   * 29th International Conference on Domain Decomposition Methods 
     23/06 - 27/06
     Milan, IT [slides](https://www.uzerbinati.eu/assets/slides/dd29.pdf).
-<!--more-->
   * Mathematical Modelling, Numerical Analysis and Scientific Computing 
     15/06 - 20/06
     Kacov, CZ [slides](https://www.uzerbinati.eu/assets/slides/kacov.pdf).
