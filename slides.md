@@ -1,6 +1,6 @@
 ---
 layout: block
-title: Talks
+title: Talks and Visits
 order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
