@@ -15,9 +15,9 @@ order: 4
   Lorenzo Lazzarino, Yuji Nakatsukasa, UZ
 [arXiv](https://arxiv.org/abs/2502.17626), 2025.
   4. _A comparison of the Coco-Russo scheme and $\protect\mathghost$-FEM for elliptic equations in arbitrary domains_  
-Clarissa Astuto, Armando Coco, UZ
+  Clarissa Astuto, Armando Coco, UZ
 [arXiv](https://arxiv.org/abs/2405.16582), 2024.
   5. _An adaptive mesh refinement strategy to ensure quasi-optimality of the conforming finite element method for the Helmholtz equation via T-coercivity_  
-Tim van Beeck, UZ
+  Tim van Beeck, UZ
 [arXiv](https://arxiv.org/abs/2403.06266), 2024.
 
