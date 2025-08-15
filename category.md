@@ -2,7 +2,7 @@
 layout: block
 title:  Works by Category
 ---
-We here list the papers, proceedings, and preprints by category.
+A list of papers, proceedings, and preprints by category.
 ### Analysis
 
   1. _Analysis and numerical analysis of the Helmholtz-Korteweg equation_
