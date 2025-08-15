@@ -7,10 +7,10 @@ order: 4
   1. _A Kinetic Theory Approach to Ordered Fluids_
   José A. Carrillo, Patrick E. Farrell, Andrea Medaglia, UZ
 [arXiv](https://arxiv.org/abs/2508.10744), 2025.
+<!--more-->
   2. _Analysis and numerical analysis of the Helmholtz-Korteweg equation_
   Patrick E. Farrell, Tim van Beeck, UZ
 [arXiv](https://arxiv.org/abs/2503.10771), 2025.
-<!--more-->
   3. _Preconditioned normal equations for solving discretised partial differential equations_
   Lorenzo Lazzarino, Yuji Nakatsukasa, UZ
 [arXiv](https://arxiv.org/abs/2502.17626), 2025.
