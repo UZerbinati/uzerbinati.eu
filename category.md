@@ -1,5 +1,5 @@
 ---
-layout: block
+layout: page
 title:  Works by Category
 ---
 A list of papers, proceedings, and preprints by category.

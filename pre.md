@@ -3,7 +3,7 @@ layout: block
 title: Preprints 
 order: 4
 ---
-A list of my latest preprints, you can read more or look up any work by [category](https://uzerbinati.eu/category).
+A list of my latest preprints, you can read more or look up any preprint by [category](https://uzerbinati.eu/category).
 
   1. _A Kinetic Theory Approach to Ordered Fluids_
   José A. Carrillo, Patrick E. Farrell, Andrea Medaglia, UZ

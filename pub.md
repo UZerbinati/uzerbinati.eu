@@ -4,7 +4,7 @@ title: Publications
 order: 2
 ---
   
-A list of my latest papers, you can read more or look up any work by [category](https://uzerbinati.eu/category).
+A list of my latest papers, you can read more or look up any paper by [category](https://uzerbinati.eu/category).
 
   1. _A nodal ghost method based on variational formulation and regular square grid for elliptic problems on arbitrary domains in two space dimensions_  
   Clarissa Astuto, Daniele Boffi, Giovanni Russo, UZ

@@ -3,7 +3,7 @@ layout: block
 title: Proceedings 
 order: 3
 ---
-A list of my latest proceedings, you can read more or look up any work by [category](https://uzerbinati.eu/category).
+A list of my latest proceedings, you can read more or look up any proceeding by [category](https://uzerbinati.eu/category).
 
   1. _The Lightning Virtual Element Method for Self-adjoint Eigenvalue Problems_  
 Manuel Trezzi, UZ
