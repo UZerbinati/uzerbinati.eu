@@ -5,16 +5,19 @@ order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2025
+  * Recent challenges in the mathematical design of new materials, Isaac Newton Institute
+    18/12 - 22/12
+    Cambridge, UK.
   * Guest Lecture, SIMULA 
     14/08
     Oslo, NO [slides](https://www.uzerbinati.eu/assets/slides/simula.pdf).
   * Visiting Paul Stocker, University of Vienna 
     21/07 - 26/07
     Vienna, AT.
+<!--more-->
   * ICOSAHOM 
     13/07 - 18/07
     Montreal, CA [slides](https://www.uzerbinati.eu/assets/slides/montreal.pdf).
-<!--more-->
   * Gordon Research Conference on Liquid Crystals 
     06/07 - 11/07
     Manchester, US.
