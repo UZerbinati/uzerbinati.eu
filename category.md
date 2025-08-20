@@ -44,7 +44,7 @@ A list of papers, proceedings, and preprints by category.
   7. _An adaptive mesh refinement strategy to ensure quasi-optimality of the conforming finite element method for the Helmholtz equation via T-coercivity_  
   Tim van Beeck, UZ
   [arXiv](https://arxiv.org/abs/2403.06266), 2024.
-  3. _PINNs and GaLS: A Priori Error Estimates for Shallow Physics Informed Neural Networks Applied to Elliptic Problems_
+  8. _PINNs and GaLS: A Priori Error Estimates for Shallow Physics Informed Neural Networks Applied to Elliptic Problems_
   UZ
   [IFAC-PapersOnLine](https://doi.org/10.1016/j.ifacol.2022.09.072), 2022  [[arXiv](https://arxiv.org/pdf/2202.01059)]  
 
