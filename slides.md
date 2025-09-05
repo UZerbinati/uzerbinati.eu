@@ -5,7 +5,7 @@ order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2025
-  * ENUMATH, Heidelberg
+  * ENUMATH
     01/09 - 05/09
     Heidelberg, DE [slides](https://www.uzerbinati.eu/assets/slides/enumath.pdf).
   * Recent challenges in the mathematical design of new materials, Isaac Newton Institute
