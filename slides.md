@@ -5,16 +5,19 @@ order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2025
+  * SIAM Students Chapter, King Abdullah University of Science and Technology
+    29/09
+    Jeddah, SA [more info](https://cemse.kaust.edu.sa/events/by-type/seminar/2025/09/29/new-challenges-kinetic-theory-complex-fluids).
   * ENUMATH
     01/09 - 05/09
     Heidelberg, DE [slides](https://www.uzerbinati.eu/assets/slides/enumath.pdf).
   * Recent challenges in the mathematical design of new materials, Isaac Newton Institute
     18/12 - 22/12
     Cambridge, UK.
+<!--more-->
   * Guest Lecture, SIMULA 
     14/08
     Oslo, NO [slides](https://www.uzerbinati.eu/assets/slides/simula.pdf).
-<!--more-->
   * Visiting Paul Stocker, University of Vienna 
     21/07 - 26/07
     Vienna, AT.
