@@ -44,7 +44,7 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
     Trieste, IT [slides](https://www.uzerbinati.eu/assets/slides/efef25.pdf).
   * SIAM Students Chapter, King Abdullah University of Science and Technology
     04/08
-    Jeddah, SA [slides](https://www.uzerbinati.eu/assets/slides/kaust.pdf), [more info](https://cemse.kaust.edu.sa/events/by-type/seminar/2025/04/08/helmholtz-korteweg-equations-modeling-analysis-and-applications).
+    Jeddah, SA [slides](https://www.uzerbinati.eu/assets/slides/kaust.pdf), [more info](https://cemse.kaust.edu.sa/events/by-type/seminar/2025/04/08/helmholtz-korteweg-equations-modeling-analysis-and-applications), A Desert Adventure: [part 1](https://www.uzerbinati.eu/assets/images/desert1.jpeg) and [part 2](https://www.uzerbinati.eu/assets/images/desert2.jpeg).
   * Internal seminar, University of Catania
     04/04
     Catania, IT [slides](https://www.uzerbinati.eu/assets/slides/catania.pdf).
