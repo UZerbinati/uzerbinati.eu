@@ -5,6 +5,9 @@ order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2025
+  * Oxford Numerical Analysis Internal Seminar
+    30/10
+    Oxford, UK [slides](https://www.uzerbinati.eu/assets/slides/oxford_2.pdf).
   * I hosted to [_Tim van Beeck_](https://timvanbeeck.github.io/) who gave a talk at the
     Numerical Analysis Internal Seminar, University of Oxford,
     16/10,
@@ -12,10 +15,10 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
   * SIAM Students Chapter, King Abdullah University of Science and Technology
     29/09
     Jeddah, SA [more info](https://cemse.kaust.edu.sa/events/by-type/seminar/2025/09/29/new-challenges-kinetic-theory-complex-fluids).
+<!--more-->
   * ENUMATH
     01/09 - 05/09
     Heidelberg, DE [slides](https://www.uzerbinati.eu/assets/slides/enumath.pdf).
-<!--more-->
   * Recent challenges in the mathematical design of new materials, Isaac Newton Institute
     18/12 - 22/12
     Cambridge, UK.
