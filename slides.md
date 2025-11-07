@@ -11,7 +11,7 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
   * I hosted to [_Tim van Beeck_](https://timvanbeeck.github.io/) who gave a talk at the
     Numerical Analysis Internal Seminar, University of Oxford,
     16/10,
-    Oxford, UK [more info](https://www.maths.ox.ac.uk/node/72701), Pictures from the visit: [Formal dinner](https://www.uzerbinati.eu/assets/images/tim1.jpeg), [Informal dinner](https://www.uzerbinati.eu/assets/images/tim2.jpeg).
+    Oxford, UK [slides](https://timvanbeeck.github.io/uploads/talks/oxford25.pdf), [more info](https://www.maths.ox.ac.uk/node/72701), Pictures from the visit: [Formal dinner](https://www.uzerbinati.eu/assets/images/tim1.jpeg), [Informal dinner](https://www.uzerbinati.eu/assets/images/tim2.jpeg).
   * SIAM Students Chapter, King Abdullah University of Science and Technology
     29/09
     Jeddah, SA [more info](https://cemse.kaust.edu.sa/events/by-type/seminar/2025/09/29/new-challenges-kinetic-theory-complex-fluids).
