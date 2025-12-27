@@ -1,7 +1,6 @@
 ---
 layout: block
 title: Advances in Ordered Fluids and Alignment Phenomena
-order: 7
 ---
 
 **Advances in Ordered Fluids and Alignment Phenomena:  
