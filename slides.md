@@ -5,7 +5,7 @@ order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2025
-  * I was visiting [_Niccolo Tassi_](https://sites.google.com/view/niccolotassi/) to visit the [Instituto de Matemáticas de la Universidad de Granada](https://wpd.ugr.es/~imag/) and to give a talk at the local PDE semianr.
+  * I was visiting [_Niccolo Tassi_](https://sites.google.com/view/niccolotassi/) to visit the [Instituto de Matemáticas de la Universidad de Granada](https://wpd.ugr.es/~imag/) and to give a talk at the local PDE seminar.
     15/12 - 19/12
     Granada, ES [more details](https://wpd.ugr.es/~imag/events/event/umberto-zerbinati/).
   * I hosted to [_Clarissa Astuto_](https://web.dmi.unict.it/corsi/l-35/docenti/uid.SlJFYTNoQ3BqNnZLSnhlOXJzMmJMNXJLam1SM2RrQS92R3NybUlHZUpUVT0=) who gave a talk at the
