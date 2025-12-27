@@ -60,6 +60,5 @@ Invited speakers are encouraged to give a **60-minute talk**, followed by **15 m
 The conference will take place at **Borgo dei Gatti**, located in the scenic hills of the Oltrepò Pavese wine region near Pavia.  
 The venue offers comfortable accommodation, shared spaces for discussion, and a peaceful environment well suited to focused research and collaboration.
 
-More information about the venue is available at:  
-https://relaisborgodeigatti.it/
+More information about the venue is available at [venue's website]( https://relaisborgodeigatti.it/).
 
