@@ -1,5 +1,5 @@
 ---
-layout: block
+layout: page
 title: Advances in Ordered Fluids and Alignment Phenomena Modeling, Analysis, and Numerical Methods
 ---
 
