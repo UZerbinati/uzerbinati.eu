@@ -9,7 +9,8 @@ University of Ferrara, University of Oxford
 
 **[Borgo dei Gatti](https://relaisborgodeigatti.it/)**, Oltrepò Pavese (Italy)  
 **14–20 September 2026**  
-Departure on the morning of 20 September
+Checkin on the afternone of 14 September
+Checkout on the morning of 20 September
 
 ---
 
