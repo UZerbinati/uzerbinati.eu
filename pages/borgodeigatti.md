@@ -1,6 +1,6 @@
 ---
 layout: block
-title: Advances in Ordered Fluids and Alignment Phenomena\ Modeling, Analysis, and Numerical Methods
+title: Advances in Ordered Fluids and Alignment Phenomena -- Modeling, Analysis, and Numerical Methods
 ---
 
 *[Andrea Medaglia](https://www.andreamedaglia.eu/)*, *[Umberto Zerbinati](https://www.uzerbinati.eu/)*  
