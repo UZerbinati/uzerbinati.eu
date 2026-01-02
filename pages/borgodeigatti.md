@@ -63,6 +63,6 @@ More information about the venue is available at [venue's website]( https://rela
 ## Invited Speakers
 ---
 - [José A. Carrillo](https://www.maths.ox.ac.uk/people/jose.carrillo) (University of Oxford, United Kingdom)
-- [Patrick E. Farrell](https://pefarrell.org/people) (University of Oxford, United Kingdom)
-- [Josef Málek](https://www.math.cas.cz/~malek/) (Charles University, Czech Republic)
+- [Patrick E. Farrell](https://pefarrell.org/) (University of Oxford, United Kingdom)
+- [Josef Málek](https://www.karlin.mff.cuni.cz/~malek/new-OBJ/index.php?title=Josef_M%C3%A1lek) (Charles University, Czech Republic)
 - [Peter Markowich](https://www.kaust.edu.sa/en/study/faculty/peter-markowich) (KAUST, Saudi Arabia)
