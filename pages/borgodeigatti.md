@@ -7,7 +7,7 @@ title: Advances in Ordered Fluids and Alignment Phenomena Modeling, Analysis, an
 University of Ferrara, University of Oxford
 
 **[Borgo dei Gatti](https://relaisborgodeigatti.it/), Oltrepò Pavese (Italy)**
-**14–20 September 2026**  
+**14–19 September 2026**  
 Checkin on the afternone of 14 September and checkout on the morning of 19 September.
 
 ---
