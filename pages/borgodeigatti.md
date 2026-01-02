@@ -60,8 +60,10 @@ The venue offers comfortable accommodation, shared spaces for discussion, and a 
 More information about the venue is available at [venue's website]( https://relaisborgodeigatti.it/).
 
 
-## Invited Speakers
 ---
+
+## Invited Speakers
+
 - [Marco Bresciani](https://sites.google.com/view/marcobresciani) (Johannes Kepler University Linz, Austria)
 - [José A. Carrillo](https://www.maths.ox.ac.uk/people/jose.carrillo) (University of Oxford, United Kingdom)
 - [Patrick E. Farrell](https://pefarrell.org/) (University of Oxford, United Kingdom)
