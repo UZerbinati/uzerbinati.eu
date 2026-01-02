@@ -8,7 +8,7 @@ University of Ferrara, University of Oxford
 
 **[Borgo dei Gatti](https://relaisborgodeigatti.it/), Oltrepò Pavese (Italy)**
 **14–20 September 2026**  
-Checkin on the afternone of 14 September and checkout on the morning of 20 September.
+Checkin on the afternone of 14 September and checkout on the morning of 19 September.
 
 ---
 
@@ -59,3 +59,10 @@ The venue offers comfortable accommodation, shared spaces for discussion, and a 
 
 More information about the venue is available at [venue's website]( https://relaisborgodeigatti.it/).
 
+
+## Invited Speakers
+---
+- [José A. Carrillo](https://www.maths.ox.ac.uk/people/jose.carrillo) (University of Oxford, United Kingdom)
+- [Patrick E. Farrell](https://pefarrell.org/people) (University of Oxford, United Kingdom)
+- [Josef Málek](https://www.math.cas.cz/~malek/) (Charles University, Czech Republic)
+- [Peter Markowich](https://www.kaust.edu.sa/en/study/faculty/peter-markowich) (KAUST, Saudi Arabia)
