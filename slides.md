@@ -4,6 +4,10 @@ title: Talks and Visits
 order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
+### 2026
+  * I'm organizing a minisymposium on "Advances in Ordered Fluids and Alignment Phenomena Modeling, Analysis, and Numerical Methods",
+    14/09 - 19/09
+    Golferenzo, Oltrepò Pavese, IT [more details](https://www.uzerbinati.eu/pages/borgodeigatti).
 ### 2025
   * I was visiting [_Niccolo Tassi_](https://sites.google.com/view/niccolotassi/) to visit the [Instituto de Matemáticas de la Universidad de Granada](https://wpd.ugr.es/~imag/) and to give a talk at the local PDE seminar.
     15/12 - 19/12
