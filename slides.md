@@ -8,6 +8,9 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
   * I'm organizing a minisymposium on "Advances in Ordered Fluids and Alignment Phenomena Modeling, Analysis, and Numerical Methods",
     14/09 - 19/09
     Golferenzo, Oltrepò Pavese, IT [more details](https://www.uzerbinati.eu/pages/borgodeigatti).
+  * International Workshop on Structure-Preserving Finite Element Methods, Chinese Academy of Sciences,
+    09/01 - 10/01
+    Beijing, CN  [more details](https://lsec.cc.ac.cn/~icspfem26/Program.html).
 
 ### 2025
   * I was visiting [_Niccolo Tassi_](https://sites.google.com/view/niccolotassi/) to visit the [Instituto de Matemáticas de la Universidad de Granada](https://wpd.ugr.es/~imag/) and to give a talk at the local PDE seminar.
