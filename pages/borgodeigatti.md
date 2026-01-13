@@ -63,9 +63,11 @@ More information about the venue is available at [venue's website]( https://rela
 ---
 
 ## Invited Speakers
-
+- [Clarissa Astuto](https://web.dmi.unict.it/faculty/clarissa.astuto) (University of Catania, Italy)
 - [Marco Bresciani](https://sites.google.com/view/marcobresciani) (Johannes Kepler University Linz, Austria)
 - [José A. Carrillo](https://www.maths.ox.ac.uk/people/jose.carrillo) (University of Oxford, United Kingdom)
 - [Patrick E. Farrell](https://pefarrell.org/) (University of Oxford, United Kingdom)
 - [Josef Málek](https://www.karlin.mff.cuni.cz/~malek/new-OBJ/index.php?title=Josef_M%C3%A1lek) (Charles University, Czech Republic)
 - [Peter Markowich](https://www.kaust.edu.sa/en/study/faculty/peter-markowich) (KAUST, Saudi Arabia)
+- [Giovanni Russo](https://www.dmi.unict.it/russo/) (University of Catania, Italy)
+- [Tim van Beeck](https://timvanbeeck.github.io/) (University of Göttingen, Germany)
