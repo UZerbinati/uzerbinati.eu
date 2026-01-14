@@ -8,9 +8,13 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
   * I'm organizing a minisymposium on "Advances in Ordered Fluids and Alignment Phenomena Modeling, Analysis, and Numerical Methods",
     14/09 - 19/09
     Golferenzo, Oltrepò Pavese, IT [more details](https://www.uzerbinati.eu/pages/borgodeigatti).
+  * Workshop on Finite Element Tensor calculus, Tsinghua Sanya International Mathematics Forum,
+    12/01 - 16/01
+    Sanya, CN  [slides](https://www.uzerbinati.eu/assets/slides/sanya.pdf).
   * International Workshop on Structure-Preserving Finite Element Methods, Chinese Academy of Sciences,
     09/01 - 10/01
     Beijing, CN  [more details](https://lsec.cc.ac.cn/~icspfem26/Program.html).
+<!--more-->
 
 ### 2025
   * I was visiting [_Niccolo Tassi_](https://sites.google.com/view/niccolotassi/) to visit the [Instituto de Matemáticas de la Universidad de Granada](https://wpd.ugr.es/~imag/) and to give a talk at the local PDE seminar.
@@ -23,7 +27,6 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
   * ETNA: Efficient Time-Stepping Numerical Approaches for PDEs - Forward and Inverse Models with Application, University of Catania
     28/11
     Catania, IT [slides](https://www.uzerbinati.eu/assets/slides/etna.pdf).
-<!--more-->
   * Modelling of materials - theory, model reduction and efficient numerical methods, Charles University
     12/11
     Prague, CZ [notes](https://www.uzerbinati.eu/assets/notes/praguenotes.pdf).
