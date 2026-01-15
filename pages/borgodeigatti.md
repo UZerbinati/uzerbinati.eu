@@ -71,3 +71,4 @@ More information about the venue is available at [venue's website]( https://rela
 - [Peter Markowich](https://www.kaust.edu.sa/en/study/faculty/peter-markowich) (KAUST, Saudi Arabia)
 - [Giovanni Russo](https://www.dmi.unict.it/russo/) (University of Catania, Italy)
 - [Tim van Beeck](https://timvanbeeck.github.io/) (University of Göttingen, Germany)
+- [Mattia Zanella](http://www.mattiazanella.eu/) (University of Pavia, Italy)
