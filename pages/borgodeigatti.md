@@ -63,15 +63,15 @@ More information about the venue is available at [venue's website]( https://rela
 ---
 
 ## Invited Speakers
-- [Clarissa Astuto](https://web.dmi.unict.it/faculty/clarissa.astuto) (University of Catania, Italy) [//]: # 1
-- [Maria Bruna](https://people.maths.ox.ac.uk/bruna/) (University of Oxford, United Kingdom) [//]: # 2
-- [Marco Bresciani](https://sites.google.com/view/marcobresciani) (Johannes Kepler University Linz, Austria) [//]: # 3
-- [José A. Carrillo](https://www.maths.ox.ac.uk/people/jose.carrillo) (University of Oxford, United Kingdom) [//]: # 4
-- [Patrick E. Farrell](https://pefarrell.org/) (University of Oxford, United Kingdom) [//]: # 5
-- [Josef Málek](https://www.karlin.mff.cuni.cz/~malek/new-OBJ/index.php?title=Josef_M%C3%A1lek) (Charles University, Czech Republic) [//]: # 6
-- [Peter Markowich](https://www.kaust.edu.sa/en/study/faculty/peter-markowich) (KAUST, Saudi Arabia) [//]: # 7
-- [Carmela Moschella](https://moschellaca.github.io/) (University of Oxford, United Kingdom) [//]: # 8
-- [Giovanni Russo](https://www.dmi.unict.it/russo/) (University of Catania, Italy) [//]: # 9
-- [Tim van Beeck](https://timvanbeeck.github.io/) (University of Göttingen, Germany) [//]: # 10
-- [Niccolò Tassi])(https://sites.google.com/view/niccolotassi/) (University of Granda, Spain) [//]: # 11
-- [Mattia Zanella](http://www.mattiazanella.eu/) (University of Pavia, Italy) [//]: # 12
+- [Clarissa Astuto](https://web.dmi.unict.it/faculty/clarissa.astuto) (University of Catania, Italy)
+- [Maria Bruna](https://people.maths.ox.ac.uk/bruna/) (University of Oxford, United Kingdom)
+- [Marco Bresciani](https://sites.google.com/view/marcobresciani) (Johannes Kepler University Linz, Austria)
+- [José A. Carrillo](https://www.maths.ox.ac.uk/people/jose.carrillo) (University of Oxford, United Kingdom)
+- [Patrick E. Farrell](https://pefarrell.org/) (University of Oxford, United Kingdom)
+- [Josef Málek](https://www.karlin.mff.cuni.cz/~malek/new-OBJ/index.php?title=Josef_M%C3%A1lek) (Charles University, Czech Republic)
+- [Peter Markowich](https://www.kaust.edu.sa/en/study/faculty/peter-markowich) (KAUST, Saudi Arabia)
+- [Carmela Moschella](https://moschellaca.github.io/) (University of Oxford, United Kingdom)
+- [Giovanni Russo](https://www.dmi.unict.it/russo/) (University of Catania, Italy)
+- [Tim van Beeck](https://timvanbeeck.github.io/) (University of Göttingen, Germany)
+- [Niccolò Tassi])(https://sites.google.com/view/niccolotassi/) (University of Granda, Spain)
+- [Mattia Zanella](http://www.mattiazanella.eu/) (University of Pavia, Italy)
