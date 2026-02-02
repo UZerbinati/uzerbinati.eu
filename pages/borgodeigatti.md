@@ -73,5 +73,5 @@ More information about the venue is available at [venue's website]( https://rela
 - [Carmela Moschella](https://moschellaca.github.io/) (University of Oxford, United Kingdom)
 - [Giovanni Russo](https://www.dmi.unict.it/russo/) (University of Catania, Italy)
 - [Tim van Beeck](https://timvanbeeck.github.io/) (University of Göttingen, Germany)
-- [Niccolò Tassi])(https://sites.google.com/view/niccolotassi/) (University of Granda, Spain)
+- [Niccolò Tassi](https://sites.google.com/view/niccolotassi/) (University of Granada, Spain)
 - [Mattia Zanella](http://www.mattiazanella.eu/) (University of Pavia, Italy)
