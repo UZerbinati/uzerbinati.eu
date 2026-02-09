@@ -2,8 +2,18 @@
 layout: page
 title: Spectral Theory and Spectral Practice
 ---
-I've been invited to teach a minicourse on Finite Element approximations of eigenvalues problems at the University of Edinburgh, UK, by Prof. [Kaibo Hu](https://kaibohu.github.io/). The course was supported by the [ERC Starting Grant GeoFEM (Geometric Finite Element Methods)](https://kaibohu.github.io/geofem/).
-The courses composes of 4 lectures, each lasting one hour and of practical exercises making use of the finite element library [Firedrake](https://www.firedrakeproject.org/).
+I was invited to teach a minicourse on Finite Element approximations of eigenvalues problems at the University of Edinburgh, UK, by Prof. [Kaibo Hu](https://kaibohu.github.io/). The course was supported by the [ERC Starting Grant GeoFEM (Geometric Finite Element Methods)](https://kaibohu.github.io/geofem/).
+The courses composed of 4 lectures, each lasting one hour and of practical exercises making use of the finite element library [Firedrake](https://www.firedrakeproject.org/).
+
+I later presented similar material in different occasions, including:
+
+* Seminars in Applied and Computational Analysis, Centre for Mathematical Sciences,
+  05/02
+  Cambridge, UK [slides](https://www.uzerbinati.eu/assets/slides/cambridge.pdf).
+  
+This page collects the lecture notes and exercises of the course, as well as the slides and the codes used in in the various presentations.
+
+Course Description:
 
 In this short course, we explore finite element discretisations of eigenvalue problems involving non-normal operators, with a focus on the advection-diffusion equation as a guiding example. We begin by revisiting fundamental spectral notions—self-adjointness, normality, spectra, and pseudospectra—with particular emphasis on how an operator spectrum informs us about the physical behaviour of the time-dependent PDEs. The core of the course is devoted to the classical analysis of finite element approximations: we present in detail the Bramble-Osborn results for non-self-adjoint eigenvalue problems, including full proofs, and discuss their implications for convergence and approximation quality. For comparison, we also review the celebrated Babuška-Osborn theory in the self-adjoint case. If time permits, we will conclude with a discussion on iterative solvers and preconditioning strategies tailored to non-normal eigenvalue problems. The course requires basic background in functional analysis and finite element methods.
 
@@ -20,10 +30,12 @@ Course Materials:
 - [Lecture 5: Spectra and Pseudospectra of the Advection-Diffusion Operator](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture5.pdf)
 - [Appendix A: Laplace Eigenproblem on a Pizza Slice](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixA.pdf)
 - [Appendix B: The Rayleigh quotient](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixB.pdf)
+- [Maxwell's eigenvalue problem and Dynamo theory](https://www.uzerbinati.eu/assets/slides/cambridge.pdf).
 
 Exercises and Solutions:
 - [Exercise 1: FEM Approximation of the Laplace Eigenproblem](https://www.uzerbinati.eu/assets/teaching/sheets/st_sheet1.pdf): In this problem sheet, we will implement the finite element method (FEM) to approximate the eigenvalues and eigenfunctions of the Laplace operator on an interval. The convergence rate of the FEM is computed for both eigenvalues and eigenfunctions. We then consider the Laplace operator on the square and on the pizza slice. Answers: [Q1-Q4](https://www.uzerbinati.eu/assets/teaching/sheets/solutions/eig_laplace_interval.py), [Q5-Q6](https://www.uzerbinati.eu/assets/teaching/sheets/solutions/eig_laplace_square.py), [Q7](https://www.uzerbinati.eu/assets/teaching/sheets/solutions/eig_laplace_pizza.py)
 - [Exercise 2: FEM Approximation of the Advection-Diffusion Eigenproblem](https://www.uzerbinati.eu/assets/teaching/sheets/st_sheet2.pdf): In this problem sheet, we will implement the finite element method (FEM) to approximate the eigenvalues and eigenfunctions of the advection-diffusion operator on an interval. The convergence rate of the FEM is computed for both eigenvalues and eigenfunctions. We then discuss the implication that the pseudospectra has on the solution of the Helmholtz equation. Answers: [Q1-Q3](https://www.uzerbinati.eu/assets/teaching/sheets/solutions/eig_advection_interval.py), [Q5-Q7](https://www.uzerbinati.eu/assets/teaching/sheets/solutions/eig_advection_square.py).
+- Code for Maxwell's eigenvalue problem and Dynamo theory: [poisson_nodal.py](https://www.uzerbinati.eu/assets/teaching/examples/poisson_nodal.py), [poisson_mixed_duran.py](https://www.uzerbinati.eu/assets/teaching/examples/poisson_mixed_duran.py), [poisson_mixed_div.py](https://www.uzerbinati.eu/assets/teaching/examples/poisson_mixed_div.py), [poisson_mixed_rt.py](https://www.uzerbinati.eu/assets/teaching/examples/poisson_mixed_rt.py), [maxwell_nodal.py](https://www.uzerbinati.eu/assets/teaching/examples/maxwell_nodal.py), [maxwell_edge.py](https://www.uzerbinati.eu/assets/teaching/examples/maxwell_edge.py), [pseudo_maxwell.py](https://www.uzerbinati.eu/assets/teaching/examples/pseudo_maxwell.py), [pseudo_tool.py](https://www.uzerbinati.eu/assets/teaching/examples/pseudo_tool.py).
 
 ![Dinner Picutre](../../assets/images/edinburgo.jpeg)
 {: .align-center}
