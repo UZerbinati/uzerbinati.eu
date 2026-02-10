@@ -10,6 +10,9 @@ I later presented similar material in different occasions, including:
 * Seminars in Applied and Computational Analysis, Centre for Mathematical Sciences,
   05/02
   Cambridge, UK [slides](https://www.uzerbinati.eu/assets/slides/cambridge.pdf).
+* Modelling of materials - theory, model reduction and efficient numerical methods, Charles University
+  11/02
+  Prague, CZ [slides](https://www.uzerbinati.eu/assets/slides/prague_feec.pdf).
   
 This page collects the lecture notes and exercises of the course, as well as the slides and the codes used in in the various presentations.
 
