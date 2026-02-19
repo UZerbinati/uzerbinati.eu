@@ -6,7 +6,7 @@ title: Advances in Ordered Fluids and Alignment Phenomena Modeling, Analysis, an
 *[Andrea Medaglia](https://www.andreamedaglia.eu/)*, *[Umberto Zerbinati](https://www.uzerbinati.eu/)*  
 University of Ferrara, University of Oxford
 
-**[Borgo dei Gatti](https://relaisborgodeigatti.it/), Oltrepò Pavese (Italy)**
+**[Borgo dei Gatti](https://relaisborgodeigatti.it/), [Golferenzo](https://www.comune.golferenzo.pv.it/it-it/home), Oltrepò Pavese (Italy)**
 **14–19 September 2026**  
 Checkin on the afternone of 14 September and checkout on the morning of 19 September.
 
