@@ -5,7 +5,7 @@ order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2026
-  * I'm organizing a minisymposium on "Advances in Ordered Fluids and Alignment Phenomena Modeling, Analysis, and Numerical Methods",
+  * I'm organizing a workshop on "Advances in Ordered Fluids and Alignment Phenomena Modeling, Analysis, and Numerical Methods",
     14/09 - 19/09
     Golferenzo, Oltrepò Pavese, IT [more details](https://www.uzerbinati.eu/pages/borgodeigatti).
   * Modelling of materials - theory, model reduction and efficient numerical methods, Charles University

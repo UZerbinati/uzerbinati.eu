@@ -5,16 +5,19 @@ order: 3
 ---
 A list of my latest proceedings, you can read more or look up any proceeding by [category](https://uzerbinati.eu/category).
 
-  1. _The Lightning Virtual Element Method for Self-adjoint Eigenvalue Problems_  
+  1. _A comparison of the Coco-Russo scheme and $\protect\mathghost$-FEM for elliptic equations in arbitrary domains_  
+  Clarissa Astuto, Armando Coco, UZ
+[ICIAM 2023](https://doi.org/10.1007/978-981-96-9087-9_1), [arXiv](https://arxiv.org/abs/2405.16582), 2024.
+  2. _The Lightning Virtual Element Method for Self-adjoint Eigenvalue Problems_  
 Manuel Trezzi, UZ
 [GIMC SIMAI Young 2024](https://doi.org/10.1007/978-3-031-76591-9_23), 2025  
-  2. _The High-Order Lightning Virtual Element Method_  
+<!--more-->
+  3. _The High-Order Lightning Virtual Element Method_  
 Manuel Trezzi, UZ
 [GIMC SIMAI Young 2024](https://doi.org/10.1007/978-3-031-76591-9_22), 2025  
-<!--more-->
-  3. _PETScML: Second-Order Solvers for Training Regression Problems in Scientific Machine Learning_  
+  4. _PETScML: Second-Order Solvers for Training Regression Problems in Scientific Machine Learning_  
 Stefano Zampini, UZ, George Turkyyiah, David Elliot Keyes
 [PASC'24](https://doi.org/10.1145/3659914.3659931), 2024  [[arXiv](https://arxiv.org/pdf/2403.12188)]  
-  4. _PINNs and GaLS: A Priori Error Estimates for Shallow Physics Informed Neural Networks Applied to Elliptic Problems_ 
+  5. _PINNs and GaLS: A Priori Error Estimates for Shallow Physics Informed Neural Networks Applied to Elliptic Problems_ 
 UZ
 [IFAC-PapersOnLine](https://doi.org/10.1016/j.ifacol.2022.09.072), 2022  [[arXiv](https://arxiv.org/pdf/2202.01059)]  
