@@ -8,9 +8,9 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
   * I'm organizing a workshop on "Advances in Ordered Fluids and Alignment Phenomena Modeling, Analysis, and Numerical Methods",
     14/09 - 19/09
     Golferenzo, Oltrepò Pavese, IT [more details](https://www.uzerbinati.eu/pages/borgodeigatti).
-  * Modelling of materials - theory, model reduction and efficient numerical methods, Charles University
-    11/02
-    Prague, CZ [slides](https://www.uzerbinati.eu/assets/slides/prague_feec.pdf).
+  * ADAMUS Seminar Series, University of Ferrara,
+    19/03
+    Ferrara, IT
   * Seminars in Applied and Computational Analysis, Centre for Mathematical Sciences,
      05/02
     Cambridge, UK [slides](https://www.uzerbinati.eu/assets/slides/cambridge.pdf).
