@@ -10,7 +10,7 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
     Golferenzo, Oltrepò Pavese, IT [more details](https://www.uzerbinati.eu/pages/borgodeigatti).
   * ADAMUS Seminar Series, University of Ferrara,
     19/03
-    Ferrara, IT
+    Ferrara, IT, [slides](https://www.uzerbinati.eu/assets/slides/ferrara.pdf).
   * Seminars in Applied and Computational Analysis, Centre for Mathematical Sciences,
      05/02
     Cambridge, UK [slides](https://www.uzerbinati.eu/assets/slides/cambridge.pdf).
