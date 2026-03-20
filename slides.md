@@ -7,7 +7,7 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2026
   * I'm organizing a workshop on "Advances in Ordered Fluids and Alignment Phenomena Modeling, Analysis, and Numerical Methods",
     14/09 - 19/09
-    Golferenzo, Oltrepò Pavese, IT [more details](https://www.uzerbinati.eu/pages/borgodeigatti).
+    Golferenzo, Oltrepò Pavese, IT [more details](https://www.uzerbinati.eu/pages/borgodeigatti), [conference website](https://sites.google.com/view/ordered-fluids/home-page).
   * ADAMUS Seminar Series, University of Ferrara,
     19/03
     Ferrara, IT, [slides](https://www.uzerbinati.eu/assets/slides/ferrara.pdf).

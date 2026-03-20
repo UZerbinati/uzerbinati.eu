@@ -8,7 +8,8 @@ University of Ferrara, University of Oxford
 
 **[Borgo dei Gatti](https://relaisborgodeigatti.it/), [Golferenzo](https://www.comune.golferenzo.pv.it/it-it/home), Oltrepò Pavese (Italy)**
 **14–19 September 2026**  
-Checkin on the afternone of 14 September and checkout on the morning of 19 September.
+Checkin on the afternone of 14th September and checkout on the morning of 19th September.
+Conference website can be found [here](https://sites.google.com/view/ordered-fluids/home-page).
 
 ---
 
@@ -68,10 +69,13 @@ More information about the venue is available at [venue's website]( https://rela
 - [Marco Bresciani](https://sites.google.com/view/marcobresciani) (Johannes Kepler University Linz, Austria)
 - [José A. Carrillo](https://www.maths.ox.ac.uk/people/jose.carrillo) (University of Oxford, United Kingdom)
 - [Patrick E. Farrell](https://pefarrell.org/) (University of Oxford, United Kingdom)
+- [Kaibo Hu](https://kaibohu.github.io/) (Univeristy of Oxford)
 - [Josef Málek](https://www.karlin.mff.cuni.cz/~malek/new-OBJ/index.php?title=Josef_M%C3%A1lek) (Charles University, Czech Republic)
 - [Peter Markowich](https://www.kaust.edu.sa/en/study/faculty/peter-markowich) (KAUST, Saudi Arabia)
 - [Carmela Moschella](https://moschellaca.github.io/) (University of Oxford, United Kingdom)
+- [Pareschi Lorenzo](https://lorenzopareschi.blogspot.com/) (University of Ferrara, Italy and Harrier Watt University, United Kingdom)
 - [Giovanni Russo](https://www.dmi.unict.it/russo/) (University of Catania, Italy)
 - [Tim van Beeck](https://timvanbeeck.github.io/) (University of Göttingen, Germany)
+- [Thomas Surowiec](https://thomas-surowiec.github.io/) (SIMULA)
 - [Niccolò Tassi](https://sites.google.com/view/niccolotassi/) (University of Granada, Spain)
 - [Mattia Zanella](http://www.mattiazanella.eu/) (University of Pavia, Italy)
