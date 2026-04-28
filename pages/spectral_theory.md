@@ -13,6 +13,12 @@ I later presented similar material in different occasions, including:
 * Modelling of materials - theory, model reduction and efficient numerical methods, Charles University
   11/02
   Prague, CZ [slides](https://www.uzerbinati.eu/assets/slides/prague_feec.pdf).
+
+Prof. Daniele Boffi also presented material related to the topic treated in this course:
+* Interactions of geometric spectral theory with numerical methods and applications, Isaac Newton Institute for Mathematical Sciences,
+  05/02
+  Cambridge, UK ([slides](https://www.uzerbinati.eu/assets/slides/boffi_ini.pdf), [recording of the lecutre](https://www.youtube.com/watch?v=8eze46bVgbY), [more info](https://www.newton.ac.uk/seminar/49906/)).
+
   
 This page collects the lecture notes and exercises of the course, as well as the slides and the codes used in in the various presentations.
 
@@ -34,6 +40,8 @@ Course Materials:
 - [Appendix A: Laplace Eigenproblem on a Pizza Slice](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixA.pdf)
 - [Appendix B: The Rayleigh quotient](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixB.pdf)
 - [Maxwell's eigenvalue problem and Dynamo theory](https://www.uzerbinati.eu/assets/slides/cambridge.pdf).
+- [Approximation of spectra of advection-diffusion problems](https://www.uzerbinati.eu/assets/slides/boffi_ini.pdf), [recording of the lecutre](https://www.youtube.com/watch?v=8eze46bVgbY), [more info](https://www.newton.ac.uk/seminar/49906/).
+
 
 Exercises and Solutions:
 - [Exercise 1: FEM Approximation of the Laplace Eigenproblem](https://www.uzerbinati.eu/assets/teaching/sheets/st_sheet1.pdf): In this problem sheet, we will implement the finite element method (FEM) to approximate the eigenvalues and eigenfunctions of the Laplace operator on an interval. The convergence rate of the FEM is computed for both eigenvalues and eigenfunctions. We then consider the Laplace operator on the square and on the pizza slice. Answers: [Q1-Q4](https://www.uzerbinati.eu/assets/teaching/sheets/solutions/eig_laplace_interval.py), [Q5-Q6](https://www.uzerbinati.eu/assets/teaching/sheets/solutions/eig_laplace_square.py), [Q7](https://www.uzerbinati.eu/assets/teaching/sheets/solutions/eig_laplace_pizza.py)
