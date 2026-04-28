@@ -40,7 +40,7 @@ Course Materials:
 - [Appendix A: Laplace Eigenproblem on a Pizza Slice](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixA.pdf)
 - [Appendix B: The Rayleigh quotient](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixB.pdf)
 - [Maxwell's eigenvalue problem and Dynamo theory](https://www.uzerbinati.eu/assets/slides/cambridge.pdf).
-- [Approximation of spectra of advection-diffusion problems](https://www.uzerbinati.eu/assets/slides/boffi_ini.pdf), [recording of the lecutre](https://www.youtube.com/watch?v=8eze46bVgbY), [more info](https://www.newton.ac.uk/seminar/49906/).
+- [Approximation of spectra of advection-diffusion problems](https://www.uzerbinati.eu/assets/slides/boffi_ini.pdf) ([recording of the lecutre](https://www.youtube.com/watch?v=8eze46bVgbY), [more info](https://www.newton.ac.uk/seminar/49906/)).
 
 
 Exercises and Solutions:
