@@ -8,13 +8,16 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
   * I'm organizing a workshop on "Advances in Ordered Fluids and Alignment Phenomena Modeling, Analysis, and Numerical Methods",
     14/09 - 19/09
     Golferenzo, Oltrepò Pavese, IT [more details](https://www.uzerbinati.eu/pages/borgodeigatti), [conference website](https://sites.google.com/view/ordered-fluids/home-page).
+  * I'll be based in Vienna for the ESI Programme: Differential Complexes: Theory, Discretization, and Applications
+    20/05 - 07/06
+    Vienna, AT, [slides](https://www.uzerbinati.eu/assets/slides/esi.pdf).
   * Interactions of geometric spectral theory with numerical methods and applications, Isaac Newton Institute
     18/12 - 22/12
     Cambridge, UK, [a pint at the Eagle](https://www.uzerbinati.eu/assets/images/eagle.jpeg).
+<!--more-->
   * ADAMUS Seminar Series, University of Ferrara,
     19/03
     Ferrara, IT, [slides](https://www.uzerbinati.eu/assets/slides/ferrara.pdf).
-<!--more-->
   * Seminars in Applied and Computational Analysis, Centre for Mathematical Sciences,
      05/02
     Cambridge, UK [slides](https://www.uzerbinati.eu/assets/slides/cambridge.pdf).
