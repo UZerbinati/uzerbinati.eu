@@ -26,28 +26,31 @@ A list of papers, proceedings, and preprints by category.
 
 ### Numerical Analysis
 
-  1. _Preconditioned normal equations for solving discretised partial differential equations_
+  1. _Achieving Material Robustness via Symmetric Stress Finite Element Discretizations_
+  Pablo Brubeck, Charles Parker, UZ
+  [arXiv](https://arxiv.org/abs/2605.21425), 2026.
+  2. _Preconditioned normal equations for solving discretised partial differential equations_
   Lorenzo Lazzarino, Yuji Nakatsukasa, UZ
 [arXiv](https://arxiv.org/abs/2502.17626), 2025.
-  2. _A nodal ghost method based on variational formulation and regular square grid for elliptic problems on arbitrary domains in two space dimensions_  
+  3. _A nodal ghost method based on variational formulation and regular square grid for elliptic problems on arbitrary domains in two space dimensions_  
   Clarissa Astuto, Daniele Boffi, Giovanni Russo, UZ
   [[CMAME](https://doi.org/10.1016/j.cma.2025.118041), [arXiv](https://arxiv.org/abs/2402.04048)], 2025.
-  3. _The Lightning Virtual Element Method for Self-adjoint Eigenvalue Problems_  
+  4. _The Lightning Virtual Element Method for Self-adjoint Eigenvalue Problems_  
 Manuel Trezzi, UZ
 [GIMC SIMAI Young 2024](https://doi.org/10.1007/978-3-031-76591-9_23), 2025  
-  4. _The High-Order Lightning Virtual Element Method_  
+  5. _The High-Order Lightning Virtual Element Method_  
 Manuel Trezzi, UZ
 [GIMC SIMAI Young 2024](https://doi.org/10.1007/978-3-031-76591-9_22), 2025  
-  5. _An adaptive mesh refinement strategy to ensure quasi-optimality of the conforming finite element method for the Helmholtz equation via T-coercivity_  
+  6. _An adaptive mesh refinement strategy to ensure quasi-optimality of the conforming finite element method for the Helmholtz equation via T-coercivity_  
   Tim van Beeck, UZ
 [arXiv](https://arxiv.org/abs/2403.06266), 2024.
-  6. _When rational functions meet virtual elements: the lightning virtual element method_  
+  7. _When rational functions meet virtual elements: the lightning virtual element method_  
   Manuel Trezzi, UZ
   [[CALCOLO](https://doi.org/10.1007/s10092-024-00585-1), [arXiv](https://arxiv.org/pdf/2308.03560), [errata](https://www.uzerbinati.eu/assets/notes/erratalightningvem.pdf)], 2024.
-  7. _A comparison of the Coco-Russo scheme and $\protect\mathghost$-FEM for elliptic equations in arbitrary domains_  
+  8. _A comparison of the Coco-Russo scheme and $\protect\mathghost$-FEM for elliptic equations in arbitrary domains_  
   Clarissa Astuto, Armando Coco, UZ
 [ICIAM 2023](https://doi.org/10.1007/978-981-96-9087-9_1), [arXiv](https://arxiv.org/abs/2405.16582), 2024.
-  8. _PINNs and GaLS: A Priori Error Estimates for Shallow Physics Informed Neural Networks Applied to Elliptic Problems_ 
+  9. _PINNs and GaLS: A Priori Error Estimates for Shallow Physics Informed Neural Networks Applied to Elliptic Problems_ 
 UZ
 [IFAC-PapersOnLine](https://doi.org/10.1016/j.ifacol.2022.09.072), 2022  [[arXiv](https://arxiv.org/pdf/2202.01059)]  
 

@@ -1,3 +1,7 @@
 _site/*
 .sass-cache/*
 .jekyll-cache
+tools/__pycache__/
+tools/scholar_cache.json
+tools/scholar_config.json
+tools/openalex_id_cache.json

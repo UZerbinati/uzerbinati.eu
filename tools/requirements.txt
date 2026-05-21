@@ -1,1 +1,2 @@
 textual>=0.60
+beautifulsoup4>=4.12

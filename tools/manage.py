@@ -488,6 +488,10 @@ def run_rebuild() -> int:
 
 
 def run_tui() -> int:  # pragma: no cover - interactive
+    import webbrowser
+    from datetime import datetime
+
+    from textual import work
     from textual.app import App, ComposeResult
     from textual.binding import Binding
     from textual.containers import Container, Horizontal, Vertical
@@ -505,7 +509,19 @@ def run_tui() -> int:  # pragma: no cover - interactive
         TextArea,
     )
 
+    import scholar  # tools/scholar.py — sibling module
+
     LIST_TABS: list[ListName] = ["pre", "pub", "pros"]
+
+    SPARK_BLOCKS = " ▁▂▃▄▅▆▇█"
+
+    def _sparkline(values: list[int]) -> str:
+        if not values:
+            return ""
+        m = max(values)
+        if m <= 0:
+            return SPARK_BLOCKS[0] * len(values)
+        return "".join(SPARK_BLOCKS[min(8, int(v * 8 / m))] for v in values)
 
     class EntryForm(ModalScreen):
         """Modal for add / edit. Returns updated dict or None."""
@@ -823,12 +839,72 @@ def run_tui() -> int:  # pragma: no cover - interactive
             else:
                 self._submit()
 
+    class ScholarConfigForm(ModalScreen):
+        DEFAULT_CSS = """
+        ScholarConfigForm { align: center middle; }
+        #form { width: 80; height: auto; padding: 1 2; background: $surface; border: solid $primary; }
+        Input { margin-bottom: 1; }
+        #buttons { height: 3; align-horizontal: right; }
+        Label.heading { text-style: bold; padding-bottom: 1; }
+        """
+
+        BINDINGS = [
+            Binding("escape", "cancel", "Cancel"),
+            Binding("ctrl+s", "save", "Save"),
+        ]
+
+        def __init__(self, current: str = "") -> None:
+            super().__init__()
+            self.current = current
+
+        def compose(self) -> ComposeResult:
+            yield Container(
+                Label(
+                    "Google Scholar user id  —  the value of `user=…` in your "
+                    "profile URL.  (Ctrl+S save, Esc cancel)",
+                    classes="heading",
+                ),
+                Input(
+                    value=self.current,
+                    placeholder="e.g. bLUNjmgAAAAJ",
+                    id="user_id",
+                ),
+                Horizontal(
+                    Button("Save", id="save", variant="primary"),
+                    Button("Cancel", id="cancel"),
+                    id="buttons",
+                ),
+                id="form",
+            )
+
+        def action_cancel(self) -> None:
+            self.dismiss(None)
+
+        def action_save(self) -> None:
+            self._submit()
+
+        def _submit(self) -> None:
+            uid = self.query_one("#user_id", Input).value.strip()
+            if not uid:
+                self.app.notify("user id cannot be empty.", severity="error")
+                return
+            self.dismiss(uid)
+
+        def on_button_pressed(self, event: Button.Pressed) -> None:
+            if event.button.id == "cancel":
+                self.dismiss(None)
+            else:
+                self._submit()
+
     class WebsiteApp(App):
         TITLE = "uzerbinati.eu manager"
         CSS = """
         Screen { layout: vertical; }
         DataTable { height: 1fr; }
         #status { dock: bottom; height: 1; padding: 0 1; background: $boost; }
+        #scholar-header { height: auto; padding: 0 1; background: $boost; }
+        #scholar-sparkline { height: auto; padding: 0 1; color: $accent; }
+        #scholar-subtabs { height: 1fr; }
         """
         BINDINGS = [
             Binding("a", "add", "Add"),
@@ -838,19 +914,24 @@ def run_tui() -> int:  # pragma: no cover - interactive
             Binding("r", "rebuild", "Rebuild category"),
             Binding("s", "save", "Save"),
             Binding("q", "quit_safe", "Quit"),
+            Binding("R", "refresh_scholar", "Refresh scholar"),
+            Binding("c", "configure_scholar", "Configure scholar"),
             Binding("1", "tab('pre')", "Preprints", show=False),
             Binding("2", "tab('pub')", "Publications", show=False),
             Binding("3", "tab('pros')", "Proceedings", show=False),
             Binding("4", "tab('talks')", "Talks", show=False),
+            Binding("5", "tab('scholar')", "Scholar", show=False),
         ]
 
         def __init__(self) -> None:
             super().__init__()
             self.doc = Document.load()
+            self.scholar_profile: scholar.Profile | None = None
+            self.scholar_busy: bool = False
 
         def compose(self) -> ComposeResult:
             yield Header()
-            with TabbedContent(initial="tab-pre"):
+            with TabbedContent(initial="tab-pre", id="main-tabs"):
                 with TabPane(LIST_LABELS["pre"], id="tab-pre"):
                     yield DataTable(id="table-pre", cursor_type="row", zebra_stripes=True)
                 with TabPane(LIST_LABELS["pub"], id="tab-pub"):
@@ -859,6 +940,28 @@ def run_tui() -> int:  # pragma: no cover - interactive
                     yield DataTable(id="table-pros", cursor_type="row", zebra_stripes=True)
                 with TabPane("Talks", id="tab-talks"):
                     yield DataTable(id="table-talks", cursor_type="row", zebra_stripes=True)
+                with TabPane("Scholar", id="tab-scholar"):
+                    yield Static("no cached snapshot — press c to configure", id="scholar-header")
+                    yield Static("", id="scholar-sparkline")
+                    with TabbedContent(id="scholar-subtabs", initial="sub-papers"):
+                        with TabPane("Papers", id="sub-papers"):
+                            yield DataTable(
+                                id="table-scholar-papers",
+                                cursor_type="row",
+                                zebra_stripes=True,
+                            )
+                        with TabPane("Recent Citations", id="sub-recent"):
+                            yield DataTable(
+                                id="table-scholar-recent",
+                                cursor_type="row",
+                                zebra_stripes=True,
+                            )
+                        with TabPane("Per-year", id="sub-cpy"):
+                            yield DataTable(
+                                id="table-scholar-cpy",
+                                cursor_type="row",
+                                zebra_stripes=True,
+                            )
             yield Static("ready", id="status")
             yield Footer()
 
@@ -868,12 +971,51 @@ def run_tui() -> int:  # pragma: no cover - interactive
                 t.add_columns("#", "Year", "Title", "Category")
             tt = self.query_one("#table-talks", DataTable)
             tt.add_columns("Year", "Title (first line)")
+            self.query_one("#table-scholar-papers", DataTable).add_columns(
+                "#", "Year", "Cited by", "Title", "Venue"
+            )
+            self.query_one("#table-scholar-recent", DataTable).add_columns(
+                "Date", "Citing paper", "Authors", "Cites (of mine)"
+            )
+            self.query_one("#table-scholar-cpy", DataTable).add_columns(
+                "Year", "Citations", "Bar"
+            )
             self.refresh_all()
+
+            # Stale-while-revalidate: paint cache immediately, then refresh in
+            # the background if a user id is configured.
+            cached = scholar.load_cache()
+            if cached is not None:
+                self.scholar_profile = cached
+                self._render_scholar(cached)
+            cfg = scholar.load_config()
+            if cfg.get("user_id"):
+                self._scholar_refresh_worker()
+            elif cached is None:
+                self.query_one("#scholar-header", Static).update(
+                    "no Scholar user id configured — press [b]c[/b] to set one"
+                )
+
             self.call_after_refresh(self._focus_active_table)
 
         def _focus_active_table(self) -> None:
-            tab = self.query_one(TabbedContent).active
-            target_id = tab.replace("tab-", "table-") if tab else "table-pre"
+            try:
+                outer = self.query_one("#main-tabs", TabbedContent)
+            except Exception:
+                return
+            tab = outer.active
+            if tab == "tab-scholar":
+                try:
+                    sub = self.query_one("#scholar-subtabs", TabbedContent).active
+                except Exception:
+                    sub = "sub-papers"
+                target_id = {
+                    "sub-papers": "table-scholar-papers",
+                    "sub-recent": "table-scholar-recent",
+                    "sub-cpy": "table-scholar-cpy",
+                }.get(sub, "table-scholar-papers")
+            else:
+                target_id = tab.replace("tab-", "table-") if tab else "table-pre"
             try:
                 self.query_one(f"#{target_id}", DataTable).focus()
             except Exception:
@@ -919,7 +1061,7 @@ def run_tui() -> int:  # pragma: no cover - interactive
             self.query_one("#status", Static).update(f"unsaved: {dirty}")
 
         def _active_list(self) -> ListName | None:
-            tabs = self.query_one(TabbedContent)
+            tabs = self.query_one("#main-tabs", TabbedContent)
             tab = tabs.active
             for n in LIST_TABS:
                 if tab == f"tab-{n}":
@@ -954,7 +1096,7 @@ def run_tui() -> int:  # pragma: no cover - interactive
         # --- actions ---------------------------------------------------------
 
         def action_add(self) -> None:
-            tab = self.query_one(TabbedContent).active
+            tab = self.query_one("#main-tabs", TabbedContent).active
             if tab == "tab-talks":
                 self.push_screen(TalkForm(), self._on_talk_added)
                 return
@@ -981,7 +1123,7 @@ def run_tui() -> int:  # pragma: no cover - interactive
             self.refresh_all()
 
         def action_edit(self) -> None:
-            tab = self.query_one(TabbedContent).active
+            tab = self.query_one("#main-tabs", TabbedContent).active
             if tab == "tab-talks":
                 sel = self._selected_talk()
                 if sel is None:
@@ -1049,7 +1191,7 @@ def run_tui() -> int:  # pragma: no cover - interactive
             )
 
         def action_delete(self) -> None:
-            tab = self.query_one(TabbedContent).active
+            tab = self.query_one("#main-tabs", TabbedContent).active
             if tab == "tab-talks":
                 sel = self._selected_talk()
                 if sel is None:
@@ -1094,7 +1236,7 @@ def run_tui() -> int:  # pragma: no cover - interactive
             self.refresh_all()
 
         def action_tab(self, name: str) -> None:
-            tabs = self.query_one(TabbedContent)
+            tabs = self.query_one("#main-tabs", TabbedContent)
             tabs.active = f"tab-{name}"
 
         def action_quit_safe(self) -> None:
@@ -1105,6 +1247,200 @@ def run_tui() -> int:  # pragma: no cover - interactive
                 )
             else:
                 self.exit()
+
+        # --- scholar --------------------------------------------------------
+
+        def action_refresh_scholar(self) -> None:
+            cfg = scholar.load_config()
+            if not cfg.get("user_id"):
+                self.notify("configure a Scholar user id first (press c)", severity="warning")
+                return
+            if self.scholar_busy:
+                self.notify("a Scholar refresh is already running")
+                return
+            self._scholar_refresh_worker()
+
+        def action_configure_scholar(self) -> None:
+            cur = scholar.load_config().get("user_id", "")
+            self.push_screen(ScholarConfigForm(cur), self._on_scholar_configured)
+
+        def _on_scholar_configured(self, user_id: str | None) -> None:
+            if not user_id:
+                return
+            scholar.save_config({"user_id": user_id})
+            self.notify(f"saved Scholar user id: {user_id}")
+            if not self.scholar_busy:
+                self._scholar_refresh_worker()
+
+        @work(thread=True, exclusive=True, group="scholar")
+        def _scholar_refresh_worker(self) -> None:
+            cfg = scholar.load_config()
+            user_id = cfg.get("user_id")
+            if not user_id:
+                self.call_from_thread(
+                    self.query_one("#status", Static).update,
+                    "scholar: no user id configured",
+                )
+                return
+            self.call_from_thread(self._set_scholar_busy, True)
+            self.call_from_thread(
+                self.query_one("#status", Static).update, "fetching scholar…"
+            )
+            previous = scholar.load_cache()
+            try:
+                profile = scholar.fetch_profile(
+                    user_id,
+                    polite_email=cfg.get("polite_email"),
+                )
+            except scholar.CaptchaError as e:
+                # Scholar's IP-based rate limit kicked in on the profile page.
+                # Nothing useful we can do client-side beyond waiting.
+                if previous is not None:
+                    self.call_from_thread(self._on_scholar_loaded, previous)
+                else:
+                    self.call_from_thread(self._set_scholar_busy, False)
+                self.call_from_thread(
+                    self.query_one("#status", Static).update,
+                    "scholar: CAPTCHA — wait ~1 h, then Shift+R",
+                )
+                self.call_from_thread(
+                    self.notify,
+                    f"Scholar rate-limited the profile page ({e}). "
+                    "Wait ~1 h and try Shift+R again.",
+                    severity="warning",
+                    timeout=20,
+                )
+                return
+            except Exception as e:
+                self.call_from_thread(
+                    self.notify, f"scholar refresh failed: {e}", severity="error"
+                )
+                self.call_from_thread(
+                    self.query_one("#status", Static).update,
+                    "scholar refresh failed",
+                )
+                self.call_from_thread(self._set_scholar_busy, False)
+                return
+            # If the new fetch silently came back empty but we had citations
+            # before, treat the previous list as authoritative — likely a
+            # rate-limit we didn't classify as CAPTCHA.
+            if (
+                not profile.recent_citations
+                and previous is not None
+                and previous.recent_citations
+            ):
+                profile.recent_citations = previous.recent_citations
+            try:
+                scholar.save_cache(profile)
+            except Exception as e:
+                self.call_from_thread(
+                    self.notify, f"scholar cache write failed: {e}", severity="warning"
+                )
+            self.call_from_thread(self._on_scholar_loaded, profile)
+
+        def _set_scholar_busy(self, busy: bool) -> None:
+            self.scholar_busy = busy
+
+        def _on_scholar_loaded(self, profile: scholar.Profile) -> None:
+            self.scholar_profile = profile
+            self._render_scholar(profile)
+            self._set_scholar_busy(False)
+            self._update_status()
+            self.notify(
+                f"scholar refreshed: {profile.total_citations} cites, "
+                f"h={profile.h_index}, {len(profile.recent_citations)} new citations"
+            )
+
+        def _render_scholar(self, p: scholar.Profile) -> None:
+            self._render_scholar_header(p)
+            self._render_scholar_sparkline(p)
+            self._render_scholar_papers(p)
+            self._render_scholar_citations(p)
+            self._render_scholar_cpy(p)
+
+        def _render_scholar_header(self, p: scholar.Profile) -> None:
+            fetched = (
+                datetime.fromtimestamp(p.fetched_at).strftime("%Y-%m-%d %H:%M")
+                if p.fetched_at
+                else "—"
+            )
+            interests = ", ".join(p.interests) if p.interests else "—"
+            text = (
+                f"[b]{p.name}[/b]   {p.affiliation}\n"
+                f"interests: {interests}\n"
+                f"[b]citations[/b] {p.total_citations} (5y {p.citations_5y})   "
+                f"[b]h-index[/b] {p.h_index} (5y {p.h_index_5y})   "
+                f"[b]i10[/b] {p.i10_index} (5y {p.i10_index_5y})   "
+                f"[dim]fetched {fetched}[/dim]"
+            )
+            self.query_one("#scholar-header", Static).update(text)
+
+        def _render_scholar_sparkline(self, p: scholar.Profile) -> None:
+            if not p.citations_per_year:
+                self.query_one("#scholar-sparkline", Static).update("")
+                return
+            years = sorted(p.citations_per_year)
+            values = [p.citations_per_year[y] for y in years]
+            spark = _sparkline(values)
+            label = f"{years[0]}  {spark}  {years[-1]}   max={max(values)}"
+            self.query_one("#scholar-sparkline", Static).update(label)
+
+        def _render_scholar_papers(self, p: scholar.Profile) -> None:
+            t = self.query_one("#table-scholar-papers", DataTable)
+            t.clear()
+            for i, paper in enumerate(p.papers, 1):
+                t.add_row(
+                    str(i),
+                    str(paper.year) if paper.year else "—",
+                    str(paper.cited_by),
+                    self._truncate(paper.title, 70),
+                    self._truncate(paper.venue, 40),
+                    key=f"paper-{i}",
+                )
+
+        def _render_scholar_citations(self, p: scholar.Profile) -> None:
+            t = self.query_one("#table-scholar-recent", DataTable)
+            t.clear()
+            for i, c in enumerate(p.recent_citations, 1):
+                if c.date_iso:
+                    date_cell = c.date_iso
+                elif c.year:
+                    date_cell = str(c.year)
+                else:
+                    date_cell = "—"
+                t.add_row(
+                    date_cell,
+                    self._truncate(c.title, 60),
+                    self._truncate(c.authors, 35),
+                    self._truncate(c.of_paper_title, 40),
+                    key=f"cite-{i}",
+                )
+
+        def _render_scholar_cpy(self, p: scholar.Profile) -> None:
+            t = self.query_one("#table-scholar-cpy", DataTable)
+            t.clear()
+            if not p.citations_per_year:
+                return
+            mx = max(p.citations_per_year.values()) or 1
+            for y in sorted(p.citations_per_year, reverse=True):
+                v = p.citations_per_year[y]
+                bar = "█" * max(1, int(v * 30 / mx)) if v else ""
+                t.add_row(str(y), str(v), bar, key=f"cpy-{y}")
+
+        def on_data_table_row_selected(self, event) -> None:
+            tid = event.data_table.id
+            if tid == "table-scholar-papers" and self.scholar_profile:
+                row = event.cursor_row
+                if 0 <= row < len(self.scholar_profile.papers):
+                    url = self.scholar_profile.papers[row].paper_url
+                    if url:
+                        webbrowser.open(url)
+            elif tid == "table-scholar-recent" and self.scholar_profile:
+                row = event.cursor_row
+                if 0 <= row < len(self.scholar_profile.recent_citations):
+                    url = self.scholar_profile.recent_citations[row].citing_paper_url
+                    if url:
+                        webbrowser.open(url)
 
     WebsiteApp().run()
     return 0
