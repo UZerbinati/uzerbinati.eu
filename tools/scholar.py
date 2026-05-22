@@ -54,6 +54,9 @@ class Paper:
     cited_by: int
     cited_by_url: str | None
     paper_url: str | None
+    # OpenAlex-derived non-self citation count. None means "not yet resolved"
+    # (either OpenAlex doesn't know this paper, or the refresh hasn't run yet).
+    cited_by_non_self: int | None = None
 
 
 @dataclass
@@ -66,6 +69,9 @@ class Citation:
     of_paper_title: str  # which of the user's papers this citation cites
     # ISO publication date ("YYYY-MM-DD") from OpenAlex when available.
     date_iso: str | None = None
+    # True iff the citing work shares an author with the profile owner (per
+    # OpenAlex author ids). Default False keeps old cached entries loadable.
+    is_self_citation: bool = False
 
 
 @dataclass
@@ -84,6 +90,12 @@ class Profile:
     papers: list[Paper] = field(default_factory=list)
     recent_citations: list[Citation] = field(default_factory=list)
     fetched_at: float = 0.0
+    # OpenAlex-derived non-self stats. Defaults represent "unresolved".
+    total_citations_non_self: int | None = None
+    citations_5y_non_self: int | None = None
+    h_index_non_self: int | None = None
+    i10_index_non_self: int | None = None
+    citations_per_year_non_self: dict[int, int] = field(default_factory=dict)
 
 
 class ScholarError(RuntimeError):
@@ -108,6 +120,9 @@ def load_cache() -> Profile | None:
         cites = [Citation(**c) for c in d.pop("recent_citations", [])]
         d["citations_per_year"] = {
             int(k): int(v) for k, v in d.get("citations_per_year", {}).items()
+        }
+        d["citations_per_year_non_self"] = {
+            int(k): int(v) for k, v in d.get("citations_per_year_non_self", {}).items()
         }
         return Profile(papers=papers, recent_citations=cites, **d)
     except Exception:
@@ -289,8 +304,103 @@ def _parse_profile_page(html: str, user_id: str) -> Profile:
 # ---------------------------------------------------------------------------
 
 
+def _h_index(counts: list[int]) -> int:
+    h = 0
+    for i, c in enumerate(sorted(counts, reverse=True), 1):
+        if c >= i:
+            h = i
+        else:
+            break
+    return h
+
+
+def _resolve_openalex_author_id(profile: Profile, *, polite_email: str | None) -> str | None:
+    """Find the user's OpenAlex author id via one of their resolved papers.
+
+    Cached in scholar_config.json under "openalex_author_id" so this only
+    runs once.
+    """
+    try:
+        import openalex as oa
+    except ImportError:
+        return None
+    cfg = load_config()
+    cached = cfg.get("openalex_author_id")
+    if cached:
+        return cached
+    titles = [p.title for p in profile.papers if p.title]
+    if not titles:
+        return None
+    title_to_id = oa.resolve_paper_titles(titles, polite_email=polite_email)
+    if not title_to_id:
+        return None
+    work_id = next(iter(title_to_id.values()))
+    author_id = oa.resolve_author_id(
+        work_id, profile.name, polite_email=polite_email
+    )
+    if author_id:
+        cfg["openalex_author_id"] = author_id
+        save_config(cfg)
+    return author_id
+
+
+def _populate_non_self_stats(
+    profile: Profile,
+    *,
+    polite_email: str | None,
+    author_id: str | None = None,
+) -> None:
+    """Compute and attach OpenAlex-derived non-self statistics to `profile`.
+
+    Best-effort: on any failure the non-self fields stay at their defaults
+    so the rest of the refresh still succeeds.
+    """
+    try:
+        import openalex as oa
+    except ImportError:
+        return
+    if author_id is None:
+        author_id = _resolve_openalex_author_id(profile, polite_email=polite_email)
+    if not author_id:
+        return
+    titles = [p.title for p in profile.papers if p.title]
+    title_to_id = oa.resolve_paper_titles(titles, polite_email=polite_email)
+    if not title_to_id:
+        return
+    per_work = oa.fetch_non_self_per_work(
+        list(title_to_id.values()), author_id, polite_email=polite_email
+    )
+    counts: list[int] = []
+    per_year_total: dict[int, int] = {}
+    for paper in profile.papers:
+        wid = title_to_id.get(paper.title)
+        if not wid or wid not in per_work:
+            paper.cited_by_non_self = None
+            continue
+        nsw = per_work[wid]
+        paper.cited_by_non_self = nsw.cited_by
+        counts.append(nsw.cited_by)
+        for y, c in nsw.per_year.items():
+            per_year_total[y] = per_year_total.get(y, 0) + c
+    if not counts:
+        return
+    profile.total_citations_non_self = sum(counts)
+    profile.h_index_non_self = _h_index(counts)
+    profile.i10_index_non_self = sum(1 for c in counts if c >= 10)
+    profile.citations_per_year_non_self = per_year_total
+    if per_year_total:
+        last_year = max(per_year_total)
+        profile.citations_5y_non_self = sum(
+            v for y, v in per_year_total.items() if y > last_year - 5
+        )
+
+
 def _fetch_citations_openalex(
-    profile: Profile, *, polite_email: str | None, limit: int
+    profile: Profile,
+    *,
+    polite_email: str | None,
+    limit: int,
+    author_id: str | None = None,
 ) -> list[Citation]:
     """Source recent citations from OpenAlex instead of Scholar."""
     try:
@@ -326,6 +436,7 @@ def _fetch_citations_openalex(
                 ),
                 of_paper_title=id_to_title[ours],
                 date_iso=w.publication_date,
+                is_self_citation=bool(author_id and author_id in w.author_ids),
             )
         )
     return out
@@ -353,8 +464,14 @@ def fetch_profile(
     profile = _parse_profile_page(_http_get(profile_url), user_id)
 
     if fetch_citations:
+        # Resolve once and share between citations + non-self stats so we
+        # only pay for the title→work + work→author lookups one time per run.
+        author_id = _resolve_openalex_author_id(profile, polite_email=polite_email)
         profile.recent_citations = _fetch_citations_openalex(
-            profile, polite_email=polite_email, limit=30
+            profile, polite_email=polite_email, limit=30, author_id=author_id
+        )
+        _populate_non_self_stats(
+            profile, polite_email=polite_email, author_id=author_id
         )
 
     profile.fetched_at = time.time()

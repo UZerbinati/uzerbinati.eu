@@ -48,7 +48,44 @@ DEFAULT_CATEGORIES = [
 
 TITLE_RE = re.compile(r"^(\s*)(\d+)\.\s+_(.+?)_(\s*)$")
 YEAR_RE = re.compile(r"\b(19\d{2}|20\d{2})\b")
+LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+ARXIV_RE = re.compile(r"arxiv\.org/(?:abs|pdf)/([\w.\-/]+?)(?:v\d+)?(?:\.pdf)?(?:[?#].*)?$", re.I)
+DOI_RE = re.compile(r"doi\.org/(10\.[^\s]+)", re.I)
 MORE = "<!--more-->"
+
+
+def extract_links(links_line: str) -> list[tuple[str, str]]:
+    """Return (label, url) pairs from an entry's links line."""
+    return LINK_RE.findall(links_line)
+
+
+def derive_doi(links: list[tuple[str, str]]) -> str | None:
+    """Pick a DOI from the links; fall back to arXiv's DOI shim if available."""
+    for _, url in links:
+        m = DOI_RE.search(url)
+        if m:
+            return m.group(1).rstrip(".,;")
+    for _, url in links:
+        m = ARXIV_RE.search(url)
+        if m:
+            return f"10.48550/arXiv.{m.group(1)}"
+    return None
+
+
+def fetch_bibtex(doi: str, *, timeout: float = 15.0) -> str:
+    """Fetch a BibTeX entry via DOI content negotiation (CrossRef / DataCite)."""
+    import urllib.error
+    import urllib.request
+
+    req = urllib.request.Request(
+        f"https://doi.org/{doi}",
+        headers={
+            "Accept": "application/x-bibtex; charset=utf-8",
+            "User-Agent": "uzerbinati.eu-manager",
+        },
+    )
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return resp.read().decode("utf-8", errors="replace").strip()
 
 
 @dataclass
@@ -491,6 +528,7 @@ def run_tui() -> int:  # pragma: no cover - interactive
     import webbrowser
     from datetime import datetime
 
+    from rich.text import Text
     from textual import work
     from textual.app import App, ComposeResult
     from textual.binding import Binding
@@ -511,17 +549,10 @@ def run_tui() -> int:  # pragma: no cover - interactive
 
     import scholar  # tools/scholar.py — sibling module
 
+    SELF_COLOR = "orange3"       # with self-citations (Scholar)
+    NON_SELF_COLOR = "green3"    # without self-citations (OpenAlex)
+
     LIST_TABS: list[ListName] = ["pre", "pub", "pros"]
-
-    SPARK_BLOCKS = " ▁▂▃▄▅▆▇█"
-
-    def _sparkline(values: list[int]) -> str:
-        if not values:
-            return ""
-        m = max(values)
-        if m <= 0:
-            return SPARK_BLOCKS[0] * len(values)
-        return "".join(SPARK_BLOCKS[min(8, int(v * 8 / m))] for v in values)
 
     class EntryForm(ModalScreen):
         """Modal for add / edit. Returns updated dict or None."""
@@ -896,6 +927,108 @@ def run_tui() -> int:  # pragma: no cover - interactive
             else:
                 self._submit()
 
+    class PaperInfoModal(ModalScreen):
+        """Quick-share modal — copy links and BibTeX for an entry to the clipboard."""
+
+        DEFAULT_CSS = """
+        PaperInfoModal { align: center middle; }
+        #panel { width: 120; height: auto; padding: 1 2; background: $surface; border: solid $primary; }
+        #title { text-style: bold; padding-bottom: 1; }
+        #meta, #links { margin-bottom: 1; }
+        #bibtex { padding: 1; background: $boost; }
+        """
+
+        BINDINGS = [
+            Binding("escape", "cancel", "Close"),
+            Binding("q", "cancel", "Close", show=False),
+            Binding("b", "copy_bibtex", "Copy BibTeX"),
+            Binding("1", "copy_link(0)", show=False),
+            Binding("2", "copy_link(1)", show=False),
+            Binding("3", "copy_link(2)", show=False),
+            Binding("4", "copy_link(3)", show=False),
+            Binding("5", "copy_link(4)", show=False),
+            Binding("6", "copy_link(5)", show=False),
+            Binding("7", "copy_link(6)", show=False),
+            Binding("8", "copy_link(7)", show=False),
+            Binding("9", "copy_link(8)", show=False),
+        ]
+
+        def __init__(self, entry: Entry):
+            super().__init__()
+            self.entry = entry
+            self.links = extract_links(entry.links_line)
+            self.doi = derive_doi(self.links)
+            self.bibtex: str | None = None
+
+        def compose(self) -> ComposeResult:
+            cat = f"  ·  {self.entry.category}" if self.entry.category else ""
+            meta = (
+                f"{self.entry.authors_line.strip()}\n"
+                f"{LIST_LABELS[self.entry.list_name]}  ·  {self.entry.year}{cat}"
+            )
+            link_rows = []
+            for i, (label, url) in enumerate(self.links, 1):
+                link_rows.append(f"  [b][{i}][/b]  [b]{label}[/b]   [dim]{url}[/dim]")
+            doi_hint = self.doi or "[red]no DOI / arXiv id found[/red]"
+            link_rows.append(f"  [b][b][/b]  [b]BibTeX[/b]   [dim]via {doi_hint}[/dim]")
+            link_rows.append("")
+            link_rows.append(
+                "[dim]press a number to copy that link, b for BibTeX, Esc to close[/dim]"
+            )
+            yield Container(
+                Static(self.entry.title, id="title"),
+                Static(meta, id="meta"),
+                Static("\n".join(link_rows), id="links"),
+                Static("", id="bibtex"),
+                id="panel",
+            )
+
+        def action_cancel(self) -> None:
+            self.dismiss(None)
+
+        def _copy(self, text: str) -> None:
+            try:
+                self.app.copy_to_clipboard(text)
+            except Exception:
+                # Older Textual fallback: print to status; user can re-copy from terminal selection
+                pass
+
+        def action_copy_link(self, idx: int) -> None:
+            if 0 <= idx < len(self.links):
+                label, url = self.links[idx]
+                self._copy(url)
+                self.app.notify(f"copied {label}: {url}", timeout=4)
+
+        def action_copy_bibtex(self) -> None:
+            if self.bibtex:
+                self._copy(self.bibtex)
+                self.app.notify("copied BibTeX (cached)", timeout=4)
+                return
+            if not self.doi:
+                self.app.notify(
+                    "no DOI or arXiv id found in this entry's links",
+                    severity="warning",
+                )
+                return
+            self.app.notify(f"fetching BibTeX for {self.doi}…")
+            self._fetch_bibtex_worker()
+
+        @work(thread=True, exclusive=True, group="bibtex")
+        def _fetch_bibtex_worker(self) -> None:
+            assert self.doi is not None
+            app = self.app
+            try:
+                bib = fetch_bibtex(self.doi)
+            except Exception as e:
+                app.call_from_thread(
+                    app.notify, f"BibTeX fetch failed: {e}", severity="error"
+                )
+                return
+            self.bibtex = bib
+            app.call_from_thread(self._copy, bib)
+            app.call_from_thread(self.query_one("#bibtex", Static).update, bib)
+            app.call_from_thread(app.notify, "copied BibTeX")
+
     class WebsiteApp(App):
         TITLE = "uzerbinati.eu manager"
         CSS = """
@@ -903,14 +1036,15 @@ def run_tui() -> int:  # pragma: no cover - interactive
         DataTable { height: 1fr; }
         #status { dock: bottom; height: 1; padding: 0 1; background: $boost; }
         #scholar-header { height: auto; padding: 0 1; background: $boost; }
-        #scholar-sparkline { height: auto; padding: 0 1; color: $accent; }
         #scholar-subtabs { height: 1fr; }
+        #scholar-trends { height: 1fr; padding: 1 2; }
         """
         BINDINGS = [
             Binding("a", "add", "Add"),
             Binding("e", "edit", "Edit"),
             Binding("m", "move", "Move"),
             Binding("d", "delete", "Delete"),
+            Binding("i", "info", "Info / share"),
             Binding("r", "rebuild", "Rebuild category"),
             Binding("s", "save", "Save"),
             Binding("q", "quit_safe", "Quit"),
@@ -942,7 +1076,6 @@ def run_tui() -> int:  # pragma: no cover - interactive
                     yield DataTable(id="table-talks", cursor_type="row", zebra_stripes=True)
                 with TabPane("Scholar", id="tab-scholar"):
                     yield Static("no cached snapshot — press c to configure", id="scholar-header")
-                    yield Static("", id="scholar-sparkline")
                     with TabbedContent(id="scholar-subtabs", initial="sub-papers"):
                         with TabPane("Papers", id="sub-papers"):
                             yield DataTable(
@@ -956,12 +1089,8 @@ def run_tui() -> int:  # pragma: no cover - interactive
                                 cursor_type="row",
                                 zebra_stripes=True,
                             )
-                        with TabPane("Per-year", id="sub-cpy"):
-                            yield DataTable(
-                                id="table-scholar-cpy",
-                                cursor_type="row",
-                                zebra_stripes=True,
-                            )
+                        with TabPane("Per-year", id="sub-per-year"):
+                            yield Static("no per-year data", id="scholar-trends")
             yield Static("ready", id="status")
             yield Footer()
 
@@ -972,13 +1101,22 @@ def run_tui() -> int:  # pragma: no cover - interactive
             tt = self.query_one("#table-talks", DataTable)
             tt.add_columns("Year", "Title (first line)")
             self.query_one("#table-scholar-papers", DataTable).add_columns(
-                "#", "Year", "Cited by", "Title", "Venue"
+                "#",
+                "Year",
+                Text("Cited by", style=SELF_COLOR),
+                Text("Non-self", style=NON_SELF_COLOR),
+                "Title",
+                "Venue",
             )
+            citing_hdr = Text()
+            citing_hdr.append("Citing paper  ")
+            citing_hdr.append("(", style="dim")
+            citing_hdr.append("self", style=SELF_COLOR)
+            citing_hdr.append(" / ", style="dim")
+            citing_hdr.append("non-self", style=NON_SELF_COLOR)
+            citing_hdr.append(")", style="dim")
             self.query_one("#table-scholar-recent", DataTable).add_columns(
-                "Date", "Citing paper", "Authors", "Cites (of mine)"
-            )
-            self.query_one("#table-scholar-cpy", DataTable).add_columns(
-                "Year", "Citations", "Bar"
+                "Date", citing_hdr, "Authors", "Cites (of mine)"
             )
             self.refresh_all()
 
@@ -1012,7 +1150,7 @@ def run_tui() -> int:  # pragma: no cover - interactive
                 target_id = {
                     "sub-papers": "table-scholar-papers",
                     "sub-recent": "table-scholar-recent",
-                    "sub-cpy": "table-scholar-cpy",
+                    "sub-per-year": "scholar-trends",
                 }.get(sub, "table-scholar-papers")
             else:
                 target_id = tab.replace("tab-", "table-") if tab else "table-pre"
@@ -1222,6 +1360,12 @@ def run_tui() -> int:  # pragma: no cover - interactive
             self.doc.delete_talk(year, talk)
             self.refresh_all()
 
+        def action_info(self) -> None:
+            entry = self._selected_entry()
+            if entry is None:
+                return
+            self.push_screen(PaperInfoModal(entry))
+
         def action_rebuild(self) -> None:
             self.doc.mark("category")
             self.notify("category.md will be rebuilt on save.")
@@ -1353,10 +1497,9 @@ def run_tui() -> int:  # pragma: no cover - interactive
 
         def _render_scholar(self, p: scholar.Profile) -> None:
             self._render_scholar_header(p)
-            self._render_scholar_sparkline(p)
             self._render_scholar_papers(p)
             self._render_scholar_citations(p)
-            self._render_scholar_cpy(p)
+            self._render_scholar_trends(p)
 
         def _render_scholar_header(self, p: scholar.Profile) -> None:
             fetched = (
@@ -1368,31 +1511,100 @@ def run_tui() -> int:  # pragma: no cover - interactive
             text = (
                 f"[b]{p.name}[/b]   {p.affiliation}\n"
                 f"interests: {interests}\n"
+                f"[{SELF_COLOR}]with self (Scholar):   "
                 f"[b]citations[/b] {p.total_citations} (5y {p.citations_5y})   "
                 f"[b]h-index[/b] {p.h_index} (5y {p.h_index_5y})   "
-                f"[b]i10[/b] {p.i10_index} (5y {p.i10_index_5y})   "
+                f"[b]i10[/b] {p.i10_index} (5y {p.i10_index_5y})[/{SELF_COLOR}]   "
                 f"[dim]fetched {fetched}[/dim]"
             )
+            if p.total_citations_non_self is not None:
+                ns_5y = (
+                    f" (5y {p.citations_5y_non_self})"
+                    if p.citations_5y_non_self is not None
+                    else ""
+                )
+                text += (
+                    f"\n[{NON_SELF_COLOR}]non-self (OpenAlex):   "
+                    f"[b]citations[/b] {p.total_citations_non_self}{ns_5y}   "
+                    f"[b]h-index[/b] {p.h_index_non_self}   "
+                    f"[b]i10[/b] {p.i10_index_non_self}[/{NON_SELF_COLOR}]"
+                )
             self.query_one("#scholar-header", Static).update(text)
 
-        def _render_scholar_sparkline(self, p: scholar.Profile) -> None:
+        def _render_scholar_trends(self, p: scholar.Profile) -> None:
+            target = self.query_one("#scholar-trends", Static)
             if not p.citations_per_year:
-                self.query_one("#scholar-sparkline", Static).update("")
+                target.update(Text("no per-year data — refresh with Shift+R", style="dim"))
                 return
-            years = sorted(p.citations_per_year)
-            values = [p.citations_per_year[y] for y in years]
-            spark = _sparkline(values)
-            label = f"{years[0]}  {spark}  {years[-1]}   max={max(values)}"
-            self.query_one("#scholar-sparkline", Static).update(label)
+            cpy = p.citations_per_year
+            ns_cpy = p.citations_per_year_non_self or {}
+            all_years = sorted(set(cpy) | set(ns_cpy), reverse=True)
+            scale_max = max(
+                [cpy.get(y, 0) for y in all_years] + [ns_cpy.get(y, 0) for y in all_years]
+            ) or 1
+            BAR_WIDTH = 50
+
+            def bar(value: int) -> str:
+                full = int(value * BAR_WIDTH / scale_max)
+                remainder = (value * BAR_WIDTH / scale_max) - full
+                eighth = " ▏▎▍▌▋▊▉"[min(7, int(remainder * 8))]
+                return "█" * full + (eighth if eighth.strip() else "")
+
+            total_self = sum(cpy.values())
+            total_ns = sum(ns_cpy.values()) if ns_cpy else None
+
+            out = Text()
+            out.append("Citations per year", style="bold")
+            out.append("   ")
+            out.append(f"■ self (Scholar): {total_self}", style=SELF_COLOR)
+            out.append("   ")
+            if total_ns is not None:
+                out.append(
+                    f"■ non-self (OpenAlex): {total_ns}", style=NON_SELF_COLOR
+                )
+            else:
+                out.append("■ non-self (OpenAlex): n/a", style="dim")
+            out.append("\n\n")
+
+            for y in all_years:
+                sv = cpy.get(y, 0)
+                out.append(f"  {y}  ", style="bold")
+                out.append(
+                    f"self      {bar(sv).ljust(BAR_WIDTH + 1)} {sv}",
+                    style=SELF_COLOR,
+                )
+                out.append("\n")
+
+                nv = ns_cpy.get(y)
+                if nv is None:
+                    out.append(
+                        "        non-self  "
+                        f"{'—'.ljust(BAR_WIDTH + 1)} (not on OpenAlex)",
+                        style=f"{NON_SELF_COLOR} dim",
+                    )
+                else:
+                    out.append(
+                        "        non-self  "
+                        f"{bar(nv).ljust(BAR_WIDTH + 1)} {nv}",
+                        style=NON_SELF_COLOR,
+                    )
+                out.append("\n\n")
+
+            target.update(out)
 
         def _render_scholar_papers(self, p: scholar.Profile) -> None:
             t = self.query_one("#table-scholar-papers", DataTable)
             t.clear()
             for i, paper in enumerate(p.papers, 1):
+                if paper.cited_by_non_self is None:
+                    ns_cell = Text("—", style="dim")
+                else:
+                    ns_cell = Text(str(paper.cited_by_non_self), style=NON_SELF_COLOR)
                 t.add_row(
                     str(i),
                     str(paper.year) if paper.year else "—",
-                    str(paper.cited_by),
+                    Text(str(paper.cited_by), style=SELF_COLOR),
+                    ns_cell,
                     self._truncate(paper.title, 70),
                     self._truncate(paper.venue, 40),
                     key=f"paper-{i}",
@@ -1408,24 +1620,14 @@ def run_tui() -> int:  # pragma: no cover - interactive
                     date_cell = str(c.year)
                 else:
                     date_cell = "—"
+                color = SELF_COLOR if c.is_self_citation else NON_SELF_COLOR
                 t.add_row(
                     date_cell,
-                    self._truncate(c.title, 60),
+                    Text(self._truncate(c.title, 60), style=color),
                     self._truncate(c.authors, 35),
                     self._truncate(c.of_paper_title, 40),
                     key=f"cite-{i}",
                 )
-
-        def _render_scholar_cpy(self, p: scholar.Profile) -> None:
-            t = self.query_one("#table-scholar-cpy", DataTable)
-            t.clear()
-            if not p.citations_per_year:
-                return
-            mx = max(p.citations_per_year.values()) or 1
-            for y in sorted(p.citations_per_year, reverse=True):
-                v = p.citations_per_year[y]
-                bar = "█" * max(1, int(v * 30 / mx)) if v else ""
-                t.add_row(str(y), str(v), bar, key=f"cpy-{y}")
 
         def on_data_table_row_selected(self, event) -> None:
             tid = event.data_table.id
@@ -1441,6 +1643,10 @@ def run_tui() -> int:  # pragma: no cover - interactive
                     url = self.scholar_profile.recent_citations[row].citing_paper_url
                     if url:
                         webbrowser.open(url)
+            elif tid in {"table-pre", "table-pub", "table-pros"}:
+                entry = self._selected_entry()
+                if entry is not None:
+                    self.push_screen(PaperInfoModal(entry))
 
     WebsiteApp().run()
     return 0

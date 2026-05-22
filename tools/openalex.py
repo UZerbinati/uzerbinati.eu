@@ -42,6 +42,7 @@ class OAWork:
     publication_date: str | None  # "YYYY-MM-DD"
     doi: str | None
     referenced_work_ids: list[str]  # bare W-ids this work cites
+    author_ids: list[str]  # bare A-ids of every author on this work
 
 
 # ---------------------------------------------------------------------------
@@ -162,6 +163,79 @@ def resolve_paper_titles(
 # ---------------------------------------------------------------------------
 
 
+def resolve_author_id(
+    work_id: str, display_name: str, *, polite_email: str | None = None
+) -> str | None:
+    """Look up the OpenAlex author id matching `display_name` on a known work.
+
+    Returns the bare A-id (e.g. "A5016062816") or None if no match.
+    """
+    if not work_id or not display_name:
+        return None
+    data = _http_json(
+        f"{API_BASE}/works/{work_id}?select=authorships", polite_email=polite_email
+    )
+    target = _normalize(display_name)
+    best: tuple[float, str] | None = None
+    for a in data.get("authorships") or []:
+        author = a.get("author") or {}
+        name = author.get("display_name") or ""
+        aid = _bare_id(author.get("id") or "")
+        if not aid:
+            continue
+        score = _word_overlap(_normalize(name), target)
+        if _normalize(name) == target:
+            return aid
+        if best is None or score > best[0]:
+            best = (score, aid)
+    if best and best[0] >= 0.5:
+        return best[1]
+    return None
+
+
+@dataclass
+class NonSelfPerWork:
+    """Non-self citation aggregates for a single work."""
+
+    work_id: str
+    cited_by: int  # total non-self citations
+    per_year: dict[int, int]  # non-self citing-work counts by year
+
+
+def fetch_non_self_per_work(
+    work_ids: list[str], author_id: str, *, polite_email: str | None = None
+) -> dict[str, NonSelfPerWork]:
+    """Per-work non-self citation counts + per-year breakdown.
+
+    One HTTP call per W-id, throttled. Citing works with no publication_year
+    contribute to `cited_by` but not to `per_year`.
+    """
+    if not work_ids or not author_id:
+        return {}
+    out: dict[str, NonSelfPerWork] = {}
+    for wid in work_ids:
+        filter_value = f"cites:{wid},authorships.author.id:!{author_id}"
+        url = (
+            f"{API_BASE}/works"
+            f"?filter={urllib.parse.quote(filter_value)}"
+            f"&group_by=publication_year&per-page=1"
+        )
+        try:
+            data = _http_json(url, polite_email=polite_email)
+        except OpenAlexError:
+            continue
+        per_year: dict[int, int] = {}
+        for g in data.get("group_by") or []:
+            key = g.get("key")
+            cnt = g.get("count") or 0
+            if key and str(key).isdigit():
+                per_year[int(key)] = cnt
+        count = (data.get("meta") or {}).get("count") or 0
+        out[wid] = NonSelfPerWork(work_id=wid, cited_by=count, per_year=per_year)
+        time.sleep(0.1)
+    return out
+
+
 def fetch_recent_citations(
     work_ids: list[str],
     *,
@@ -185,11 +259,17 @@ def fetch_recent_citations(
     data = _http_json(url, polite_email=polite_email)
     out: list[OAWork] = []
     for w in data.get("results") or []:
+        authorships = w.get("authorships") or []
         authors = ", ".join(
             (a.get("author") or {}).get("display_name", "")
-            for a in (w.get("authorships") or [])[:5]
+            for a in authorships[:5]
             if (a.get("author") or {}).get("display_name")
         )
+        author_ids = [
+            _bare_id((a.get("author") or {}).get("id") or "")
+            for a in authorships
+            if (a.get("author") or {}).get("id")
+        ]
         primary = w.get("primary_location") or {}
         source = primary.get("source") or {}
         venue = source.get("display_name") or ""
@@ -204,6 +284,7 @@ def fetch_recent_citations(
                 publication_date=w.get("publication_date"),
                 doi=doi,
                 referenced_work_ids=[_bare_id(r) for r in (w.get("referenced_works") or [])],
+                author_ids=author_ids,
             )
         )
     return out
