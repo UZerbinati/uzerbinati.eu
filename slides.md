@@ -10,7 +10,7 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
     Golferenzo, Oltrepò Pavese, IT [more details](https://www.uzerbinati.eu/pages/borgodeigatti), [conference website](https://sites.google.com/view/ordered-fluids/home-page).
   * EMS School: Mathematical Aspects of Fluid Flows
     24/05 - 29/05
-    Kacov, CZ [posters](https://www.uzerbinati.eu/assets/slides/kacov26.pdf)
+    Kacov, CZ [slides](https://www.uzerbinati.eu/assets/slides/kacov26.pdf)
   * Smectics and distorted nematics: analytics, numerics, and experiments
     18/05 - 22/05
     des Houches, FR [posters](https://www.uzerbinati.eu/assets/slides/des_houches.pdf)
