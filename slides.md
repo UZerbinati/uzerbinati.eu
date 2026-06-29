@@ -5,6 +5,9 @@ order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2026
+  * NGSolve User Meeting
+    29/06 - 01/07
+    Zurich, CH [slides](https://www.uzerbinati.eu/assets/slides/zurich.pdf)
   * I'm organizing a workshop on "Advances in Ordered Fluids and Alignment Phenomena Modeling, Analysis, and Numerical Methods",
     14/09 - 19/09
     Golferenzo, Oltrepò Pavese, IT [more details](https://www.uzerbinati.eu/pages/borgodeigatti), [conference website](https://sites.google.com/view/ordered-fluids/home-page).
@@ -14,10 +17,10 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
   * Smectics and distorted nematics: analytics, numerics, and experiments
     18/05 - 22/05
     des Houches, FR [posters](https://www.uzerbinati.eu/assets/slides/des_houches.pdf)
+<!--more-->
   * I'll be based in Vienna for the ESI Programme: Differential Complexes: Theory, Discretization, and Applications
     20/05 - 07/06
     Vienna, AT, [slides](https://www.uzerbinati.eu/assets/slides/esi.pdf), [recoring of the talk](https://www.youtube.com/watch?v=ge5z8l-aFZ0).
-<!--more-->
   * Interactions of geometric spectral theory with numerical methods and applications, Isaac Newton Institute
     18/12 - 22/12
     Cambridge, UK, [a pint at the Eagle](https://www.uzerbinati.eu/assets/images/eagle.jpeg).
