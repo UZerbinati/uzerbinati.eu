@@ -10,7 +10,7 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
     Golferenzo, Oltrepò Pavese, IT [more details](https://www.uzerbinati.eu/pages/borgodeigatti), [conference website](https://sites.google.com/view/ordered-fluids/home-page).
   * NGSolve User Meeting
     29/06 - 01/07
-    Zurich, CH [slides](https://www.uzerbinati.eu/assets/slides/zurich.pdf)
+    Zurich, CH [more info](https://stiwzhaw.github.io/NGSolveUserMeeting2026/), [slides](https://www.uzerbinati.eu/assets/slides/zurich.pdf), [group picture](https://www.uzerbinati.eu/assets/images/ngsolve7.jpg).
   * EMS School: Mathematical Aspects of Fluid Flows
     24/05 - 29/05
     Kacov, CZ [slides](https://www.uzerbinati.eu/assets/slides/kacov26.pdf)
