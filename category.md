@@ -11,16 +11,19 @@ A list of papers, proceedings, and preprints by category.
 
 ### Mathematical Physics and Modelling
 
-  1. _A Kinetic Interpretation of Thermomechanical Restrictions of Continua_
+  1. _Kinetic derivation of thermal viscous models for nematic liquid crystal dynamics_
+  P. E. Farrell, J. Málek, O. Souček, UZ
+  [arXiv](https://arxiv.org/abs/2606.31784), 2026.
+  2. _A Kinetic Interpretation of Thermomechanical Restrictions of Continua_
   Patrick E. Farrell, Josef Málek, Ondřej Souček, UZ
-  [arXiv](https://arxiv.org/abs/2602.21384) [IJES](https://doi.org/10.1016/j.ijengsci.2026.104557), 2026.
-  2. _A Kinetic Theory Approach to Ordered Fluids_
+  [[arXiv](https://arxiv.org/abs/2602.21384) [IJES](https://doi.org/10.1016/j.ijengsci.2026.104557)], 2026.
+  3. _A Kinetic Theory Approach to Ordered Fluids_
   José A. Carrillo, Patrick E. Farrell, Andrea Medaglia, UZ
 [arXiv](https://arxiv.org/abs/2508.10744), 2025.
-  3. _Time-harmonic waves in Korteweg and nematic-Korteweg fluids_ 
+  4. _Time-harmonic waves in Korteweg and nematic-Korteweg fluids_ 
   Patrick E Farrell, UZ
   [[PRE](https://doi.org/10.1103/PhysRevE.111.035413), [arXiv (with corrections)](https://arxiv.org/abs/2411.13354)], 2025.
-  4. _Kinetic Derivation of an Inviscid Compressible Leslie–Ericksen Equation for Rarified Calamitic Gases_ 
+  5. _Kinetic Derivation of an Inviscid Compressible Leslie–Ericksen Equation for Rarified Calamitic Gases_ 
   Patrick E Farrell, Giovanni Russo, UZ
 [[SIAM MMS](https://doi.org/10.1137/24M1630529), [arXiv](https://arxiv.org/abs/2312.15210)], 2024.
 

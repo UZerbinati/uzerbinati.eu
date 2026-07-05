@@ -8,7 +8,7 @@ A list of my latest papers, you can read more or look up any paper by [category]
 
   1. _A Kinetic Interpretation of Thermomechanical Restrictions of Continua_
   Patrick E. Farrell, Josef Málek, Ondřej Souček, UZ
-  [arXiv](https://arxiv.org/abs/2602.21384) [IJES](https://doi.org/10.1016/j.ijengsci.2026.104557), 2026.
+  [[arXiv](https://arxiv.org/abs/2602.21384) [IJES](https://doi.org/10.1016/j.ijengsci.2026.104557)], 2026.
   2. _A nodal ghost method based on variational formulation and regular square grid for elliptic problems on arbitrary domains in two space dimensions_  
   Clarissa Astuto, Daniele Boffi, Giovanni Russo, UZ
   [[CMAME](https://doi.org/10.1016/j.cma.2025.118041), [arXiv](https://arxiv.org/abs/2402.04048)], 2025.
