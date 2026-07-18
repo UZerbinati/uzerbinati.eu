@@ -1,0 +1,13 @@
+# https://www.uzerbinati.eu/robots.txt
+#
+# Keep talk slides, notes and teaching PDFs out of crawlers. In particular
+# this stops Google Scholar (which rides on Googlebot) from ingesting
+# presentation PDFs as if they were papers. Scholar honours robots.txt.
+
+User-agent: *
+Allow: /
+Disallow: /assets/slides/
+Disallow: /assets/notes/
+Disallow: /assets/teaching/
+
+Sitemap: https://www.uzerbinati.eu/sitemap.xml

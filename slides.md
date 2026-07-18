@@ -8,13 +8,16 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
   * I'm organizing a workshop on "Advances in Ordered Fluids and Alignment Phenomena Modeling, Analysis, and Numerical Methods",
     14/09 - 19/09
     Golferenzo, Oltrepò Pavese, IT [more details](https://www.uzerbinati.eu/pages/borgodeigatti), [conference website](https://sites.google.com/view/ordered-fluids/home-page).
+  * PDESoft 2026 
+    13/07 - 15/07
+    Vienna, AU [[more info](https://pdesoft2026.conf.tuwien.ac.at), [slides](https://www.uzerbinati.eu/assets/slides/pdesoft26.pdf)]
   * NGSolve User Meeting
     29/06 - 01/07
     Zurich, CH [more info](https://stiwzhaw.github.io/NGSolveUserMeeting2026/), [slides](https://www.uzerbinati.eu/assets/slides/zurich.pdf), [group picture](https://www.uzerbinati.eu/assets/images/ngsolve7.jpg).
+<!--more-->
   * EMS School: Mathematical Aspects of Fluid Flows
     24/05 - 29/05
     Kacov, CZ [slides](https://www.uzerbinati.eu/assets/slides/kacov26.pdf)
-<!--more-->
   * Smectics and distorted nematics: analytics, numerics, and experiments
     18/05 - 22/05
     des Houches, FR [posters](https://www.uzerbinati.eu/assets/slides/des_houches.pdf)
