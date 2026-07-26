@@ -151,7 +151,7 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
     Vienna, AT [slides](https://www.uzerbinati.eu/assets/talks/portland.pdf).
   * FEniCS 2023,
     14/06
-    Cagliari, IT [slides](https://www.uzerbinati.eu/assets/talks/fenics2023.pdf).
+    Cagliari, IT [slides](https://www.uzerbinati.eu/assets/talks/fenics23.pdf).
   * European Finite Element Fair,
     12/05
     Twente, NL [slides](https://www.uzerbinati.eu/assets/talks/efef23.pdf).
