@@ -2,11 +2,26 @@
 #
 # Keep talk slides, notes and teaching PDFs out of crawlers. In particular
 # this stops Google Scholar (which rides on Googlebot) from ingesting
-# presentation PDFs as if they were papers. Scholar honours robots.txt.
+# presentation PDFs as if they were papers, and from turning the reference
+# lines on those slides into citation edges.
+#
+# NOTE ON /assets/slides/ -- deliberately NOT disallowed.
+#
+# The decks used to live under /assets/slides/ and were picked up by Scholar
+# before that path was blocked. A Disallow only stops Googlebot from fetching;
+# it does not remove anything already indexed, and it actively prevents the
+# re-crawl that would retire the stale record. The decks have therefore been
+# moved to /assets/talks/, so every old /assets/slides/*.pdf URL now returns
+# 404. That 404 is the removal signal -- but Googlebot has to be allowed to
+# fetch the URL in order to see it.
+#
+# So: leave /assets/slides/ crawlable until Search Console reports the old
+# URLs as gone (expect months; Scholar's own refresh cycle is 6-9 months),
+# then add "Disallow: /assets/slides/" back below.
 
 User-agent: *
 Allow: /
-Disallow: /assets/slides/
+Disallow: /assets/talks/
 Disallow: /assets/notes/
 Disallow: /assets/teaching/
 

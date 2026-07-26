@@ -9,15 +9,15 @@ I later presented similar material in different occasions, including:
 
 * Seminars in Applied and Computational Analysis, Centre for Mathematical Sciences,
   05/02
-  Cambridge, UK [slides](https://www.uzerbinati.eu/assets/slides/cambridge.pdf).
+  Cambridge, UK [slides](https://www.uzerbinati.eu/assets/talks/cambridge.pdf).
 * Modelling of materials - theory, model reduction and efficient numerical methods, Charles University
   11/02
-  Prague, CZ [slides](https://www.uzerbinati.eu/assets/slides/prague_feec.pdf).
+  Prague, CZ [slides](https://www.uzerbinati.eu/assets/talks/prague_feec.pdf).
 
 Prof. Daniele Boffi also presented material related to the topic treated in this course:
 * Interactions of geometric spectral theory with numerical methods and applications, Isaac Newton Institute for Mathematical Sciences,
   05/02
-  Cambridge, UK ([slides](https://www.uzerbinati.eu/assets/slides/boffi_ini.pdf), [recording of the lecutre](https://www.youtube.com/watch?v=8eze46bVgbY), [more info](https://www.newton.ac.uk/seminar/49906/)).
+  Cambridge, UK ([slides](https://www.uzerbinati.eu/assets/talks/boffi_ini.pdf), [recording of the lecutre](https://www.youtube.com/watch?v=8eze46bVgbY), [more info](https://www.newton.ac.uk/seminar/49906/)).
 
   
 This page collects the lecture notes and exercises of the course, as well as the slides and the codes used in in the various presentations.
@@ -39,8 +39,8 @@ Course Materials:
 - [Lecture 5: Spectra and Pseudospectra of the Advection-Diffusion Operator](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture5.pdf)
 - [Appendix A: Laplace Eigenproblem on a Pizza Slice](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixA.pdf)
 - [Appendix B: The Rayleigh quotient](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixB.pdf)
-- [Maxwell's eigenvalue problem and Dynamo theory](https://www.uzerbinati.eu/assets/slides/cambridge.pdf).
-- [Approximation of spectra of advection-diffusion problems](https://www.uzerbinati.eu/assets/slides/boffi_ini.pdf) ([recording of the lecutre](https://www.youtube.com/watch?v=8eze46bVgbY), [more info](https://www.newton.ac.uk/seminar/49906/)).
+- [Maxwell's eigenvalue problem and Dynamo theory](https://www.uzerbinati.eu/assets/talks/cambridge.pdf).
+- [Approximation of spectra of advection-diffusion problems](https://www.uzerbinati.eu/assets/talks/boffi_ini.pdf) ([recording of the lecutre](https://www.youtube.com/watch?v=8eze46bVgbY), [more info](https://www.newton.ac.uk/seminar/49906/)).
 
 
 Exercises and Solutions:
