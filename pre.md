@@ -9,19 +9,16 @@ A list of my latest preprints, you can read more or look up any preprint by [cat
   P. E. Farrell, J. Málek, O. Souček, UZ
   [arXiv](https://arxiv.org/abs/2606.31784), 2026.
 <!--more-->
-  2. _Achieving Material Robustness via Symmetric Stress Finite Element Discretizations_
-  Pablo Brubeck, Charles Parker, UZ
-  [arXiv](https://arxiv.org/abs/2605.21425), 2026.
-  3. _A Kinetic Theory Approach to Ordered Fluids_
+  2. _A Kinetic Theory Approach to Ordered Fluids_
   José A. Carrillo, Patrick E. Farrell, Andrea Medaglia, UZ
 [arXiv](https://arxiv.org/abs/2508.10744), 2025.
-  4. _Analysis and numerical analysis of the Helmholtz-Korteweg equation_
+  3. _Analysis and numerical analysis of the Helmholtz-Korteweg equation_
   Patrick E. Farrell, Tim van Beeck, UZ
 [arXiv](https://arxiv.org/abs/2503.10771), 2025.
-  5. _Preconditioned normal equations for solving discretised partial differential equations_
+  4. _Preconditioned normal equations for solving discretised partial differential equations_
   Lorenzo Lazzarino, Yuji Nakatsukasa, UZ
 [arXiv](https://arxiv.org/abs/2502.17626), 2025.
-  6. _An adaptive mesh refinement strategy to ensure quasi-optimality of the conforming finite element method for the Helmholtz equation via T-coercivity_  
+  5. _An adaptive mesh refinement strategy to ensure quasi-optimality of the conforming finite element method for the Helmholtz equation via T-coercivity_  
   Tim van Beeck, UZ
 [arXiv](https://arxiv.org/abs/2403.06266), 2024.
 
