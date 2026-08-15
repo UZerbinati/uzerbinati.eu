@@ -5,3 +5,14 @@ tools/__pycache__/
 tools/scholar_cache.json
 tools/scholar_config.json
 tools/openalex_id_cache.json
+
+# Local Bundler install (`bundle config set --local path vendor/bundle`).
+vendor/
+.bundle/
+
+# Gemfile.lock is deliberately untracked: `bundle install` on macOS resolves
+# platform-specific gems (sass-embedded, ffi, google-protobuf all arm64-darwin), and a
+# lockfile carrying only that platform fails on the Linux runner the Pages workflow uses.
+# To track it properly, run `bundle lock --add-platform x86_64-linux` first, then remove
+# this line and commit the result.
+Gemfile.lock

@@ -7,10 +7,31 @@ eleven:
 
 permalink: /
 
+url: "https://www.uzerbinati.eu"
 title: "Umberto Zerbinati"
-description: "Umberto Zerbinati, DPhil student Oxford University"
+description: "Umberto Zerbinati, post-doc at Simula and Stipendiary Lecturer at Oriel College, Oxford. Numerical analysis, kinetic theory and finite elements for ordered fluids."
 webmaster_verifications:
   #google: "ByYdzwgMKaBTrHM7VNNajWnJg8yfcSU41D7OF6E_p1Q"
 
 excerpt_separator: <!--more-->
 page_excerpts: true
+
+# The nematic drum is a git submodule at drum/, and Jekyll copies anything without front
+# matter through verbatim - which is exactly what that app wants, since it has no build
+# step. Only its development files need keeping out of _site.
+#
+# Note that setting `exclude` REPLACES Jekyll's defaults rather than adding to them, so
+# the default entries have to be repeated here or they stop being excluded.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+  - .sass-cache/
+  - .jekyll-cache/
+  - drum/README.md
+  - drum/CONTRIBUTING.md
+  - drum/package.json
+  - drum/package-lock.json
+  - drum/tests/
+  - drum/tools/
