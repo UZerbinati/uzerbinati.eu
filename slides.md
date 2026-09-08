@@ -10,14 +10,14 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
     Golferenzo, Oltrepò Pavese, IT [more details](https://www.uzerbinati.eu/pages/borgodeigatti), [conference website](https://sites.google.com/view/ordered-fluids/home-page).
   * Trefftz Workshop 2026 
     07/09 - 09/09
-    Vienna, AT [[more info](https://trefftz2026.univie.ac.at), [slides](https://www.uzerbinati.eu/assets/talks/trefftz26.pdf)]
+    Vienna, AT [more info](https://trefftz2026.univie.ac.at), [slides](https://www.uzerbinati.eu/assets/talks/trefftz26.pdf)
   * GNFM Ravello Summer School 2026 
     31/08 - 5/09
     Ravello, IT 
 <!--more-->
   * PDESoft 2026 
     13/07 - 15/07
-    Vienna, AT [[more info](https://pdesoft2026.conf.tuwien.ac.at), [slides](https://www.uzerbinati.eu/assets/talks/pdesoft26.pdf)]
+    Vienna, AT [more info](https://pdesoft2026.conf.tuwien.ac.at), [slides](https://www.uzerbinati.eu/assets/talks/pdesoft26.pdf)
   * NGSolve User Meeting
     29/06 - 01/07
     Zurich, CH [more info](https://stiwzhaw.github.io/NGSolveUserMeeting2026/), [slides](https://www.uzerbinati.eu/assets/talks/zurich.pdf), [group picture](https://www.uzerbinati.eu/assets/images/ngsolve7.jpg).
