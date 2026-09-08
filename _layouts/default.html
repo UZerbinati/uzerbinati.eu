@@ -2,9 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{{ page.title }}</title>
+    {% if page.title and page.title != site.title -%}
+      {%- assign page_title = page.title | append: " · " | append: site.title -%}
+    {%- else -%}
+      {%- assign page_title = site.title -%}
+    {%- endif -%}
+    {%- assign page_description = page.description | default: site.description -%}
+    <title>{{ page_title }}</title>
+    <meta name="description" content="{{ page_description | strip_html | normalize_whitespace | escape }}">
+    <meta name="author" content="{{ site.eleven.name | default: site.title }}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ site.title }}">
+    <meta property="og:title" content="{{ page_title | escape }}">
+    <meta property="og:description" content="{{ page_description | strip_html | normalize_whitespace | escape }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:image" content="{{ site.eleven.logo | absolute_url }}">
+    <meta name="twitter:card" content="summary">
+
     <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}" />
-    <link rel="shortcut icon" href="{{ "/assets/logo.png" | relative_url}}" />
+    <link rel="stylesheet" href="{{ "/assets/css/custom.css" | relative_url }}" />
+    <link rel="shortcut icon" type="image/jpeg" href="{{ site.eleven.logo | relative_url }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   {{ content }}

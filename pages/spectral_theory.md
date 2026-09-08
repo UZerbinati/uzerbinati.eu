@@ -17,7 +17,7 @@ I later presented similar material in different occasions, including:
 Prof. Daniele Boffi also presented material related to the topic treated in this course:
 * Interactions of geometric spectral theory with numerical methods and applications, Isaac Newton Institute for Mathematical Sciences,
   05/02
-  Cambridge, UK ([slides](https://www.uzerbinati.eu/assets/talks/boffi_ini.pdf), [recording of the lecutre](https://www.youtube.com/watch?v=8eze46bVgbY), [more info](https://www.newton.ac.uk/seminar/49906/)).
+  Cambridge, UK ([slides](https://www.uzerbinati.eu/assets/talks/boffi_ini.pdf), [recording of the lecture](https://www.youtube.com/watch?v=8eze46bVgbY), [more info](https://www.newton.ac.uk/seminar/49906/)).
 
   
 This page collects the lecture notes and exercises of the course, as well as the slides and the codes used in in the various presentations.
@@ -40,7 +40,7 @@ Course Materials:
 - [Appendix A: Laplace Eigenproblem on a Pizza Slice](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixA.pdf)
 - [Appendix B: The Rayleigh quotient](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixB.pdf)
 - [Maxwell's eigenvalue problem and Dynamo theory](https://www.uzerbinati.eu/assets/talks/cambridge.pdf).
-- [Approximation of spectra of advection-diffusion problems](https://www.uzerbinati.eu/assets/talks/boffi_ini.pdf) ([recording of the lecutre](https://www.youtube.com/watch?v=8eze46bVgbY), [more info](https://www.newton.ac.uk/seminar/49906/)).
+- [Approximation of spectra of advection-diffusion problems](https://www.uzerbinati.eu/assets/talks/boffi_ini.pdf) ([recording of the lecture](https://www.youtube.com/watch?v=8eze46bVgbY), [more info](https://www.newton.ac.uk/seminar/49906/)).
 
 
 Exercises and Solutions:
@@ -48,5 +48,5 @@ Exercises and Solutions:
 - [Exercise 2: FEM Approximation of the Advection-Diffusion Eigenproblem](https://www.uzerbinati.eu/assets/teaching/sheets/st_sheet2.pdf): In this problem sheet, we will implement the finite element method (FEM) to approximate the eigenvalues and eigenfunctions of the advection-diffusion operator on an interval. The convergence rate of the FEM is computed for both eigenvalues and eigenfunctions. We then discuss the implication that the pseudospectra has on the solution of the Helmholtz equation. Answers: [Q1-Q3](https://www.uzerbinati.eu/assets/teaching/sheets/solutions/eig_advection_interval.py), [Q5-Q7](https://www.uzerbinati.eu/assets/teaching/sheets/solutions/eig_advection_square.py).
 - Code for Maxwell's eigenvalue problem and Dynamo theory: [poisson_nodal.py](https://www.uzerbinati.eu/assets/teaching/examples/poisson_nodal.py), [poisson_mixed_duran.py](https://www.uzerbinati.eu/assets/teaching/examples/poisson_mixed_duran.py), [poisson_mixed_div.py](https://www.uzerbinati.eu/assets/teaching/examples/poisson_mixed_div.py), [poisson_mixed_rt.py](https://www.uzerbinati.eu/assets/teaching/examples/poisson_mixed_rt.py), [maxwell_nodal.py](https://www.uzerbinati.eu/assets/teaching/examples/maxwell_nodal.py), [maxwell_edge.py](https://www.uzerbinati.eu/assets/teaching/examples/maxwell_edge.py), [pseudo_maxwell.py](https://www.uzerbinati.eu/assets/teaching/examples/pseudo_maxwell.py), [pseudo_tool.py](https://www.uzerbinati.eu/assets/teaching/examples/pseudo_tool.py).
 
-![Dinner Picutre](../../assets/images/edinburgo.jpeg)
+![Dinner Picture](../../assets/images/edinburgo.jpeg)
 {: .align-center}

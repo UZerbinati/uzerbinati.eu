@@ -8,22 +8,28 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
   * I'm organizing a workshop on "Advances in Ordered Fluids and Alignment Phenomena Modeling, Analysis, and Numerical Methods",
     14/09 - 19/09
     Golferenzo, Oltrepò Pavese, IT [more details](https://www.uzerbinati.eu/pages/borgodeigatti), [conference website](https://sites.google.com/view/ordered-fluids/home-page).
+  * Trefftz Workshop 2026 
+    07/09 - 09/09
+    Vienna, AT [[more info](https://trefftz2026.univie.ac.at), [slides](https://www.uzerbinati.eu/assets/talks/trefftz26.pdf)]
+  * GNFM Ravello Summer School 2026 
+    31/08 - 5/09
+    Ravello, IT 
+<!--more-->
   * PDESoft 2026 
     13/07 - 15/07
-    Vienna, AU [[more info](https://pdesoft2026.conf.tuwien.ac.at), [slides](https://www.uzerbinati.eu/assets/talks/pdesoft26.pdf)]
+    Vienna, AT [[more info](https://pdesoft2026.conf.tuwien.ac.at), [slides](https://www.uzerbinati.eu/assets/talks/pdesoft26.pdf)]
   * NGSolve User Meeting
     29/06 - 01/07
     Zurich, CH [more info](https://stiwzhaw.github.io/NGSolveUserMeeting2026/), [slides](https://www.uzerbinati.eu/assets/talks/zurich.pdf), [group picture](https://www.uzerbinati.eu/assets/images/ngsolve7.jpg).
-<!--more-->
   * EMS School: Mathematical Aspects of Fluid Flows
     24/05 - 29/05
     Kacov, CZ [slides](https://www.uzerbinati.eu/assets/talks/kacov26.pdf)
   * Smectics and distorted nematics: analytics, numerics, and experiments
     18/05 - 22/05
-    des Houches, FR [posters](https://www.uzerbinati.eu/assets/talks/des_houches.pdf)
+    Les Houches, FR [posters](https://www.uzerbinati.eu/assets/talks/des_houches.pdf)
   * I'll be based in Vienna for the ESI Programme: Differential Complexes: Theory, Discretization, and Applications
     20/05 - 07/06
-    Vienna, AT, [slides](https://www.uzerbinati.eu/assets/talks/esi.pdf), [recoring of the talk](https://www.youtube.com/watch?v=ge5z8l-aFZ0).
+    Vienna, AT, [slides](https://www.uzerbinati.eu/assets/talks/esi.pdf), [recording of the talk](https://www.youtube.com/watch?v=ge5z8l-aFZ0).
   * Interactions of geometric spectral theory with numerical methods and applications, Isaac Newton Institute
     18/12 - 22/12
     Cambridge, UK, [a pint at the Eagle](https://www.uzerbinati.eu/assets/images/eagle.jpeg).
@@ -41,10 +47,10 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
     Beijing, CN  [more details](https://lsec.cc.ac.cn/~icspfem26/Program.html).
 
 ### 2025
-  * I was visiting [_Niccolo Tassi_](https://sites.google.com/view/niccolotassi/) to visit the [Instituto de Matemáticas de la Universidad de Granada](https://wpd.ugr.es/~imag/) and to give a talk at the local PDE seminar.
+  * I was visiting [_Niccolò Tassi_](https://sites.google.com/view/niccolotassi/) to visit the [Instituto de Matemáticas de la Universidad de Granada](https://wpd.ugr.es/~imag/) and to give a talk at the local PDE seminar.
     15/12 - 19/12
     Granada, ES [more details](https://wpd.ugr.es/~imag/events/event/umberto-zerbinati/).
-  * I hosted to [_Clarissa Astuto_](https://web.dmi.unict.it/corsi/l-35/docenti/uid.SlJFYTNoQ3BqNnZLSnhlOXJzMmJMNXJLam1SM2RrQS92R3NybUlHZUpUVT0=) who gave a talk at the
+  * I hosted [_Clarissa Astuto_](https://web.dmi.unict.it/corsi/l-35/docenti/uid.SlJFYTNoQ3BqNnZLSnhlOXJzMmJMNXJLam1SM2RrQS92R3NybUlHZUpUVT0=) who gave a talk at the
     Numerical Analysis Internal Seminar, University of Oxford
     04/12,
     Oxford, UK [more info](https://www.maths.ox.ac.uk/node/74760).
@@ -57,10 +63,10 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
   * Oxford Numerical Analysis Internal Seminar, University of Oxford
     30/10
     Oxford, UK [slides](https://www.uzerbinati.eu/assets/talks/oxford_2.pdf).
-  * I hosted to [_Tim van Beeck_](https://timvanbeeck.github.io/) who gave a talk at the
+  * I hosted [_Tim van Beeck_](https://timvanbeeck.github.io/) who gave a talk at the
     Numerical Analysis Internal Seminar, University of Oxford
     16/10,
-    Oxford, UK [slides](https://timvanbeeck.github.io/uploads/talks/oxford25.pdf), [more info](https://www.maths.ox.ac.uk/node/72701), Pictures from the visit: [Formal dinner](https://www.uzerbinati.eu/assets/images/tim1.jpeg), [Informal dinner](https://www.uzerbinati.eu/assets/images/tim2.jpeg).
+    Oxford, UK [more info](https://www.maths.ox.ac.uk/node/72701), Pictures from the visit: [Formal dinner](https://www.uzerbinati.eu/assets/images/tim1.jpeg), [Informal dinner](https://www.uzerbinati.eu/assets/images/tim2.jpeg).
   * SIAM Students Chapter, King Abdullah University of Science and Technology
     29/09
     Jeddah, SA [more info](https://cemse.kaust.edu.sa/events/by-type/seminar/2025/09/29/new-challenges-kinetic-theory-complex-fluids), [N. 1 Dates](https://www.uzerbinati.eu/assets/images/dateshop.jpeg)
@@ -120,20 +126,20 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
   * Firedrake User Meeting
     16/09 - 18/09
     Oxford, UK [slides](https://www.uzerbinati.eu/assets/talks/firedrake2024.pdf).
-  * Gottingen Internal Seminar 
+  * Göttingen Internal Seminar 
     4/09
-    Gottingen, DE [picture](https://www.uzerbinati.eu/assets/images/gottingen.jpeg).
+    Göttingen, DE [picture](https://www.uzerbinati.eu/assets/images/gottingen.jpeg).
   * SciCADE 2024
     15/07 - 19/07
-    Singapor, SG [slides](https://www.uzerbinati.eu/assets/talks/scicade.pdf).
-  * GIMC SIMAI Yung 2024
+    Singapore, SG [slides](https://www.uzerbinati.eu/assets/talks/scicade.pdf).
+  * GIMC SIMAI Young 2024
     10/07 - 12/07
     Napoli, IT [slides](https://www.uzerbinati.eu/assets/talks/gimc.pdf). 
   * PDESoft 
     01/07 - 03/07
     Cambridge, UK [slides](https://www.uzerbinati.eu/assets/talks/pdesoft.pdf).
   * 28th International Conference on Domain Decomposition Methods 
-    28/02 - 1/02
+    28/01 - 01/02
     Jeddah, SA [[slides](https://www.uzerbinati.eu/assets/talks/dd28.pdf), [NACA simulation](https://youtu.be/ZIuJaF8if6M)].
     
 ### 2023
@@ -160,7 +166,7 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
     Oxford, UK [slides](https://www.uzerbinati.eu/assets/talks/oxford.pdf).
   * SIAM UK-Ireland Annual Meeting,
     23/04
-    Dublin, IR [slides](https://www.uzerbinati.eu/assets/talks/siamuk.pdf).
+    Dublin, IE [slides](https://www.uzerbinati.eu/assets/talks/siamuk.pdf).
   * PRISM Hackathon,
     19/04
     Great Missenden, UK [slides](https://www.uzerbinati.eu/assets/talks/prism.pdf).
