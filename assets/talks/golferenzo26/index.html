@@ -539,77 +539,52 @@ body.print [data-frag]{opacity:1}
 </section>
 
 <section class="slide" data-sect="1 · The zoo">
-  <h2 class="t">Fluids whose constituents carry structure</h2>
-  <div class="cols c2" style="gap:22px">
+  <h2 class="t">Fluids whose constituents carry structure
+    <span class="sub">each constituent carries a manifold</span></h2>
+  <div class="cols c32" style="gap:22px;margin-top:2px">
     <div class="stack" style="gap:9px">
-      <div class="gal" style="grid-template-columns:repeat(3,1fr);grid-auto-rows:150px">
+      <div class="gal" style="grid-template-columns:repeat(3,1fr);grid-auto-rows:120px">
         <img data-fig="nematic" alt="nematic texture">
-        <img data-fig="nematic2" alt="nematic texture">
         <img data-fig="smectic" alt="smectic texture">
         <img data-fig="rods" alt="silicon rod suspension">
         <img data-fig="ferrofluid" alt="ferrofluid">
         <img data-fig="magma" alt="gas-saturated magma melt">
-        <img data-fig="bubbles" alt="bubbly flow">
-        <img data-fig="bubbles2" alt="bubbly flow">
         <img data-fig="foam" alt="foam">
       </div>
-    </div>
-    <div>
-      <p class="small">A simple fluid is described by where its molecules <em>are</em>. In a
-      <b>partially ordered fluid</b> that is not enough. Each constituent also carries an
-      internal state, and the fluid is ordered when those states agree.</p>
-      <table class="grid pretty" style="margin-top:10px">
-        <tr><th>System</th><th>What one constituent carries</th></tr>
-        <tr data-frag="1"><td>Liquid crystals</td><td>an axis, or an axis and a layer phase</td></tr>
-        <tr data-frag="1"><td>Ferrofluids</td><td>a magnetic dipole</td></tr>
-        <tr data-frag="1"><td>Rod and fibre suspensions</td><td>a direction, and a length</td></tr>
-        <tr data-frag="2"><td>Bubbly flows, foams, magma</td><td>a volume fraction</td></tr>
-        <tr data-frag="2"><td>Granular and Cosserat media</td><td>an orientation frame</td></tr>
-        <tr data-frag="3"><td>Polymer melts</td><td>a conformation tensor</td></tr>
-        <tr data-frag="3"><td>Nematic elastomers</td><td>a deformation</td></tr>
-        <tr data-frag="4"><td>Damage mechanics</td><td>a scalar degradation in <span class="m">[0,1]</span></td></tr>
-        <tr data-frag="4"><td>Active suspensions, bacteria</td><td>a swimming direction</td></tr>
-        <tr data-frag="5"><td>Superfluids, superconductors</td><td>a complex phase</td></tr>
-        <tr data-frag="5"><td>Ring polymers</td><td>a knot type</td></tr>
-      </table>
-    </div>
-  </div>
-  <div class="punch" data-frag="6" style="margin:14px 0 0">
-    The rest of this talk follows from two questions. Which set does the internal state range
-    over, and how do rotations act on it?
-  </div>
-</section>
-
-<section class="slide" data-sect="1 · The zoo">
-  <h2 class="t">Each constituent carries a manifold</h2>
-  <div class="cols c23">
-    <div>
-      <p>Before writing a single equation, one chooses what a single constituent carries.</p>
-      <table class="grid pretty" style="margin-top:10px">
-        <tr><th>Constituent</th><th>What it carries</th></tr>
-        <tr data-frag="1" data-part="Z2"><td>Ising micro-domain</td><td class="m">a sign, ℤ₂</td></tr>
-        <tr data-frag="2" data-part="S1"><td>Bubble</td><td class="m">a radius, ℝ₊</td></tr>
-        <tr data-frag="2" data-part="S1"><td>Polar rod</td><td class="m">a unit vector, 𝕊¹ and 𝕊²</td></tr>
-        <tr data-frag="3" data-part="RP1"><td>Nematogen</td><td class="m">an axis, ℝP¹ and ℝP²</td></tr>
-        <tr data-frag="4"><td>Cosserat grain</td><td class="m">a frame, SO(3)</td></tr>
-        <tr data-frag="4"><td>Biaxial nematogen</td><td class="m">a frame modulo D₂</td></tr>
-        <tr data-frag="5"><td>Polymer coil</td><td class="m">a conformation tensor, Sym⁺(3)</td></tr>
-        <tr data-frag="5"><td>Nematic elastomer</td><td class="m">a deformation, GL⁺(3)</td></tr>
-      </table>
-      <div class="card accent" data-frag="6" data-part="" style="margin-top:14px">
-        <p class="small" style="margin:0">In every case the choice is the same kind of object, a
-        smooth manifold <span class="m">ℳ</span> of states for a single constituent. The next
-        slide shows why the manifold alone does not tell the phases apart.</p>
+      <div class="cols c3" style="gap:9px">
+        <div class="animbox" data-kind="Z2" style="height:112px"><span class="tag2">ℤ₂</span>
+          <canvas class="anim" data-anim="manifolds" data-kind="Z2"></canvas></div>
+        <div class="animbox" data-kind="S1" style="height:112px"><span class="tag2">𝕊¹</span>
+          <canvas class="anim" data-anim="manifolds" data-kind="S1"></canvas></div>
+        <div class="animbox" data-kind="RP1" style="height:112px"><span class="tag2">ℝP¹</span>
+          <canvas class="anim" data-anim="manifolds" data-kind="RP1"></canvas></div>
       </div>
+      <p class="small" style="margin:4px 0 0">A simple fluid is described by where its molecules
+      <em>are</em>. In a <b>partially ordered fluid</b> that is not enough. Each constituent also
+      carries an internal state, and the fluid is ordered when those states agree.</p>
     </div>
-    <div class="stack" style="gap:10px">
-      <div class="animbox" data-kind="Z2" style="height:150px"><span class="tag2">ℤ₂</span>
-        <canvas class="anim" data-anim="manifolds" data-kind="Z2"></canvas></div>
-      <div class="animbox" data-kind="S1" style="height:150px"><span class="tag2">𝕊¹</span>
-        <canvas class="anim" data-anim="manifolds" data-kind="S1"></canvas></div>
-      <div class="animbox" data-kind="RP1" style="height:150px"><span class="tag2">ℝP¹</span>
-        <canvas class="anim" data-anim="manifolds" data-kind="RP1"></canvas></div>
+    <div>
+      <table class="grid pretty" style="margin-top:9px">
+        <tr><th>System</th><th>What one constituent carries</th><th><span class="m">ℳ</span></th></tr>
+        <tr data-frag="1" data-part="Z2"><td>Ising micro-domains</td><td>a sign</td><td class="m">ℤ₂</td></tr>
+        <tr data-frag="1" data-part="Z2"><td>Bubbly flows, foams, magma</td><td>a volume fraction</td><td class="m">ℝ₊</td></tr>
+        <tr data-frag="2" data-part="S1"><td>Polar rods and ferroelectrics</td><td>a direction</td><td class="m">𝕊¹, 𝕊²</td></tr>
+        <tr data-frag="2" data-part="S1"><td>Ferrofluids</td><td>a magnetic dipole</td><td class="m">𝕊²</td></tr>
+        <tr data-frag="3" data-part="RP1"><td>Liquid crystals, nematogens</td><td>an axis</td><td class="m">ℝP¹, ℝP²</td></tr>
+        <tr data-frag="3" data-part="RP1"><td>Rod and fibre suspensions</td><td>a direction and a length</td><td class="m">ℝ³</td></tr>
+        <tr data-frag="4" data-part=""><td>Granular and Cosserat media</td><td>an orientation frame</td><td class="m">SO(3)</td></tr>
+        <tr data-frag="4"><td>Biaxial nematogens</td><td>a frame modulo D₂</td><td class="m">SO(3)/D₂</td></tr>
+        <tr data-frag="5"><td>Polymer melts</td><td>a conformation tensor</td><td class="m">Sym⁺(3)</td></tr>
+        <tr data-frag="5"><td>Nematic elastomers</td><td>a deformation</td><td class="m">GL⁺(3)</td></tr>
+        <tr data-frag="5"><td>Superfluids, superconductors</td><td>a complex phase</td><td class="m">ℂ</td></tr>
+        <tr data-frag="5"><td>Ring polymers</td><td>a knot type</td><td class="m">𝕊³ ∖ K</td></tr>
+      </table>
     </div>
+  </div>
+  <div class="punch" data-frag="6" style="margin:12px 0 0">
+    In every case the choice is the same kind of object, a smooth manifold <span class="m">ℳ</span>
+    of states for one constituent. The rest of this talk follows from two questions. Which set does
+    the internal state range over, and how do rotations act on it?
   </div>
 </section>
 
@@ -688,9 +663,10 @@ body.print [data-frag]{opacity:1}
       </div>
       <div class="card tiny" data-frag="3">
         <div class="lab">Transitive, and the isotropy subgroup</div>
+        Write <span class="m">G</span> for the group that acts, here <span class="m">SO(d)</span>.
         Transitive means a single orbit, so every configuration is a rotation of every other. The
-        stabiliser <span class="m">H</span> of a point then gives
-        <span class="m">ℳ ≅ G/H</span>.
+        stabiliser <span class="m">H</span> of a point, the rotations that leave it where it is,
+        then gives <span class="m">ℳ ≅ G/H</span>.
       </div>
       <div class="card accent" data-frag="4">
         <div class="lab">Noether, on a generic manifold</div>
@@ -729,9 +705,10 @@ body.print [data-frag]{opacity:1}
   </div>
   <div class="cols c3" style="margin-top:12px;gap:16px">
     <div class="card tiny" data-frag="1">
-      <div class="lab">𝕋², the smectic-A cell</div>
+      <div class="lab">𝕋², a director angle and a layer phase</div>
       Two circles glued preserving direction. Orientable, and the
-      <span class="m">U(1)²</span> action is free. <span data-chip="T2"></span>
+      <span class="m">U(1)²</span> action is free. This is the cell continuum smectic models assume,
+      and later we ask whether one constituent can carry it. <span data-chip="T2"></span>
     </div>
     <div class="card tiny" data-frag="1">
       <div class="lab">𝕂², parity-coupled nematics</div>
@@ -754,7 +731,8 @@ body.print [data-frag]{opacity:1}
 </section>
 
 <section class="slide mid" data-sect="2 · The object">
-  <h2 class="t">What the pair <span class="m">(ℳ, G)</span> already fixes</h2>
+  <h2 class="t">What the pair <span class="m">(ℳ, G)</span> already fixes
+    <span class="sub">G is the group that acts, H the stabiliser of a state</span></h2>
   <div class="cols c23">
     <table class="grid pretty">
       <tr><th style="width:44%">Question</th><th>Settled by</th></tr>
@@ -860,7 +838,7 @@ body.print [data-frag]{opacity:1}
       <div class="callout" data-frag="2" data-part="fam"><span class="k">Fill colour</span>
         The family: <span class="tag sc">scalar</span> <span class="tag di">discrete</span>
         <span class="tag or">orientational</span> <span class="tag fr">frames &amp; tensors</span>
-        <span class="tag ga">gauge &amp; topological</span></div>
+        <span class="tag ga">topological</span></div>
       <div class="callout" data-frag="4" data-part="border"><span class="k">Style of the outline</span>
         <b>Solid</b> means <span class="m">ℳ</span> is compact, so a uniform measure exists and
         isotropic is a state. <b>Dashed</b> means non-compact, and a confining potential is
@@ -1054,12 +1032,9 @@ body.print [data-frag]{opacity:1}
 <section class="slide mid" data-sect="5 · The tour">
   <h2 class="t">Discrete microstructure: nothing for a group to rotate</h2>
   <div class="cols c23">
-    <div data-chips="Z2,NN,rot,VS2,PG">
+    <div data-chips="Z2,NN,VS2,PG">
       <p><b>Ising-type micro-domains.</b> Two states, and the whole of lattice statistical mechanics.</p>
-      <p><b>Molecular-motor cycles.</b> <span class="m">N</span> chemical states traversed in order,
-        as in kinesin, myosin and the F<sub>1</sub>-ATPase.</p>
-      <p><b>Rotameric chains.</b> Each of <span class="m">K</span> bonds is gauche<sup>±</sup> or
-        trans, the Flory model of a polymer.</p>
+      <p><b>Molecular-motor cycles.</b> <span class="m">N</span> chemical states traversed in order.</p>
       <p><b>Run and tumble.</b> A finite velocity set on the sphere, for bacteria and for
         discrete-velocity kinetic models.</p>
       <p><b>Crystallographic point groups.</b> A grain orientation drawn from a finite subgroup of
@@ -1078,15 +1053,7 @@ body.print [data-frag]{opacity:1}
         Transitions between a finite set of internal states. Quantised internal states of this kind
         were treated long ago by regarding each state as a separate <b>species</b> of a gas
         mixture, which is the Wang-Chang, Uhlenbeck and de Boer equation.
-      </div>
-      <div class="card tiny" data-frag="2">
-        <div class="lab">The overdamped limit is automatic</div>
-        The gradient-flow structure we obtain later comes from an <b>overdamped limit</b>, in which
-        the orientational momenta thermalise much faster than the orientations drift. With a
-        discrete <span class="m">ℳ</span> there are no orientational momenta to thermalise, so the
-        limit holds automatically.
-      </div>
-    </div>
+      </div></div>
   </div>
   <div class="refbox">Chapter 5 and §6.4 of <cite data-ref="thesis">the thesis</cite>.</div>
 </section>
@@ -1181,15 +1148,7 @@ body.print [data-frag]{opacity:1}
         invariant is constant, and the generalised inertia <span class="m">B</span> is constant
         too. A Landau expansion in <span class="m">ν</span> has nothing to expand in, which is why
         Oseen–Frank penalises only distortion.
-      </div>
-      <div class="card tiny" data-frag="1">
-        <div class="lab">Two open dots on ℝ³</div>
-        Here the orbits are spheres of fixed <span class="m">|r|</span>, so
-        <span class="m">|r|</span> is an invariant. A dumbbell has a direction and a length, and the
-        length carries energy, which a Landau expansion can see in this cell and not in the one
-        above.
-      </div>
-      <div class="punch tiny" data-frag="2" style="margin:0">
+      </div><div class="punch tiny" data-frag="1" style="margin:0">
         Both cells sit in the same column under the same group, and one extra invariant changes the
         character of the model.
       </div>
@@ -1200,7 +1159,6 @@ body.print [data-frag]{opacity:1}
 <section class="slide full" data-sect="5 · The tour">
   <div class="hd">
     <h2>When the constituent carries a whole frame</h2>
-    <div class="note">and why 2π is not the identity</div>
   </div>
   <div class="cols c-wide" style="flex:1 1 auto;min-height:0;gap:24px">
     <div class="animbox" style="height:100%">
@@ -1237,6 +1195,7 @@ body.print [data-frag]{opacity:1}
   </div>
 </section>
 
+<!-- Tensors and knots, commented out for now. Remove this comment wrapper to restore it.
 <section class="slide mid" data-sect="5 · The tour">
   <h2 class="t">Tensors that deform, and states counted by topology</h2>
   <div class="cols c2" style="gap:24px">
@@ -1274,11 +1233,12 @@ body.print [data-frag]{opacity:1}
         convenience.
       </div>
       <div class="card tiny" data-frag="3">
-        <div class="lab">And it is not far from helicity</div>
-        Linking and knotting of field lines is measured by helicity, a topological invariant
-        of the flow itself, conserved by ideal dynamics and obstructing relaxation. The same
-        obstruction reappears when we ask what a non-orientable manifold does to the distribution
-        function.
+        <div class="lab">Why a conserved topology blocks relaxation</div>
+        Helicity measures how much the field lines link and knot, and ideal dynamics conserves it.
+        A field with non-zero helicity cannot relax to zero energy, because relaxing would have to
+        undo the linking, and the conserved quantity forbids it. The same pattern returns twice in
+        this talk. Here the conserved quantity is the knot type. On a non-orientable
+        <span class="m">ℳ</span> it is the harmonic part of the distribution, which cannot decay.
       </div>
     </div>
   </div>
@@ -1286,6 +1246,7 @@ body.print [data-frag]{opacity:1}
     <cite data-ref="cachFarrellMalekTuma">Cach, Farrell, Málek &amp; Tůma (2026)</cite>.
     Helicity and topological hydrodynamics: <cite data-ref="arnoldKhesin">Arnold &amp; Khesin</cite>.</div>
 </section>
+-->
 
 <!-- ═══════════════ VI. THE PHASES ═══════════════ -->
 <section class="slide" data-sect="6 · The phases">
@@ -1377,6 +1338,7 @@ body.print [data-frag]{opacity:1}
     classification, <cite data-ref="mermin">Mermin (1979)</cite>.</div>
 </section>
 
+<!-- Orbit-type strata, commented out for now. Remove this comment wrapper to restore it.
 <section class="slide mid" data-sect="6 · The phases">
   <h2 class="t">The strata of <span class="m">ℳ/G</span> enumerate the phases</h2>
   <div class="cols c23">
@@ -1409,6 +1371,7 @@ body.print [data-frag]{opacity:1}
     </div>
   </div>
 </section>
+-->
 
 
 
@@ -1426,7 +1389,9 @@ body.print [data-frag]{opacity:1}
       <div class="lab">What no manifold can encode</div>
       An order-parameter manifold describes the state of one constituent. Positional order is
       not a property of a constituent, so no choice of <span class="m">ℳ</span> encodes the spatial
-      modulation of the density that makes a layer.
+      modulation of the density that makes a layer. The <span class="m">𝕋²</span> cell in the table
+      is what continuum smectic models assume, a director angle and a layer phase put in by hand,
+      and the kinetic theory does not derive it.
     </div>
     <div class="card tiny" data-frag="1">
       <div class="lab">Where the layers are lost</div>
@@ -1489,10 +1454,12 @@ body.print [data-frag]{opacity:1}
       dimensions. It has one side and one edge, and no consistent choice of normal.</p>
       <div class="card tiny" data-frag="3">
         <div class="lab">The standard repair</div>
-        The map <span class="m">n ↦ n ⊗ n</span> lifts <span class="m">ℝP²</span> into
-        <span class="m">Sym₀(3)</span>, which is orientable. That is one more reason the
-        <span class="m">Q</span>-tensor is worth its extra dimensions, and it leads to the next
-        slide.
+        Send the axis to its projector, <span class="m">n ↦ n ⊗ n</span>, and subtract the trace.
+        Because <span class="m">n</span> and <span class="m">−n</span> give the same matrix, the
+        head-tail identification is carried by the target itself, and the director now lives in the
+        vector space <span class="m">Sym₀(3)</span>. A vector space is orientable and has a global
+        volume form, so <span class="m">f</span> is an honest function again. The price is
+        dimension, five instead of two, which is what the next slide is about.
       </div>
     </div>
   </div>
@@ -1573,7 +1540,7 @@ body.print [data-frag]{opacity:1}
       </div>
       <p class="small" data-frag="1">Frame indifference and Noether, through the infinitesimal
       generator <span class="m">A<sub>ν</sub></span>, give the conserved generalised angular
-      momentum of slide 5. For a segment,
+      momentum of slide 4. For a segment,
       <span class="m">B = I</span> and <span class="m">ν × ν̇ = 𝕀ω</span> with
       <span class="m">𝕀 = I − ν ⊗ ν</span>, so the classical inertia tensor of a rod is
       <em>recovered</em> from the manifold rather than assumed.</p>
@@ -1699,10 +1666,14 @@ body.print [data-frag]{opacity:1}
       Onsager himself took that route.
     </div>
     <div class="card accent tiny" data-frag="3">
-      <div class="lab">Two lobes, one director</div>
-      The two lobes are the two representatives of a single director, not two populations. The
-      middle panel is <span class="m">ℝP¹</span> drawn on its double cover, and it is how you check
-      that the simulation on <span class="m">𝕊¹</span> carries the symmetry.
+      <div class="lab">The lobe count is the order of H</div>
+      The two lobes are the two representatives of a single director, not two populations, so the
+      middle panel is <span class="m">ℝP¹</span> drawn on its double cover. The count comes off the
+      chip. A filled dot means a free action, <span class="m">H = {e}</span> and one lobe. An open
+      dot means <span class="m">ℳ ≅ G/H</span>, and simulating on <span class="m">G</span> shows
+      <span class="m">|H|</span> copies of every state, two for <span class="m">ℝP¹</span> with
+      <span class="m">H = ℤ₂</span> and four for the biaxial chip
+      <span class="m">SO(3)/D₂</span>.
     </div>
     <div class="card tiny" data-frag="5">
       <div class="lab">Why particles and not a grid</div>
@@ -1820,7 +1791,7 @@ body.print [data-frag]{opacity:1}
       </div>
       <div class="card accent tiny" data-frag="1">
         <div class="lab">What we want</div>
-        A single step that conserves the Noether momenta of slide 5, respects
+        A single step that conserves the Noether momenta of slide 4, respects
         <span class="m">ν ∈ ℳ</span>, <em>and</em> honours the entropy inequality. These are three
         different kinds of structure and they are usually preserved by three different tricks.
       </div>
@@ -1858,7 +1829,7 @@ body.print [data-frag]{opacity:1}
         <div class="eq" style="margin:5px 0 3px;font-size:16px"><span class="m">∂<sub>t</sub>(ρ⟨ψ⟩)
           + ∇·(ρ⟨vψ⟩) − ρ⟨ν̇·∇<sub>ν</sub>ψ⟩ − ρ⟨𝒱·∇<sub>ς</sub>ψ⟩ = 0,</span></div>
         for <span class="m">ψ ∈ {m, p, ½|p|²/m + ½ς·B⁻¹ς, A<sub>x</sub>(Ω)·p + A<sub>ν</sub>(Ω)·ς}</span>.
-        The last is the Noether invariant of slide 5.
+        The last is the Noether invariant of slide 4.
       </div>
     </div>
     <div class="stack" style="gap:10px">
@@ -2100,7 +2071,7 @@ body.print [data-frag]{opacity:1}
       <tr><td>stress, all columns</td><td>symmetry</td><td><cite data-ref="arnoldWinther2002">Arnold–Winther</cite>, <cite data-ref="huZhang2015">Hu–Zhang</cite></td></tr>
       <tr data-frag="1"><td class="m">Sym₀(3)</td><td>symmetric and traceless, the <span class="m">Q</span>-tensor and <span class="m">ℝP²</span> lifted into it</td><td>symmetric traceless elements, <cite data-ref="huLinShi2026">Hu, Lin and Shi</cite></td></tr>
       <tr data-frag="1"><td class="m">Sym⁺(3)</td><td>symmetric, then positive definite</td><td>symmetric-tensor elements, with positivity still to be enforced</td></tr>
-      <tr data-frag="1"><td class="m">w₁ ≠ 0</td><td>a density, a top-degree form</td><td><cite data-ref="arnoldFalkWinther2006">finite element exterior calculus</cite></td></tr>
+      <tr data-frag="1"><td class="m">w₁ ≠ 0</td><td>that <span class="m">f</span> is a density and not a scalar, so the unknown is a top-degree form and carries a sign with the orientation</td><td>spaces of differential forms, <cite data-ref="arnoldFalkWinther2006">finite element exterior calculus</cite></td></tr>
     </table>
     <div class="stack" style="gap:10px">
       <div class="card tiny" data-frag="2">
@@ -2110,11 +2081,6 @@ body.print [data-frag]{opacity:1}
         tensor fields with symmetries, which is what many of the chips in this table carry.
       </div>
     </div>
-  </div>
-  <div class="punch small" data-frag="3" style="margin-top:12px">
-    We are in a new golden age of finite elements. Finite element tensor calculus aims to give
-    every tensor-valued chip of this table a discretisation that respects it, and Kaibo's talk on
-    advection–diffusion of forms covers the <span class="m">w₁ ≠ 0</span> corner.
   </div>
 </section>
 
@@ -2167,20 +2133,16 @@ body.print [data-frag]{opacity:1}
     <p data-frag="2" data-hl="chip:S2|SO3"><b>𝕊² with a dipole.</b> Ferrofluids and ferronematics,
       with long-range anisotropic interactions and an applied field.
       <b>SO(3).</b> A kinetic route to Cosserat and micropolar continua.</p>
-    <p data-frag="3" data-hl="chip:R3|S3K"><b>ℝ³ and 𝕊³ ∖ K.</b> Dislocation densities carrying a
-      Burgers vector, and ring polymers whose sectors are knot types. Both are open.</p>
+    <p data-frag="3" data-hl="chip:SymP3"><b>Sym⁺(3).</b> Rate-type viscoelastic models, where the
+      conformation tensor carries its own evolution equation. A kinetic derivation would fix the
+      objective rate instead of postulating it, and the cell being convex is what a scheme has to
+      use to keep the tensor positive definite.</p>
     <p data-frag="4" data-hl=""><b>The hardest one.</b> Active suspensions, where
       self-propulsion breaks momentum conservation and the collision invariants on which this whole
       construction rests have to be rethought.</p>
   </div>
 </section>
 
-<section class="slide mid" data-sect="9 · Close">
-  <h2 class="t">Conclusions</h2>
-  <div class="vcenter center" style="color:var(--faint)">
-    <p class="small" style="font-style:italic">to be written</p>
-  </div>
-</section>
 
 <section class="slide" data-sect="">
   <div class="title">
@@ -2239,7 +2201,6 @@ const ROWLAB = {'0':'0','1':'1','2':'2','3':'3','4':'≥ 4'};
 const CHIPS = [
  ['Z2','0','ga','ℤ₂','sc','pill','solid',1,'f','','','two states, Ising-type micro-domains'],
  ['NN','0','ga','{1, …, N}','di','pill','solid',1,'o','','','N states, molecular-motor cycles'],
- ['rot','0','ga','{g±, t}<sup>K</sup>','di','pill','solid',1,'o','','','rotameric chain states, K bonds'],
  ['VS2','0','ga','𝕍 ⊂ 𝕊²','or','pill','solid',1,'o','','','finite velocity set, run-and-tumble'],
  ['PG','0','ga','G ⊂ SO(3)','fr','pill','solid',1,'f','','','crystallographic point group'],
 
@@ -2252,7 +2213,7 @@ const CHIPS = [
 
  ['CC','2','u1','ℂ','ga','flat','dashed',2,'o','','','complex plane, Ginzburg–Landau field'],
  ['Mob','2','u1','𝕄','ga','pill','solid',3,'o','w₁≠0','','Möbius band, twisted chiral ribbons'],
- ['T2','2','u2','𝕋²','ga','pill','solid',1,'f','','','2-torus, smectic-A layer and director'],
+ ['T2','2','u2','𝕋²','ga','pill','solid',1,'f','','','2-torus, director angle and layer phase, assumed by continuum smectic models'],
  ['K2','2','u2','𝕂²','ga','pill','solid',3,'o','w₁≠0','','Klein bottle, parity-coupled nematics'],
  ['S2','2','so3','𝕊²','or','pill','solid',1,'o','','','2-sphere, 3D polar rods, swimmers'],
  ['RP2','2','so3','ℝP²','or','pill','solid',1,'o','π₁ = ℤ₂  w₁≠0','','projective plane, 3D nematic director'],
@@ -2280,7 +2241,7 @@ const EXCLUDED = {
 const WEAK = {'2':['e','ga'],'3':['e','ga'],'4':['e','ga']};
 
 const FAMNAME = {sc:'scalar & dilation', di:'discrete kinetics', or:'orientational',
-                 fr:'frames & tensors', ga:'gauge & topological'};
+                 fr:'frames & tensors', ga:'topological'};
 
 function el(tag, cls, html){
   const n = document.createElement(tag);
@@ -2633,7 +2594,7 @@ ANIM.glue = (c,W,H,t,step,P,cv)=>{
   c.strokeStyle=P.rule2; c.lineWidth=1; c.strokeRect(cx-S/2,y0,S,S);
   if(kind==='torus'){ edge(TL,TR,A); edge(BL,BR,A); edge(TL,BL,B); edge(TR,BR,B); }
   else if(kind==='klein'){ edge(TL,TR,A); edge(BL,BR,A); edge(TL,BL,B); edge(BR,TR,B); }
-  else { edge(TL,TR,A); edge(BR,BL,A); edge(TL,BL,B); edge(TR,BR,B); }
+  else { edge(TL,TR,A); edge(BR,BL,A); edge(TL,BL,B); edge(BR,TR,B); }
   label(c,cx,y0+S+17,{torus:'a b a⁻¹ b⁻¹',klein:'a b a b⁻¹',rp2:'a b a b'}[kind],P.ink2,14);
 
   if(step>=1){
@@ -2965,7 +2926,7 @@ ANIM.manifolds = (c,W,H,t,step,P,cv)=>{
       c.lineTo(cx+R*Math.cos(a+Math.PI),cy+R*Math.sin(a+Math.PI)); c.stroke();
       c.setLineDash([]); c.globalAlpha=1;
     }
-    label(c,cx,H-14, kind==='RP1' ? 'θ and θ + π are one state' : 'one angle, head and tail differ',
+    label(c,cx,H-14, kind==='RP1' ? 'θ and θ + π are one state' : 'head and tail differ',
           P.muted,12.5);
   }
 };
