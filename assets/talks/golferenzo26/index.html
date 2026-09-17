@@ -2592,10 +2592,16 @@ ANIM.glue = (c,W,H,t,step,P,cv)=>{
   };
   c.fillStyle=P.paper; c.fillRect(cx-S/2,y0,S,S);
   c.strokeStyle=P.rule2; c.lineWidth=1; c.strokeRect(cx-S/2,y0,S,S);
-  if(kind==='torus'){ edge(TL,TR,A); edge(BL,BR,A); edge(TL,BL,B); edge(TR,BR,B); }
-  else if(kind==='klein'){ edge(TL,TR,A); edge(BL,BR,A); edge(TL,BL,B); edge(BR,TR,B); }
-  else { edge(TL,TR,A); edge(BR,BL,A); edge(TL,BL,B); edge(BR,TR,B); }
+  /* the arrows spell the word below when the boundary is read clockwise from the
+     top left corner: top, right, bottom, left, an edge counting as inverse when
+     the walk runs against its arrow */
+  if(kind==='torus'){ edge(TL,TR,A); edge(TR,BR,B); edge(BL,BR,A); edge(TL,BL,B); }
+  else if(kind==='klein'){ edge(TL,TR,A); edge(TR,BR,B); edge(BR,BL,A); edge(TL,BL,B); }
+  else { edge(TL,TR,A); edge(TR,BR,B); edge(BR,BL,A); edge(BL,TL,B); }
+  label(c,cx,y0+13,'a',A,12.5);          label(c,cx,y0+S-13,'a',A,12.5);
+  label(c,cx-S/2+13,y0+S/2,'b',B,12.5);  label(c,cx+S/2-13,y0+S/2,'b',B,12.5);
   label(c,cx,y0+S+17,{torus:'a b a⁻¹ b⁻¹',klein:'a b a b⁻¹',rp2:'a b a b'}[kind],P.ink2,14);
+  label(c,cx,y0+S+33,'read clockwise from the top left',P.muted,11);
 
   if(step>=1){
     const k=ease(clamp((t-0.15)/1.1,0,1)), yc=y0+S+74;
