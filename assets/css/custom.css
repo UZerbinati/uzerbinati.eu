@@ -7,37 +7,53 @@
 /* Fluid sizing.
  *
  * The theme caps the body at 42em and never sets a font-size, so the text falls
- * back to the browser's default monospace size (~13px in Chrome and Safari).
- * That makes the page a ~550px column at the same physical size on a phone and
- * on a 16" laptop -- most of a laptop screen ends up empty.
+ * back to the browser's default monospace size (~13px in Chrome and Safari),
+ * leaving most of a laptop screen empty.
  *
- * Setting an explicit font-size that grows with the viewport scales the whole
- * page instead: the 42em measure is in em, so the column widens in step with the
- * text and the line length stays roughly where the theme put it (~70 characters)
- * rather than stretching into an unreadably long line. Roughly: 15px/~590px wide
- * on a phone, 18px/~810px on a 1440px laptop, levelling off beyond that.
- *
- * To tune, change only the middle term of the clamp: the first and last are the
- * floor and ceiling, and 0.35vw is how fast it grows in between.
+ * The font-size grows gently with the viewport, and the body now spans the whole
+ * window, less a gutter that also scales with it. To tune, change the middle
+ * term of either clamp: the first and last are the floor and ceiling.
  */
 body {
   font-size: clamp(0.95rem, 0.8rem + 0.35vw, 1.15rem);
-  /* 42em of text plus the 1rem gutters below, so the measure is unchanged. */
-  max-width: 44em;
-  padding: 0 1rem;
+  max-width: none;
+  padding: 0 clamp(1rem, 3vw, 3rem);
   box-sizing: border-box;
 }
 
-/* The theme's `.w` region (the name, links and intro on the home page) has no
- * padding of its own, so without the gutter above its text sits flush against
- * the screen edge on a phone.
+/* Home page: rather than one long column of boxes, flow them into as many
+ * columns as fit at a readable width (~38em each), so a wide screen shows the
+ * CV, publications, talks, ... side by side. Each box keeps its own height
+ * (align-items: start) so a long one does not stretch its neighbours. The intro
+ * block (.w) spans the full row above them.
  */
+main.page-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 38em), 1fr));
+  gap: 1em;
+  align-items: start;
+  margin: 1em 0;
+}
+main.page-content > .w {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+main.page-content > .box {
+  margin: 0;
+}
+/* Single pages (a post, or a block's "Read more") have one box: let it take
+ * the full row too rather than sitting in the first grid column.
+ */
+main.page-content > .w + .box:last-child {
+  grid-column: 1 / -1;
+}
 
-/* The theme caps every image at 50% of the column. That reads well beside a wide
- * measure, but leaves photos postage-stamp sized once the column is only as wide
- * as a phone, so let them use the full measure there. The circular header logo
- * has its own fixed 7em sizing and is left alone.
+/* On a wide page the theme's 50% image cap would blow photos up past their
+ * useful size; keep them to roughly one column's width.
  */
+img:not(.logo) {
+  max-width: min(50%, 36em);
+}
 @media (max-width: 34em) {
   img:not(.logo) {
     max-width: 100%;
