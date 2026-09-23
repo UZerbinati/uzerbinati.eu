@@ -1,0 +1,45 @@
+/* Overrides layered on top of eleven-theme's main.css.
+ *
+ * Kept as a separate file, loaded after the theme's stylesheet, so the gem can
+ * still be updated underneath without re-applying these by hand.
+ */
+
+/* Fluid sizing.
+ *
+ * The theme caps the body at 42em and never sets a font-size, so the text falls
+ * back to the browser's default monospace size (~13px in Chrome and Safari).
+ * That makes the page a ~550px column at the same physical size on a phone and
+ * on a 16" laptop -- most of a laptop screen ends up empty.
+ *
+ * Setting an explicit font-size that grows with the viewport scales the whole
+ * page instead: the 42em measure is in em, so the column widens in step with the
+ * text and the line length stays roughly where the theme put it (~70 characters)
+ * rather than stretching into an unreadably long line. Roughly: 15px/~590px wide
+ * on a phone, 18px/~810px on a 1440px laptop, levelling off beyond that.
+ *
+ * To tune, change only the middle term of the clamp: the first and last are the
+ * floor and ceiling, and 0.35vw is how fast it grows in between.
+ */
+body {
+  font-size: clamp(0.95rem, 0.8rem + 0.35vw, 1.15rem);
+  /* 42em of text plus the 1rem gutters below, so the measure is unchanged. */
+  max-width: 44em;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+/* The theme's `.w` region (the name, links and intro on the home page) has no
+ * padding of its own, so without the gutter above its text sits flush against
+ * the screen edge on a phone.
+ */
+
+/* The theme caps every image at 50% of the column. That reads well beside a wide
+ * measure, but leaves photos postage-stamp sized once the column is only as wide
+ * as a phone, so let them use the full measure there. The circular header logo
+ * has its own fixed 7em sizing and is left alone.
+ */
+@media (max-width: 34em) {
+  img:not(.logo) {
+    max-width: 100%;
+  }
+}
