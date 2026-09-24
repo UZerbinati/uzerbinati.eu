@@ -36,6 +36,9 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
   * ADAMUS Seminar Series, University of Ferrara,
     19/03
     Ferrara, IT, [slides](https://www.uzerbinati.eu/assets/talks/ferrara.pdf).
+  * Modelling of materials - theory, model reduction and efficient numerical methods, Charles University
+    11/02
+    Prague, CZ [slides](https://www.uzerbinati.eu/assets/talks/prague_feec.pdf).
   * Seminars in Applied and Computational Analysis, Centre for Mathematical Sciences,
      05/02
     Cambridge, UK [slides](https://www.uzerbinati.eu/assets/talks/cambridge.pdf).
