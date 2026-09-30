@@ -1,0 +1,314 @@
+/* ==================================================================== *
+ *  Material-robust finite elements — self-contained deck               *
+ *  Umberto Zerbinati, Simula Research Laboratory, Oslo                 *
+ *  Engine and palette from the Periodic Table deck (LiquidCrystalTalks) *
+ * ==================================================================== */
+
+:root{
+  /* solarized light, the palette of the Oxford Maths beamer theme */
+  --paper:#fdf6e3;  --panel:#f2ecd8;  --ink:#002b36;  --ink2:#073642;
+  --muted:#586e75;  --faint:#93a1a1;  --rule:#ddd5bb;  --rule2:#c8bf9f;
+  --white:#fffcf0;
+  /* meaning, kept fixed across every widget:
+     strong symmetry (teal), weak symmetry (magenta), the pollution term of the
+     weak estimate (orange), best approximation (blue), alerts (red) */
+  --strong:#2aa198; --weak:#d33682; --poll:#cb4b16; --approx:#268bd2;
+  --red:#dc322f; --violet:#6c71c4; --yellow:#b58900;
+  /* the paper's colour-blind plot palette, delta = 10, 10^3, 10^5 */
+  --d1:#648fff; --d2:#785ef0; --d3:#dc267f;
+  --accent:#2aa198;
+  --serif:"Iowan Old Style","Hoefler Text",Palatino,"Palatino Linotype","Book Antiqua",Georgia,"Times New Roman",serif;
+  --sans:ui-sans-serif,-apple-system,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  --s:1;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme=light]){
+    --paper:#002b36; --panel:#073642; --ink:#eee8d5; --ink2:#d3cbb2;
+    --muted:#93a1a1; --faint:#657b83; --rule:#11454f; --rule2:#1c5764; --white:#073642;
+    --d1:#7fa3ff; --d2:#9a85f5; --d3:#f0529c;
+  }
+}
+:root[data-theme=dark]{
+  --paper:#002b36; --panel:#073642; --ink:#eee8d5; --ink2:#d3cbb2;
+  --muted:#93a1a1; --faint:#657b83; --rule:#11454f; --rule2:#1c5764; --white:#073642;
+  --d1:#7fa3ff; --d2:#9a85f5; --d3:#f0529c;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--serif); overflow:hidden;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+
+/* ---------- stage & slide scaling -------------------------------- */
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:var(--paper)}
+.wrap{
+  width:calc(1280px * var(--s)); height:calc(720px * var(--s));
+  overflow:hidden; position:relative; display:none; flex:0 0 auto;
+}
+.wrap.current{display:block}
+.slide{
+  width:1280px;height:720px;transform:scale(var(--s));transform-origin:0 0;
+  position:relative;padding:40px 60px 50px;background:var(--paper);
+  font-size:21px;line-height:1.45;
+}
+
+/* ---------- overview --------------------------------------------- */
+body.overview{overflow:auto}
+body.overview #stage{position:static;display:flex;flex-wrap:wrap;align-content:flex-start;
+  gap:16px;padding:22px;min-height:100%}
+body.overview .wrap{display:block;border:1px solid var(--rule);border-radius:6px;cursor:pointer;
+  box-shadow:0 1px 3px rgba(0,0,0,.06)}
+body.overview .wrap.current{outline:2.5px solid var(--accent);outline-offset:2px}
+body.overview .chrome{display:none}
+
+/* ---------- chrome ------------------------------------------------ */
+.chrome{position:fixed;z-index:40;font-family:var(--sans);color:var(--faint);font-size:12px;
+  letter-spacing:.06em;pointer-events:none}
+#bar{left:0;right:0;bottom:0;height:2px;background:transparent}
+#bar>i{display:block;height:100%;background:var(--accent);width:0;transition:width .22s ease}
+#foot{right:16px;bottom:12px;text-align:right}
+#foot b{font-weight:600;color:var(--muted)}
+#head{left:18px;bottom:12px;text-transform:uppercase}
+#help{position:fixed;inset:0;z-index:60;background:color-mix(in srgb,var(--paper) 94%,transparent);
+  display:none;place-items:center;font-family:var(--sans)}
+body.help #help{display:grid}
+#help table{border-collapse:collapse;font-size:15px}
+#help td{padding:5px 16px;border-bottom:1px solid var(--rule);color:var(--ink2)}
+#help td:first-child{font-family:var(--mono);color:var(--accent);white-space:nowrap;font-weight:600}
+#help h3{font-family:var(--serif);font-weight:400;font-size:24px;margin:0 0 14px;color:var(--ink)}
+/* interactive bibliography */
+#bib{position:fixed;inset:0;z-index:55;background:var(--paper);display:none;
+  overflow:auto;padding:40px 6vw 60px;font-family:var(--sans)}
+body.bib #bib{display:block}
+#bib h3{font-family:var(--serif);font-weight:400;font-size:30px;margin:0 0 4px;color:var(--ink)}
+#bib .hint{font-size:13px;color:var(--muted);margin-bottom:22px}
+#bib ol{columns:2;column-gap:46px;padding-left:20px;margin:0}
+#bib li{break-inside:avoid;margin-bottom:12px;font-size:13.5px;line-height:1.45;color:var(--ink2)}
+#bib .ti{color:var(--ink)}
+#bib .src{color:var(--muted);font-style:italic}
+#bib a{color:var(--accent);border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+#bib .nolink{color:var(--faint);font-size:12px}
+a.ref{color:inherit;border-bottom:1px dotted color-mix(in srgb,var(--accent) 65%,transparent);
+  text-decoration:none;white-space:nowrap}
+a.ref:hover{color:var(--accent);border-bottom-style:solid}
+span.ref{white-space:nowrap;border-bottom:1px dotted var(--rule2)}
+a.ref.brk,span.ref.brk{white-space:normal}
+
+/* ---------- typography -------------------------------------------- */
+h1,h2,h3{font-weight:400;margin:0}
+/* one title per slide, echoing the beamer frametitle */
+h2.t{font-size:30px;line-height:1.16;letter-spacing:-.006em;color:var(--ink);
+  margin:0 0 12px;padding-bottom:9px;border-bottom:0.8px solid var(--rule2);
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+p{margin:0 0 12px}
+b,strong{font-weight:600}
+em{font-style:italic}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
+.dim{color:var(--muted)}
+.tiny{font-size:15px;line-height:1.42}
+.small{font-size:18px;line-height:1.44}
+.big{font-size:25px;line-height:1.34}
+.center{text-align:center}
+.mono{font-family:var(--mono);font-size:.9em}
+.alert:not(.card):not(.punch){color:var(--red)}
+.cstrong{color:var(--strong)} .cweak{color:var(--weak)} .cpoll{color:var(--poll)} .capprox{color:var(--approx)}
+
+ul,ol{margin:0 0 12px;padding-left:1.15em}
+li{margin-bottom:7px}
+ul.tick{list-style:none;padding-left:1.5em}
+ul.tick>li::before{content:"▸";color:var(--accent);margin-left:-1.5em;
+  display:inline-block;width:1.5em;font-size:.85em}
+.card.alert ul.tick>li::before{color:var(--red)}
+
+/* ---------- layout helpers ---------------------------------------- */
+.cols{display:grid;gap:26px;align-items:start}
+.c2{grid-template-columns:1fr 1fr}
+.c23{grid-template-columns:1.28fr 1fr}
+.c32{grid-template-columns:1fr 1.28fr}
+.c3{grid-template-columns:1fr 1fr 1fr}
+.c-wide{grid-template-columns:1.7fr 1fr}
+.stack{display:flex;flex-direction:column;gap:12px}
+.slide.mid{display:flex;flex-direction:column}
+.slide.mid>.cols,.slide.mid>.stack{flex:1 1 auto;align-content:center;justify-content:center}
+.slide.full{padding:26px 34px 34px;display:flex;flex-direction:column}
+.slide.full h2.t{font-size:26px;margin-bottom:8px;padding-bottom:6px}
+
+/* tcolorbox-like blocks: .card is the plain box, .card.alert the red frame */
+.card{border:1px solid var(--rule);border-radius:9px;background:var(--panel);padding:12px 17px}
+.card .lab{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:5px;font-weight:600}
+.card .lab .katex{text-transform:none;letter-spacing:0;font-size:1.25em}
+.card.alert{border-color:color-mix(in srgb,var(--red) 55%,var(--rule));
+  background:color-mix(in srgb,var(--red) 6%,var(--panel))}
+.card.alert .lab{color:color-mix(in srgb,var(--red) 80%,var(--faint))}
+.card.strong{border-color:color-mix(in srgb,var(--strong) 60%,var(--rule));
+  background:color-mix(in srgb,var(--strong) 7%,var(--panel))}
+.card.weak{border-color:color-mix(in srgb,var(--weak) 55%,var(--rule));
+  background:color-mix(in srgb,var(--weak) 6%,var(--panel))}
+.card p:last-child,.card ul:last-child{margin-bottom:0}
+.punch{border:0;border-left:3px solid var(--accent);border-radius:0;
+  background:color-mix(in srgb,var(--accent) 7%,transparent);padding:10px 0 10px 16px;margin:4px 0 12px}
+.punch.alert{border-left-color:var(--red);background:color-mix(in srgb,var(--red) 6%,transparent)}
+.refbox{font-family:var(--sans);font-size:13px;line-height:1.45;color:var(--muted);
+  border-top:1px solid var(--rule);padding-top:7px;margin-top:10px}
+.refbox::before{content:"❯ ";color:var(--faint)}
+.foot-note{position:absolute;left:60px;right:60px;bottom:48px}
+
+figure{margin:0}
+figure img{display:block;max-width:100%;border-radius:5px}
+figcaption{font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.4}
+/* line art drawn on cream; in dark mode it sits on a light card */
+.art{border-radius:6px;padding:6px;background:#fdf6e3}
+
+table.grid{border-collapse:collapse;width:100%;font-size:17px}
+table.grid th{font-family:var(--sans);font-size:11px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--faint);text-align:left;font-weight:600;padding:0 10px 6px 0;border-bottom:1px solid var(--rule2)}
+table.grid td{padding:7px 10px 7px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+table.grid tr:last-child td{border-bottom:0}
+/* pressure <-> material dictionary: hovering a row traces the analogy */
+table.dict tbody tr{transition:opacity .15s ease,background .15s ease}
+table.dict tbody:hover tr{opacity:.35}
+table.dict tbody tr:hover{opacity:1;background:color-mix(in srgb,var(--accent) 9%,transparent)}
+table.dict td:first-child{color:var(--muted);font-family:var(--sans);font-size:14px;white-space:nowrap}
+table.dict tr.sep td{border-top:1.5px solid var(--rule2)}
+
+/* exclusive image stack: a later build step covers the earlier image */
+.swapimg{display:grid}
+.swapimg>*{grid-area:1/1;background:var(--paper)}
+
+/* ---------- KaTeX ------------------------------------------------- */
+.katex{font-size:1.04em}
+.katex-display{margin:.5em 0}
+.card .katex-display{margin:.35em 0}
+.eqsmall .katex{font-size:.92em}
+/* \htmlClass{alert}{...} and friends inside formulas */
+.katex .alert:not(.card):not(.punch){color:var(--red)}
+.katex .cpoll{color:var(--poll)} .katex .capprox{color:var(--approx)}
+.katex .cstrong{color:var(--strong)} .katex .cweak{color:var(--weak)}
+.term{border-radius:4px;transition:background .15s ease,box-shadow .15s ease;cursor:default}
+.term.hot{background:color-mix(in srgb,currentColor 14%,transparent);
+  box-shadow:0 0 0 3px color-mix(in srgb,currentColor 14%,transparent)}
+
+/* ---------- fragments --------------------------------------------- */
+[data-frag]{opacity:0;transition:opacity .2s ease}
+[data-frag].on{opacity:1}
+body.print [data-frag]{opacity:1}
+
+/* ---------- title slide ------------------------------------------- */
+.title{display:flex;flex-direction:column;justify-content:center;height:100%;position:relative}
+.title h1{font-size:54px;line-height:1.06;letter-spacing:-.018em;margin-bottom:10px}
+.title .lede{font-size:22px;font-style:italic;color:var(--muted);max-width:860px;margin-bottom:34px}
+.title .who{font-size:21px;margin-bottom:6px}
+.title .where{font-size:15.5px;color:var(--muted);line-height:1.5}
+.title .motif{position:absolute;right:0;top:64px;width:290px;height:auto}
+.title .motif .e{fill:none;stroke-width:2.2;stroke-linejoin:round}
+
+/* ==================================================================== *
+ *  Widgets                                                             *
+ * ==================================================================== */
+.wd{font-family:var(--sans);color:var(--ink2);position:relative}
+.wd canvas{display:block}
+.wd .ttl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.seg{display:inline-flex;border:1px solid var(--rule2);border-radius:7px;overflow:hidden;vertical-align:middle}
+.seg button{font:inherit;font-size:12.5px;padding:3px 9px;border:0;background:transparent;color:var(--muted);
+  cursor:pointer;border-left:1px solid var(--rule)}
+.seg button:first-child{border-left:0}
+.seg button:hover{color:var(--ink)}
+.seg button.on{background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--ink);font-weight:600}
+.seg.weakseg button.on{background:color-mix(in srgb,var(--weak) 16%,transparent)}
+.seg.strongseg button.on{background:color-mix(in srgb,var(--strong) 18%,transparent)}
+.seg button:disabled{opacity:.35;cursor:default}
+.ctl{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
+.ctl .k{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600}
+input[type=range]{accent-color:var(--accent);cursor:pointer}
+.rd{font-family:var(--mono);font-size:12.5px;color:var(--ink2)}
+.tip{position:absolute;pointer-events:none;z-index:30;font:12px/1.35 var(--sans);color:var(--ink);
+  background:color-mix(in srgb,var(--paper) 94%,transparent);border:1px solid var(--rule2);
+  border-radius:5px;padding:4px 7px;white-space:nowrap;display:none;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+
+/* convergence plots */
+.plot .panels{display:grid;gap:10px}
+.plot svg{display:block;overflow:visible}
+.plot .legend{display:flex;justify-content:center;gap:18px;font-size:13px;margin-top:4px;flex-wrap:wrap}
+.plot .legend span{cursor:pointer;display:inline-flex;align-items:center;gap:6px;user-select:none}
+.plot .legend span.off{opacity:.3}
+.plot .bar{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-bottom:4px}
+.plot text{font-family:var(--sans)}
+
+/* robustness matrix */
+.matrix table{border-collapse:separate;border-spacing:4px;font-size:14px}
+.matrix th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600;
+  padding:0 6px 3px;text-align:center}
+.matrix th.row{text-align:right;text-transform:none;letter-spacing:0;font-size:15px;color:var(--ink2);
+  font-family:var(--serif);font-weight:400;padding-right:10px}
+.matrix td{width:118px;height:46px;border-radius:7px;text-align:center;cursor:pointer;
+  border:1.5px solid var(--rule);background:var(--panel);font-size:13px;transition:transform .12s ease}
+.matrix td:hover{transform:scale(1.04)}
+.matrix td.ok{border-color:color-mix(in srgb,var(--strong) 70%,var(--rule));
+  background:color-mix(in srgb,var(--strong) 14%,var(--panel))}
+.matrix td.bad{border-color:color-mix(in srgb,var(--red) 65%,var(--rule));
+  background:color-mix(in srgb,var(--red) 11%,var(--panel))}
+/* not run: dashed and paler, coloured by the outcome the theory predicts */
+.matrix td.exp{cursor:default;border-style:dashed}
+.matrix td.exp:hover{transform:none}
+.matrix td.ok.exp{background:color-mix(in srgb,var(--strong) 6%,var(--panel))}
+.matrix td.bad.exp{background:color-mix(in srgb,var(--red) 5%,var(--panel))}
+.matrix td .g sup{font-size:12px;margin-left:1px}
+.matrix td.sel{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 45%,transparent)}
+.matrix td .v{font-family:var(--mono);font-size:11px;color:var(--muted);display:block;margin-top:1px}
+.matrix td .g{font-size:16px;font-weight:700}
+.matrix td.ok .g{color:var(--strong)} .matrix td.bad .g{color:var(--red)}
+.matrix tr.grp td{height:auto;border:0;background:none;cursor:default}
+
+/* lab */
+.lab-w .row{display:grid;gap:12px}
+.lab-w .pane{position:relative;border:1px solid var(--rule);border-radius:8px;background:var(--panel);overflow:hidden}
+.lab-w .pane .ttl{position:absolute;left:10px;top:6px;z-index:2;text-transform:none;letter-spacing:.01em;
+  font-size:13.5px;color:var(--ink2)}
+.lab-w .pane .ttl .ro{margin-left:7px;padding:0 6px;border:1px solid var(--rule2);border-radius:9px;
+  font-size:11px;font-weight:500;color:var(--muted);vertical-align:1px}
+.lab-w .pane .rdo.tr{bottom:auto;top:6px}
+.lab-w .pane .rdo{position:absolute;right:9px;bottom:6px;z-index:2;font-family:var(--mono);font-size:12px;
+  color:var(--ink2);background:color-mix(in srgb,var(--panel) 80%,transparent);padding:1px 5px;border-radius:4px}
+.lab-w .pane .big{position:absolute;left:9px;bottom:5px;z-index:2;font-family:var(--mono);font-size:15px;font-weight:600}
+.lab-w .dslider{display:flex;align-items:center;gap:10px}
+.lab-w .dslider input{width:330px}
+.lab-w .dval{font-family:var(--mono);font-size:17px;color:var(--ink);min-width:92px}
+.lab-w .est{font-size:15px;line-height:1.3}
+.lab-w .est .katex{font-size:1.12em}
+.lab-w .est .row2{display:flex;gap:10px;align-items:baseline;justify-content:space-between;
+  font-family:var(--mono);font-size:12px;color:var(--muted)}
+.lab-w .cb{position:absolute;right:9px;top:26px;bottom:26px;width:12px;border-radius:3px;z-index:2}
+.lab-w .cbl{position:absolute;right:24px;font-family:var(--mono);font-size:10.5px;color:var(--muted);z-index:2}
+
+/* transient viewer */
+.tr-w .panes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tr-w .pane{position:relative}
+.tr-w .pane .ttl{margin-bottom:3px;display:flex;justify-content:space-between;text-transform:none;
+  letter-spacing:.01em;font-size:14px}
+.tr-w .pane canvas{border-radius:6px;border:1px solid var(--rule)}
+.tr-w .pane .mx{font-family:var(--mono);font-size:12px;color:var(--ink2)}
+.tr-w .play{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--accent);background:transparent;
+  color:var(--accent);cursor:pointer;display:grid;place-items:center;padding:0}
+.tr-w .tval{font-family:var(--mono);font-size:18px;color:var(--ink);min-width:78px}
+
+/* ---------- accessibility ------------------------------------------ */
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}
+}
+
+/* ---------- print -------------------------------------------------- */
+@media print{
+  @page{size:1280px 720px;margin:0}
+  body{overflow:visible;background:#fff}
+  #stage{position:static;display:block}
+  .wrap{display:block !important;width:1280px;height:720px;page-break-after:always;break-after:page}
+  .slide{transform:none}
+  .chrome,#help,#bib{display:none !important}
+  [data-frag]{opacity:1 !important}
+}

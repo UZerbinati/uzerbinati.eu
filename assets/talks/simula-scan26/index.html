@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<title>Material-robust finite elements</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Strong stress symmetry, angular momentum conservation and material robustness in mixed finite element methods. SCAN group meeting, Simula.">
+
+<link rel="stylesheet" href="css/katex.min.css">
+<link rel="stylesheet" href="css/deck.css">
+
+<div id="stage"></div>
+
+<div class="chrome" id="head"></div>
+<div class="chrome" id="foot"></div>
+<div class="chrome" id="bar"><i></i></div>
+<div id="bib"><h3>Bibliography</h3><div class="hint">Every citation in the deck. Click a title to open its DOI or arXiv page. Press <b>B</b> or <b>Esc</b> to return to the slides.</div><ol id="biblist"></ol></div>
+<div id="help"><div><h3>Keyboard</h3><table>
+  <tr><td>→ ␣ ↓ N</td><td>next step</td></tr>
+  <tr><td>← ↑ P</td><td>previous step</td></tr>
+  <tr><td>⇧→ / ⇧←</td><td>next / previous <em>slide</em> (skip builds)</td></tr>
+  <tr><td>Home / End</td><td>first / last slide</td></tr>
+  <tr><td>digits ⏎</td><td>go to slide number</td></tr>
+  <tr><td>O</td><td>overview (click a slide to jump)</td></tr>
+  <tr><td>B</td><td>bibliography (citations are clickable)</td></tr>
+  <tr><td>F</td><td>full screen</td></tr>
+  <tr><td>D</td><td>light / dark</td></tr>
+  <tr><td>A</td><td>reveal all builds on this slide</td></tr>
+  <tr><td>K</td><td>play / pause the transient and rod viewers</td></tr>
+  <tr><td>?</td><td>this help</td></tr>
+</table>
+<p class="tiny dim" style="margin-top:12px;font-family:var(--sans)">Sliders, buttons and plots respond to the mouse; the clicker keeps stepping the deck.</p></div></div>
+
+<template id="deck">
+
+<section class="slide" data-sect="">
+  <div class="title">
+        <svg class="motif" viewBox="0 0 300 150" aria-hidden="true">
+      <polygon class="e" points="10,138 130,138 70,34" style="stroke:var(--weak)"/>
+      <polygon class="e" points="160,138 280,138 220,34" style="stroke:var(--strong)"/>
+      <path class="e" d="M220,103.3 L160,138 M220,103.3 L280,138 M220,103.3 L220,34" style="stroke:var(--strong);stroke-width:1.5"/>
+      <circle cx="220" cy="103.3" r="3.4" style="fill:var(--strong)"/>
+    </svg>
+    <h1>Material-robust<br>finite elements</h1>
+    <div class="lede">Strong stress symmetry and angular momentum conservation in mixed formulations</div>
+    <div class="who">Pablo Brubeck<sup>1</sup>, Charles Parker<sup>2</sup>, <b>Umberto Zerbinati</b><sup>3</sup></div>
+    <div class="where"><sup>1</sup>&nbsp;Mathematical Institute, University of Oxford &nbsp;·&nbsp;
+      <sup>2</sup>&nbsp;U.S. Naval Research Laboratory &nbsp;·&nbsp;
+      <sup>3</sup>&nbsp;Simula Research Laboratory, Oslo</div>
+    <div class="where" style="margin-top:22px">SCAN group meeting &nbsp;·&nbsp; Simula Research Laboratory</div>
+    <div class="where">Paper: <cite data-ref="brubeckParkerZerbinati2026">Comput. Methods Appl. Mech. Engrg. 461 (2026)</cite>
+      &nbsp;·&nbsp; code: <cite data-ref="BrubeckZerbinatiParker26">Zenodo</cite>
+      &nbsp;·&nbsp; press <b>?</b> for the keys</div>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="Overview">
+  <h2 class="t">The story in one slide</h2>
+  <div class="stack" style="gap:16px">
+    <div class="card">
+      <div class="lab">What we know from incompressible flow</div>
+      <ul class="tick" style="margin-top:6px">
+        <li>If a scheme is only discretely divergence-free, its velocity error depends on the pressure.</li>
+        <li>If it is pointwise divergence-free, it is <b>pressure robust</b>: adding a gradient to the forcing
+          does not change the discrete velocity (on simply connected domains).</li>
+      </ul>
+    </div>
+    <div class="card alert" data-frag="1">
+      <div class="lab">In this talk</div>
+      Something similar happens in mixed methods whose constitutive law has a non-trivial kernel.
+      We call it <b>material robustness</b>.
+      <ul class="tick" style="margin-top:6px">
+        <li>It is tied to <b>strong stress symmetry</b> and to <b>discrete conservation of angular momentum</b>.</li>
+        <li>In an abstract setting it comes down to a kernel inclusion, $\ker\mathcal{B}_h\subseteq\ker\mathcal{B}$.</li>
+        <li>For <em>anisotropic</em> materials, weakly symmetric schemes can be thrown off by
+          perturbations in the kernel of the constitutive relation.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="1 · Balance laws">
+  <h2 class="t">The balance laws of continuum mechanics</h2>
+  <div class="stack">
+    <p>We start from the balance of mass, linear momentum and angular momentum:</p>
+    \[\begin{aligned}
+      \partial_t\rho + \div(\rho\vec{u}) &= 0,\\
+      \rho(\partial_t\vec{u} + \vec{u}\cdot\nabla\vec{u}) - \div\tensor{\sigma} &= \rho\vec{f},\\
+      \htmlClass{alert}{\rho(\partial_t\vec{\eta} + \vec{u}\cdot\nabla\vec{\eta}) - \div\tensor{\zeta} - \vec{\varsigma}}
+        &\htmlClass{alert}{= \rho\vec{\tau},}
+    \end{aligned}\]
+    <p class="small dim">Here $\rho$ is the density, $\vec{u}$ the velocity, $\tensor{\sigma}$ the Cauchy stress, $\vec{\eta}$ the
+      intrinsic angular momentum, $\tensor{\zeta}$ the couple stress, $\vec{f}$ the body force and $\vec{\tau}$ the body torque,
+      and $\vec{\varsigma}$ is the vector of $\tensor{\sigma}-\tensor{\sigma}^\top$.</p>
+    <div class="card" data-frag="1">To close the system we need <b>constitutive relations</b> for $\tensor{\sigma}$, and sometimes for $\tensor{\zeta}$. In this talk we use
+      <ul class="tick small" style="margin:6px 0 0">
+        <li>linear isotropic elasticity, $\tensor{\sigma} = 2\mu\,\symgrad(\vec{u}) + \lambda(\div\vec{u})\tensor{I}$;</li>
+        <li>Stokes flow, $\tensor{\sigma} = 2\nu\,\symgrad(\vec{u}) - p\tensor{I}$ with $\div\vec{u} = 0$;</li>
+        <li>transversely isotropic elasticity (liquid crystal networks), which adds $\delta\,\vec{\nu}\otimes\vec{\nu}$;</li>
+        <li>polar fluids, which add the Ericksen stress $K_F\nabla\vec{\nu}^\top\nabla\vec{\nu}$;</li>
+        <li>and, at the end, a stress that is not symmetric.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="1 · Balance laws">
+  <h2 class="t">Symmetry of the stress and angular momentum</h2>
+  <div class="stack">
+    <p>Without couple stresses or body torques, $\tensor{\zeta}\equiv\tensor{0}$ and $\vec{\tau}\equiv\vec{0}$, the last equation becomes</p>
+    \[\rho\big(\partial_t\vec{\eta} + \vec{u}\cdot\nabla\vec{\eta}\big) = \vec{\varsigma},\]
+    <p>so angular momentum is conserved exactly when $\vec{\varsigma}=\vec{0}$, that is, when
+      $\tensor{\sigma}=\tensor{\sigma}^\top$.</p>
+    <div class="card" data-frag="1">
+      <div class="lab">Symmetry and angular momentum</div>
+      With no couple stresses and no body torques, a pointwise symmetric Cauchy stress and conservation of angular
+      momentum are the same thing.
+    </div>
+    <div class="card alert" data-frag="2">
+      <div class="lab">The discrete version</div>
+      A mixed finite element method whose stress $\tensor{\sigma}_h$ is symmetric at every point conserves
+      angular momentum exactly at the discrete level too.
+    </div>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="2 · Mixed formulations">
+  <h2 class="t">The Hellinger–Reissner formulation</h2>
+  <div class="stack">
+    <p class="small">We linearise about $\vec{u}=\vec{0}$ and take a linear constitutive law with an anisotropic part $\tensor{F}$,</p>
+    \[\symgrad(\vec{u}) = \frac{1}{2\mu}\tensor{\sigma}^D + \frac{1}{d(2\mu+d\lambda)}(\tr\tensor{\sigma})\tensor{I} - \tensor{F}.\]
+    <p class="small">The mixed problem is to find $\tensor{\sigma}\in\Sigma^{\sym}$ and $\vec{u}\in V$ such that</p>
+    \[\begin{aligned}
+      a(\tensor{\sigma},\tensor{\tau}) + b(\tensor{\tau},\vec{u}) &= \langle\tensor{\tau}\vec{n},\vec{g}\rangle_{\partial\Omega} + (\tensor{F},\tensor{\tau}),\\
+      b(\tensor{\sigma},\vec{v}) &= (\vec{f},\vec{v}),
+    \end{aligned}
+    \qquad
+    \begin{aligned}
+      a(\tensor{\sigma},\tensor{\tau}) &:= \tfrac{1}{2\mu}(\tensor{\sigma}^D,\tensor{\tau}^D) + \tfrac{1}{d(2\mu+d\lambda)}(\tr\tensor{\sigma},\tr\tensor{\tau}),\\
+      b(\tensor{\tau},\vec{v}) &:= (\div\tensor{\tau},\vec{v}).
+    \end{aligned}\]
+    <div class="card alert" data-frag="1">
+      The space $\Sigma^{\sym} = H(\div;\Omega,\mathbb{R}^{d\times d}_{\sym})$ builds the symmetry of the stress into the
+      function space itself.
+    </div>
+    <div class="refbox"><cite data-ref="Hellinger13">Hellinger (1913)</cite>; <cite data-ref="Reissner50">Reissner (1950)</cite>.</div>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="2 · Mixed formulations">
+  <h2 class="t">Strongly versus weakly symmetric discretisations</h2>
+  <div class="stack">
+    <div class="card strong">
+      <div class="lab">Strong symmetry</div>
+      $\tensor{\sigma}_h\in\Sigma_h^{\sym}\subset H(\div;\Omega,\mathbb{R}^{d\times d}_{\sym})$ and $\vec{u}_h\in V_h$ with
+      \[\begin{aligned}
+        a(\tensor{\sigma}_h,\tensor{\tau}_h) + b(\tensor{\tau}_h,\vec{u}_h) &= \langle\tensor{\tau}_h\vec{n},\vec{g}\rangle_{\partial\Omega} + (\tensor{F},\tensor{\tau}_h) &&\forall\,\tensor{\tau}_h\in\Sigma_h^{\sym},\\
+        b(\tensor{\sigma}_h,\vec{v}_h) &= (\vec{f},\vec{v}_h) &&\forall\,\vec{v}_h\in V_h.
+      \end{aligned}\]
+    </div>
+    <div class="card weak" data-frag="1">
+      <div class="lab">Weak symmetry</div>
+      $\tensor{\sigma}_h\in\Sigma_h\subset H(\div;\Omega,\mathbb{R}^{d\times d})$, $\vec{u}_h\in V_h$ and a multiplier
+      $\tensor{\omega}_h\in\Xi_h\subset L^2(\Omega,\mathbb{R}^{d\times d}_{\skw})$ with
+      \[\begin{aligned}
+        a(\tensor{\sigma}_h,\tensor{\tau}_h) + b(\tensor{\tau}_h,\vec{u}_h) + c(\tensor{\tau}_h,\tensor{\omega}_h) &= \langle\tensor{\tau}_h\vec{n},\vec{g}\rangle_{\partial\Omega} + (\tensor{F},\tensor{\tau}_h) &&\forall\,\tensor{\tau}_h\in\Sigma_h,\\
+        b(\tensor{\sigma}_h,\vec{v}_h) = (\vec{f},\vec{v}_h),\qquad c(\tensor{\sigma}_h,\tensor{\xi}_h) &= 0 &&\forall\,(\vec{v}_h,\tensor{\xi}_h)\in V_h\times\Xi_h.
+      \end{aligned}\]
+      <p class="tiny dim">The multiplier approximates the rotation $\tensor{\omega}=\skw\nabla\vec{u}$. It will come back later.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="2 · Mixed formulations">
+  <h2 class="t">Some weakly symmetric mixed finite elements</h2>
+  <div class="stack">
+    <div class="card">
+      <div class="lab">PEERS</div>
+      \[\Sigma_h = \mathcal{RT}_k^{d\times d}\oplus\text{bubbles},\qquad V_h = \mathcal{P}_{k-1}^d,\qquad \Xi_h = \mathcal{P}_k\cap H^1.\]
+    </div>
+    <div class="card">
+      <div class="lab">Arnold–Falk–Winther, AFW<sub>k</sub></div>
+      \[\Sigma_h = \mathcal{BDM}_k^{d\times d},\qquad V_h = \mathcal{P}_{k-1}^d,\qquad \Xi_h = \mathcal{P}_{k-1}.\]
+    </div>
+    <div class="card alert" data-frag="1">They are built from standard $H(\div)$ spaces, which almost every finite element package provides.</div>
+    <div class="refbox">
+      <cite data-ref="ArnoldBrezziDouglas84">Arnold, Brezzi &amp; Douglas (PEERS, 1984)</cite>;
+      <cite data-ref="ArnoldFalkWinther07">Arnold, Falk &amp; Winther (2007)</cite>;
+      <cite data-ref="AmaraThomas79">Amara &amp; Thomas (1979)</cite>;
+      <cite data-ref="Stenberg88">Stenberg (1988)</cite>;
+      <cite data-ref="CockburnGopalakrishnanGuzman10">Cockburn, Gopalakrishnan &amp; Guzmán (2010)</cite>.
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-sect="2 · Mixed formulations">
+  <h2 class="t">Some strongly symmetric mixed finite elements</h2>
+  <div class="cols c2" style="gap:30px;margin-top:10px">
+    <div class="stack small">
+      <p><b>Arnold–Winther</b> AW<sub>k</sub>: $\Sigma_h^{\sym}=\mathcal{AW}_k(\Th)$, $V_h=\mathcal{P}_{k-2}(\Th)^d$.</p>
+      <p><b>Hu–Zhang</b> HZ<sub>k</sub>, $k\geq 3$: symmetric $H(\div)$-conforming tensors that are continuous at vertices.</p>
+      <p><b>Johnson–Mercier–Křížek</b> (JMK): piecewise linear symmetric tensors on the <b>Alfeld split</b> of $\Th$.</p>
+      <div class="card alert" data-frag="1">You can use them in <b>NGSolve</b> (<cite data-ref="SchoberlNGSolve14">Schöberl 2014</cite>)
+        and <b>Firedrake</b> (<cite data-ref="BrubeckKirby25">Brubeck &amp; Kirby 2025</cite>). All the experiments in this talk were run in Firedrake.</div>
+    </div>
+    <div class="stack" style="align-items:center;gap:18px">
+      <figure class="art"><img data-fig="AW" style="width:300px" alt="Arnold-Winther element"></figure>
+      <figure class="art"><img data-fig="JM" style="width:520px" alt="Johnson-Mercier element on the Alfeld split"></figure>
+    </div>
+  </div>
+  <div class="refbox foot-note">
+    <cite data-ref="JohnsonMercier78">Johnson &amp; Mercier (1978)</cite>; <cite data-ref="Krizek82">Křížek (1982)</cite>;
+    <cite data-ref="ArnoldWinther02">Arnold &amp; Winther (2002)</cite>; <cite data-ref="HuZhang15d2">Hu &amp; Zhang (2015)</cite>;
+    <cite data-ref="Gopalakrishnan25">Gopalakrishnan, Guzmán &amp; Lee (2025)</cite>.
+  </div>
+</section>
+
+<section class="slide mid" data-sect="3 · Detour: pressure robustness">
+  <h2 class="t">Detour: incompressible Stokes flow</h2>
+  <div class="stack">
+    <div class="card">
+      <div class="lab">Stokes flow</div>
+      \[\tensor{\sigma} = 2\nu\,\symgrad(\vec{u}) - p\tensor{I},\qquad \div\vec{u}=0,\qquad\qquad
+        a(\vec{u},\vec{v}) + b(\vec{v},p) = (\vec{f},\vec{v}),\quad b(\vec{u},q)=0.\]
+    </div>
+    <div class="card" data-frag="1">
+      <div class="lab">Two kinds of discretisation</div>
+      <ul class="tick" style="margin:4px 0 0">
+        <li><b>Discretely</b> divergence-free: $b(\vec{u}_h,q_h)=0$ for all $q_h\in Q_h$, e.g. Taylor–Hood.</li>
+        <li><b>Pointwise</b> divergence-free: $\div V_h\subseteq Q_h$, so $\div\vec{u}_h\equiv 0$, e.g. Scott–Vogelius.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="3 · Detour: pressure robustness">
+  <h2 class="t">The no-flow problem</h2>
+  <div class="stack">
+    <p>Take $\vec{f} = (0,\ \mathrm{Ra}(1-y+3y^2))^\top$. Then $\vec{u}\equiv\vec{0}$ and
+      $p=\mathrm{Ra}\,(y^3-\tfrac12y^2+y-\tfrac{7}{12})$.</p>
+    <div class="card">
+      For a scheme that is not pressure robust, the best we can say is
+      \[\norm{\vec{u}-\vec{u}_h}_{H^1} \leq C\inf_{\vec{v}_h}\norm{\vec{u}-\vec{v}_h}_{H^1} + \htmlClass{alert}{C(\norm{\div\vec{u}_h}_{L^2})\norm{p-p_h}_{L^2}}.\]
+    </div>
+    <div class="card alert" data-frag="1">
+      <div class="lab">The point</div>
+      Scott–Vogelius is pressure robust because
+      $\ker\mathcal{B}_h\subseteq\ker\mathcal{B}=\{\vec{v}\in V:\div\vec{v}=0\}$.
+    </div>
+    <div class="refbox"><cite data-ref="JohnLinkeMerdonNeilanRebholz17">John, Linke, Merdon, Neilan &amp; Rebholz, SIAM Review (2017)</cite></div>
+  </div>
+</section>
+
+<section class="slide full" data-sect="3 · Detour: pressure robustness">
+  <h2 class="t">Pressure robustness in practice</h2>
+  <div data-widget="plot" data-kind="stokes" style="flex:1 1 auto"
+       data-panels="no_flow_ht|Taylor–Hood (discretely div-free);no_flow_sv|Scott–Vogelius (pointwise div-free)"
+       data-ys="velocity_error|‖u − uₕ‖ in H¹;pressure_error|‖p − pₕ‖ in L²;divergence_error|‖div uₕ‖ in L²"
+       data-ylim="1e-15,1e2" data-h="400"></div>
+  <div class="punch small" data-frag="1" style="margin:6px 0 0">The Taylor–Hood velocity error grows with Ra, that is, with the size of
+    the pressure. Scott–Vogelius gets $\vec{u}_h\equiv\vec{0}$ for every Ra, up to roundoff relative to Ra.</div>
+</section>
+
+<section class="slide mid" data-sect="4 · Material robustness">
+  <h2 class="t">An abstract saddle-point setting</h2>
+  <div class="stack">
+    <p>Take Hilbert spaces $\mathcal{V}$, $\mathcal{Q}$ and bounded bilinear forms $A$, $B$, and find $u\in\mathcal{V}$, $p\in\mathcal{Q}$ with</p>
+    \[\begin{aligned}
+      A(u,v) + B(v,p) &= F(v) &&\forall\,v\in\mathcal{V},\\
+      B(u,q) &= G(q) &&\forall\,q\in\mathcal{Q}.
+    \end{aligned}\]
+    <p>We assume the Brezzi conditions, that is, ellipticity on the kernel and the inf-sup condition.</p>
+    <div class="card" data-frag="1">
+      <div class="lab">Examples</div>
+      <ul class="tick small" style="margin:4px 0 0">
+        <li>Stokes: $\mathcal{V}=H^1_0(\Omega)^d$, $\mathcal{Q}=L^2_0(\Omega)$, $B(\vec{v},q)=(\div\vec{v},q)$.</li>
+        <li>Strongly symmetric HR: $\mathcal{V}=\Sigma^{\sym}$, $\mathcal{Q}=V$, $B(\tensor{\tau},\vec{v})=(\div\tensor{\tau},\vec{v})$.</li>
+        <li>Weakly symmetric HR: $\mathcal{V}=\Sigma$, $\mathcal{Q}=V\times\Xi$, $B(\tensor{\tau},(\vec{v},\tensor{\xi}))=(\div\tensor{\tau},\vec{v})+(\tensor{\tau},\tensor{\xi})$.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="4 · Material robustness">
+  <h2 class="t">The engineer's question</h2>
+  <div class="stack">
+    <p>An engineer wants a scheme that works <em>for any material</em>. Our job is to make the engineer happy.</p>
+    <div class="card" data-frag="1">
+      <div class="lab">Step 1 · Pick a material</div>
+      Fix the material parameters and the data $\vec{f}$, $\vec{g}$, $\tensor{F}$. Call the exact solution $(\tensor{\sigma},\vec{u})$.
+    </div>
+    <div class="card" data-frag="2">
+      <div class="lab">Step 2 · Add something the material cannot feel</div>
+      Pick $\vec{w}$ with $\symgrad(\vec{w}) = -\tensor{F}_{\vec{w}}$, so that its stress is $\tensor{\sigma}_{\vec{w}}\equiv\tensor{0}$.
+      We call $\vec{w}$ a <b>stress-free state</b>, and we scale it by $\delta\in\mathbb{R}$.
+    </div>
+    <div class="card alert" data-frag="3">
+      <div class="lab">Step 3 · Ask for robustness</div>
+      A scheme is <b>material robust</b> if, for every admissible constitutive law, its stress error stays bounded however large $\delta$ is:
+      \[\sup_{\delta\in\mathbb{R}}\norm{\tensor{\sigma}-\tensor{\sigma}_h^{(\delta)}}_{H(\div)} \lt \infty.\]
+      This is the elasticity counterpart of pressure robustness.
+    </div>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="4 · Material robustness">
+  <h2 class="t">What a stress-free state is</h2>
+  <div class="stack">
+    <p>With a spontaneous strain $-\tensor{F}$, the stored energy is</p>
+    \[W(\vec{u}) = \tfrac12\int_\Omega\big(\symgrad(\vec{u}) + \tensor{F}\big):\mathbb{C}\,\big(\symgrad(\vec{u}) + \tensor{F}\big)\geq 0,
+      \qquad \tensor{\sigma} = \mathbb{C}\,\big(\symgrad(\vec{u}) + \tensor{F}\big).\]
+    <p>A stress-free state is a state of <b>zero energy</b>. Since $\symgrad(\vec{w}) = -\tensor{F}$ at every point, $\vec{w}$
+      minimises $W$ without any load. It is the shape the material takes on its own.</p>
+    <div class="cols c3" style="gap:14px">
+      <div class="card small" data-frag="1">
+        <div class="lab">Isotropic materials</div>
+        With $\tensor{F}=\tensor{0}$, only rigid motions cost no energy. In the nonlinear setting $\nabla\vec{w}\in SO(d)$, and
+        Liouville's rigidity theorem gives the same answer.
+      </div>
+      <div class="card small" data-frag="2">
+        <div class="lab">Anisotropic materials</div>
+        A liquid crystal network stores its director in $\tensor{F}$. If $\symgrad(\vec{w}) = -\tensor{F}$ is compatible
+        (Saint-Venant), the body takes that shape freely. If not, the mismatch turns into residual stress.
+      </div>
+      <div class="card small" data-frag="3">
+        <div class="lab">Many zero-energy states</div>
+        Nematic elastomers have a whole family of energy wells, one for each director. This is <b>soft elasticity</b>,
+        and it allows many more stress-free deformations than rigid motions.
+      </div>
+    </div>
+    <div class="punch small" data-frag="4">So a large $\delta$ is physical, a strongly programmed material. Its stress is still zero,
+      and we want the discrete stress to be zero too.</div>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="4 · Material robustness">
+  <h2 class="t">Material robustness via a kernel inclusion</h2>
+  <div class="stack">
+    <p>In the variational problem the perturbation shows up as $F\mapsto F + B(\cdot,r)$, where $r\in\mathcal{Q}$
+      comes from $\vec{w}$ (and, with weak symmetry, from $\tensor{\omega}=\skw\nabla\vec{w}$).</p>
+    <div class="card" data-frag="1">
+      <div class="lab">At the continuous level</div>
+      $u_r = u$ and $p_r = p + r$, so the exact primary variable does not see $r\in\mathcal{Q}$. This comes for free.
+    </div>
+    <div class="card alert" data-frag="2">
+      <div class="lab">At the discrete level</div>
+      Here it is not automatic:
+      \[u_{h,r}=u_h\ \text{ for all } r\in\mathcal{Q}\quad\Longleftrightarrow\quad \boxed{\ker\mathcal{B}_h\subseteq\ker\mathcal{B}}\,.\]
+    </div>
+    <p data-frag="3">So material robustness is the kernel inclusion again, now for
+      $B(\tensor{\tau},(\vec{v},\tensor{\xi}))$ in the stress formulation.</p>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="5 · Stress-free states">
+  <h2 class="t">Patch test 1: a rigid body motion</h2>
+  <div class="stack">
+    <p>Take a linear isotropic law, $\tensor{F}\equiv\tensor{0}$. The kernel of $\vec{u}\mapsto\symgrad(\vec{u})$ is made of the <b>rigid body motions</b>:</p>
+    \[\vec{u} = \delta\begin{pmatrix}-y\\ x\end{pmatrix},\qquad \tensor{\sigma}\equiv\tensor{0},\qquad
+      \tensor{\omega} = \delta\begin{pmatrix}0&amp;1\\-1&amp;0\end{pmatrix}\ \text{(constant)}.\]
+    <div class="card" data-frag="1">Both $\vec{u}$ and $\tensor{\sigma}$ lie exactly in $[\mathbb{P}_1]^2\times[\mathbb{P}_0]^{2\times2}$,
+      so the polynomial spaces add no approximation error.</div>
+    <div class="card alert" data-frag="2">If a scheme does not return $\tensor{\sigma}_h\equiv\tensor{0}$ as $\delta$ grows, the fault
+      is in the <b>structure</b> of the scheme, not in the approximation.</div>
+  </div>
+</section>
+
+<section class="slide full" data-sect="5 · Stress-free states">
+  <h2 class="t">Exciting a rigid body motion</h2>
+  <div data-widget="lab" data-mode="compact" data-preset="rigid" style="flex:1 1 auto"></div>
+</section>
+
+<section class="slide full" data-sect="5 · Stress-free states">
+  <h2 class="t">Patch test 1: results</h2>
+  <div data-widget="plot" style="flex:1 1 auto"
+       data-panels="rigid_body_motion_peers_1|PEERS₁ (weak);rigid_body_motion_jm_1|JMK (strong);rigid_body_motion_afw_1|AFW₁ (weak)"
+       data-ylim="1e-16,1e-7" data-h="380"></div>
+  <div class="punch alert small" data-frag="1" style="margin:6px 0 0">All three schemes are material robust on this test. Why?</div>
+</section>
+
+<section class="slide mid" data-sect="5 · Stress-free states">
+  <h2 class="t">Why weak symmetry is enough for isotropic laws</h2>
+  <div class="stack">
+    <p>For an <em>isotropic</em> law, <b>frame indifference</b> of the energy means that the kernel of
+      $\vec{w}\mapsto\tensor{\sigma}(\vec{w})$ is exactly the <b>rigid body motions</b>.</p>
+    <div class="card" data-frag="1">Rigid body motions are linear vector fields, so they lie in $\mathcal{RT}_1(\Th)^d$, and their skew gradient is constant:
+      \[\tensor{\omega}=\skw\nabla\vec{w}\in\mathcal{P}_0(\Th,\mathbb{R}^{d\times d}_{\skw}).\]</div>
+    <div class="card alert" data-frag="2">
+      <div class="lab">So</div>
+      It is enough for $\Xi_h$ to contain the constant skew tensors, $\mathrm{DG}_0(\skw)\subset\Xi_h$, and every reasonable
+      weakly symmetric element (PEERS, AFW<sub>k</sub>, …) does. Most of the literature works with isotropic laws, which is
+      why the problem went unnoticed.
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-sect="5 · Stress-free states">
+  <h2 class="t">Liquid crystal polymer networks and transverse anisotropy</h2>
+  <div class="cols c23" style="gap:30px;margin-top:10px">
+    <div class="stack">
+      <p>Liquid crystal polymer networks (LCNs) are cross-linked <b style="color:var(--yellow)">polymers</b> with a
+        <b class="alert">liquid-crystalline</b> phase. <b>Kevlar</b> is the classic example.</p>
+      <div class="card alert">
+        <div class="lab">Transversely isotropic constitutive law</div>
+        \[\tensor{\sigma} = 2\mu\,\symgrad(\vec{u}) + \lambda(\div\vec{u})\tensor{I} + \htmlClass{alert}{\delta\,\vec{\nu}\otimes\vec{\nu}}.\]
+        The director $\vec{\nu}$ is the direction the polymer chains prefer. Similar laws describe
+        fibre-reinforced materials (<cite data-ref="MerodioOgden05">Merodio &amp; Ogden</cite>) and
+        transversely isotropic fluids (<cite data-ref="ericksen">Ericksen 1960</cite>).
+      </div>
+    </div>
+    <div class="swapimg" style="align-self:center">
+      <figure class="art"><img data-fig="LC" alt="liquid crystal"><figcaption>a liquid crystal</figcaption></figure>
+      <figure class="art" data-frag="1"><img data-fig="LCE" alt="liquid crystal elastomer"><figcaption>… cross-linked into an elastomer</figcaption></figure>
+      <figure class="art" data-frag="2"><img data-fig="LCN" alt="liquid crystal network"><figcaption>… and into a network</figcaption></figure>
+    </div>
+  </div>
+  <div class="refbox foot-note"><cite data-ref="White18">White, J. Polym. Sci. B (2018)</cite>;
+    <cite data-ref="BouckNochettoYang23">Bouck, Nochetto &amp; Yang, SINUM (2023)</cite>.</div>
+</section>
+
+<section class="slide mid" data-sect="5 · Stress-free states">
+  <h2 class="t">Patch test 2: transverse anisotropy</h2>
+  <div class="stack">
+    <p>Set $\tensor{\tilde F} = \delta\,\vec{\nu}\otimes\vec{\nu}$. The stress-free states are the fields $\vec{w}$ with $\symgrad(\vec{w}) = -\tensor{F}$.</p>
+    <div class="card alert">
+      <div class="lab">Saint-Venant compatibility</div>
+      On a contractible domain this is solvable if and only if $\nabla^\top\!\times(\nabla\times\tensor{F}) = \tensor{0}$.
+    </div>
+    <div data-frag="1">
+      <p>For the <b>polynomial</b> director $\vec{\nu}(x,y) = (x,\ x+y)^\top$ and $\lambda=0$ we can integrate by hand:</p>
+      \[\vec{u} = -\frac{\delta}{2\mu}\begin{pmatrix}\tfrac13x^3-\tfrac13y^3\\[2pt] x^2y+xy^2+\tfrac13y^3+\tfrac23x^3\end{pmatrix},\qquad
+        \tensor{\omega} = \frac{\delta\,(x^2+xy+y^2)}{2\mu}\begin{pmatrix}0&amp;1\\-1&amp;0\end{pmatrix}\in\mathcal{P}_2.\]
+    </div>
+    <div class="card" data-frag="2"><b>One caveat.</b> This works because the solution of $\symgrad(\vec{w})=-\tensor{F}$ happens to be a
+      polynomial. For a non-polynomial director, $\vec{w}$ is no longer in the polynomial spaces, and $\tensor{\omega}\notin\Xi_h$ for any finite $k$.</div>
+  </div>
+</section>
+
+<section class="slide full" data-sect="5 · Stress-free states">
+  <h2 class="t">Exciting the transversely isotropic stress-free state</h2>
+  <div data-widget="lab" data-mode="compact" data-preset="trans" data-weak="afw1" style="flex:1 1 auto"></div>
+</section>
+
+<section class="slide full" data-sect="5 · Stress-free states">
+  <h2 class="t">Patch test 2: results at low order</h2>
+  <div data-widget="plot" style="flex:1 1 auto"
+       data-panels="transverse_isotropic_peers_1|PEERS₁ (weak);transverse_isotropic_afw_1|AFW₁ (weak);transverse_isotropic_jm_1|JMK (strong)"
+       data-ylim="1e-14,1e4" data-h="380"></div>
+  <div class="punch alert small" style="margin:6px 0 0">The weakly symmetric schemes lose material robustness, and their stress
+    error grows like $\delta$. The JMK error does not.</div>
+</section>
+
+<section class="slide full" data-sect="5 · Stress-free states">
+  <h2 class="t">High order can save weak symmetry</h2>
+  <div data-widget="plot" style="flex:1 1 auto"
+       data-panels="transverse_isotropic_afw_1|AFW₁;transverse_isotropic_afw_2|AFW₂;transverse_isotropic_afw_3|AFW₃"
+       data-ylim="1e-14,1e4" data-h="380"></div>
+  <div class="punch alert small" style="margin:6px 0 0">Here $\tensor{\omega}$ is quadratic, so it lies in $\Xi_h=\mathcal{P}_2$ for AFW₃, and robustness
+    comes back. This only works because of the data we chose. Switch to ω to see the multiplier error.</div>
+</section>
+
+<section class="slide" data-sect="5 · Stress-free states">
+  <h2 class="t">Polar fluids: the Ericksen stress</h2>
+  <div class="cols c2" style="gap:30px;margin-top:14px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;align-self:center">
+      <figure><img data-fig="nematic" alt="nematic texture"><figcaption>nematic</figcaption></figure>
+      <figure><img data-fig="smectic" alt="smectic texture"><figcaption>smectic</figcaption></figure>
+    </div>
+    <div class="stack">
+      <div class="card alert">
+        <div class="lab">Polar fluid constitutive law</div>
+        \[\tensor{\sigma} = 2\mu\,\symgrad(\vec{u}) - p\tensor{I} + K_F\,\nabla\vec{\nu}^\top\nabla\vec{\nu},\qquad \div\vec{u} = g_{\div},\]
+        with $\vec{\nu}$ the director and $K_F$ the Frank constant.
+      </div>
+      <div class="card" data-frag="1">Eliminating $p$ puts this in our framework, with $\lambda=\infty$ and
+        \[\tensor{F} = \tfrac{1}{2\mu}\big(K_F\nabla\vec{\nu}^\top\nabla\vec{\nu}\big)^D - \tfrac1d g_{\div}\tensor{I}.\]</div>
+    </div>
+  </div>
+  <div class="refbox foot-note"><cite data-ref="ericksen2">Ericksen, Trans. Soc. Rheology (1961)</cite>;
+    <cite data-ref="Leslie66">Leslie, Quart. J. Mech. Appl. Math. (1966)</cite>.</div>
+</section>
+
+<section class="slide mid" data-sect="5 · Stress-free states">
+  <h2 class="t">Polar fluids in 2D: the worst case</h2>
+  <div class="stack">
+    <p>Take $\vec{\nu}(x,y) = (x,y)^\top$, so that $\nabla\vec{\nu}^\top\nabla\vec{\nu} = \tensor{I}$, and choose</p>
+    \[\vec{u} = -\frac{\delta}{\mu}\begin{pmatrix}-\cos x\cosh y\\ \sin x\sinh y\end{pmatrix},\qquad
+      p = -\delta\sin x\cosh y,\qquad K_F = \delta\sin x\cosh y.\]
+    <div class="card">
+      A direct computation gives $\tensor{\sigma}\equiv\tensor{0}$ for every $\delta$, but
+      \[\tensor{\omega} = -\frac{\delta}{\mu}\begin{pmatrix}0&amp;-\cos x\sinh y\\ \cos x\sinh y&amp;0\end{pmatrix}.\]
+    </div>
+    <div class="card alert" data-frag="1">The rotation $\tensor{\omega}$ is <b>not</b> a polynomial, so no piecewise polynomial $\Xi_h$
+      contains it. This time a higher degree cannot rescue weak symmetry.</div>
+  </div>
+</section>
+
+<section class="slide full" data-sect="5 · Stress-free states">
+  <h2 class="t">Exciting the polar stress-free state</h2>
+  <div data-widget="lab" data-mode="compact" data-preset="polar" data-weak="afw3" style="flex:1 1 auto"></div>
+</section>
+
+<section class="slide full" data-sect="5 · Stress-free states">
+  <h2 class="t">Polar fluids in 2D: results</h2>
+  <div data-widget="plot" style="flex:1 1 auto"
+       data-panels="polar_jm_1|JMK (strong);polar_hz_3|HZ₃ (strong);polar_afw_3|AFW₃ (weak)"
+       data-ylim="1e-13,1e1" data-h="380"></div>
+  <div class="punch alert small" style="margin:6px 0 0">With strong symmetry (JMK, HZ₃) the stress error stays at solver tolerance.
+    With weak symmetry (AFW₃) it grows like $\delta$, and raising the order does not help.</div>
+</section>
+
+<section class="slide full" data-sect="5 · Stress-free states">
+  <h2 class="t">Polar fluids in 3D</h2>
+  <div data-widget="plot" style="flex:1 1 auto"
+       data-panels="polar_3d_jm_1|JMK (strong, 3D);polar_3d_afw_1|AFW₁ (weak, 3D)"
+       data-ylim="1e-13,1e4" data-h="380"></div>
+  <div class="punch alert small" style="margin:6px 0 0">Here $\vec{\nu} = (x+\sin y,\ y,\ z)^\top$ and $K_F=\delta$, which satisfy Saint-Venant.
+    We see the same split as in 2D: JMK conserves angular momentum and AFW₁ does not.</div>
+</section>
+
+<section class="slide full" data-sect="5 · Stress-free states">
+  <h2 class="t">Adding a non-zero stress</h2>
+  <div data-widget="plot" style="flex:1 1 auto"
+       data-panels="polar_extra_jm_1|JMK (strong);polar_extra_hz_3|HZ₃ (strong);polar_extra_afw_3|AFW₃ (weak)"
+       data-ylim="1e-10,1e1" data-h="380"></div>
+  <div class="punch alert small" style="margin:6px 0 0">We add $(y\cos x,\ \sin y)$ to the polar velocity, so the exact stress is no longer zero and does not
+    depend on $\delta$. The strongly symmetric schemes converge at the optimal rate whatever $\delta$ is. The weakly symmetric
+    error still grows like $\delta$, through the kernel part.</div>
+</section>
+
+<section class="slide full" data-sect="5 · Stress-free states">
+  <h2 class="t">Where we stand</h2>
+  <div data-widget="matrix" style="flex:1 1 auto"></div>
+</section>
+
+<section class="slide mid" data-sect="6 · Theory">
+  <h2 class="t">The continuous invariance lemma</h2>
+  <div class="stack">
+    <div class="card">
+      <div class="lab">Lemma (saddle-point invariance)</div>
+      Fix $r\in\mathcal{Q}$ and let $u_r$, $p_r$ solve
+      \[\begin{aligned}
+        A(u_r,v) + B(v,p_r) &= F(v) \htmlClass{alert}{{}+ B(v,r)} &&\forall\,v\in\mathcal{V},\\
+        B(u_r,q) &= G(q) &&\forall\,q\in\mathcal{Q}.
+      \end{aligned}\]
+      Then $\boxed{u_r = u,\quad p_r = p + r}$.
+    </div>
+    <div class="card alert" data-frag="1">The primary variable does not see $r$. Perturbations in the kernel of the constitutive law
+      leave the stress alone, just as a gradient $\nabla\phi$ in the forcing leaves the Stokes velocity alone.</div>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="6 · Theory">
+  <h2 class="t">All our examples fit this setting</h2>
+  <div class="stack">
+    <p>Each example is a special case of the shift $F\mapsto F + B(\cdot,r)$, with $r$ built from a stress-free field $\vec{w}$
+      that we get from <span style="white-space:nowrap">Saint-Venant</span> and then integration:</p>
+    <div class="card">
+      <ul class="tick" style="margin:0">
+        <li><b>Linear isotropic:</b> $\tensor{F}\equiv\tensor{0}$, so $\vec{w}$ is a rigid body motion.</li>
+        <li><b>Transversely isotropic:</b> $\tensor{\tilde F} = \delta\,\vec{\nu}\otimes\vec{\nu}$ with $\vec{\nu}$ chosen so that Saint-Venant holds, and $\vec{w}$ is a polynomial.</li>
+        <li><b>Polar fluid:</b> $\tensor{F} = \tfrac{1}{2\mu}(K_F\nabla\vec{\nu}^\top\nabla\vec{\nu})^D - \tfrac{g_{\div}}{d}\tensor{I}$, with $\vec{\nu}$, $K_F$, $g_{\div}$ chosen so that the kernel is non-empty.</li>
+      </ul>
+    </div>
+    <div class="card alert" data-frag="1">This also tells us how to break weak symmetry. Pick any $\tensor{F}$ for which Saint-Venant integrates to a
+      non-polynomial $\vec{w}$, and no AFW<sub>k</sub> will be material robust.</div>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="6 · Theory">
+  <h2 class="t">Two notions of structure preservation</h2>
+  <div class="stack">
+    <p>Now take the discrete problem on $\mathcal{V}_h\times\mathcal{Q}_h$, with perturbed solution $u_{h,r}$, $p_{h,r}$.</p>
+    <div class="card"><div class="lab">Notion 1 · Fundamental invariance</div>
+      The scheme is structure preserving if $u_{h,r}=u_h$ for every $r\in\mathcal{Q}$.</div>
+    <div class="card"><div class="lab">Notion 2 · Kernel inclusion</div>
+      The discrete kernel lies inside the continuous one, $\ker\mathcal{B}_h\subseteq\ker\mathcal{B}$.</div>
+    <div class="card alert" data-frag="1"><div class="lab">Theorem</div>
+      Under the Babuška–Brezzi assumptions the two notions are the same:
+      \[u_{h,r}=u_h\ \ \forall\,r\in\mathcal{Q}\quad\Longleftrightarrow\quad\ker\mathcal{B}_h\subseteq\ker\mathcal{B}.\]
+      JMK and HZ<sub>3</sub> satisfy it because $\div\Sigma_h^{\sym}=V_h$. The weak schemes do not, because
+      $\skw\Sigma_h\not\subseteq\Xi_h$.</div>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="6 · Theory">
+  <h2 class="t">Pressure and material robustness side by side</h2>
+  <div class="stack">
+    <table class="grid dict">
+      <thead><tr><th></th><th>Stokes · pressure robustness</th><th>Hellinger–Reissner · material robustness</th></tr></thead>
+      <tbody>
+        <tr><td>primary space $\mathcal{V}$</td><td>$H^1_0(\Omega)^d$</td><td>$\Sigma^{\sym}$ (or $\Sigma$)</td></tr>
+        <tr><td>multiplier space $\mathcal{Q}$</td><td>$L^2_0(\Omega)$</td><td>$V$ (or $V\times\Xi$)</td></tr>
+        <tr><td>constraint $B$</td><td>$(\div\vec{v},q)$</td><td>$(\div\tensor{\tau},\vec{v})$ (+ $(\tensor{\tau},\tensor{\xi})$)</td></tr>
+        <tr><td>$\ker\mathcal{B}$</td><td>divergence-free fields</td><td>divergence-free <em>symmetric</em> stresses</td></tr>
+        <tr class="sep"><td>robust scheme</td><td>pointwise div-free $V_h$ (Scott–Vogelius)</td><td>strongly symmetric $\Sigma_h^{\sym}$ (JMK, HZ)</td></tr>
+        <tr><td>invisible data</td><td>gradient forces $\vec{f}=\nabla\phi$</td><td>stress-free states $\symgrad(\vec{w})=-\tensor{F}$</td></tr>
+        <tr><td>patch problem</td><td>no-flow</td><td>rigid body · transverse · polar</td></tr>
+        <tr><td>failure mode</td><td>velocity error $\sim\norm{p}$</td><td>stress error $\sim\delta$</td></tr>
+      </tbody>
+    </table>
+    <div class="card alert" data-frag="1">Pressure robustness and material robustness come from the same principle, $\ker\mathcal{B}_h\subseteq\ker\mathcal{B}$.</div>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="6 · Theory">
+  <h2 class="t">A priori estimates</h2>
+  <div class="stack">
+    <div class="card strong">
+      <div class="lab">If $\ker\mathcal{B}_h\subseteq\ker\mathcal{B}$, the primary error does not depend on the multiplier</div>
+      \[\norm{u-u_h}_{\mathcal{V}} \leq 2(1+C_F)\sqrt{\tfrac{\norm{A}}{\alpha_h}}\;\inf_{v_h\in\mathcal{V}_h}\norm{u-v_h}_{\mathcal{V}}.\]
+    </div>
+    <div class="card weak" data-frag="1">
+      <div class="lab">If only $\ker\mathcal{B}_{1,h}\subseteq\ker\mathcal{B}_1$, with $\mathcal{Q}=\mathcal{Q}_1\times\mathcal{Q}_2$, the second multiplier gets in</div>
+      \[\norm{u-u_h}_{\mathcal{V}} \leq C\inf_{w_h\in\mathcal{Z}_{1,h}(G_1)}\norm{u-w_h}_{\mathcal{V}} + \htmlClass{cpoll}{\frac{\norm{B_2}}{\alpha_h}\inf_{r_{2,h}\in\mathcal{Q}_{2,h}}\norm{p_2-r_{2,h}}_{\mathcal{Q}_2}}.\]
+    </div>
+    <div class="cols c2" data-frag="2" style="gap:16px">
+      <div class="card strong eqsmall"><div class="lab">Strong symmetry, $\div\Sigma_h^{\sym}=V_h$</div>
+        \[\norm{\tensor{\sigma}-\tensor{\sigma}_h}_{\div} \leq C\,\htmlClass{capprox}{\inf_{\tensor{\tau}_h\in\Sigma_h^{\sym}}\norm{\tensor{\sigma}-\tensor{\tau}_h}_{\div}}\]</div>
+      <div class="card weak eqsmall"><div class="lab">Weak symmetry, $\div\Sigma_h=V_h$</div>
+        \[\norm{\tensor{\sigma}-\tensor{\sigma}_h}_{\div} \leq C\Big(\htmlClass{capprox}{\inf_{\tensor{\tau}_h\in\Sigma_h}\norm{\tensor{\sigma}-\tensor{\tau}_h}_{\div}} + \htmlClass{cpoll}{\mu\inf_{\tensor{\zeta}_h\in\Xi_h}\norm{\tensor{\omega}-\tensor{\zeta}_h}}\Big)\]</div>
+    </div>
+    <p class="small" data-frag="3">For a stress-free state, $\tensor{\sigma}\equiv\tensor{0}\in\Sigma_h$ but $\tensor{\omega}=\delta\,\tensor{\omega}^*$. The strong estimate
+      gives $\tensor{\sigma}_h\equiv\tensor{0}$. The weak one allows an error of size <span class="cpoll">$\delta\,\mu\norm{\tensor{\omega}^*-\Pi_{\Xi_h}\tensor{\omega}^*}$</span>,
+      which is zero only if $\tensor{\omega}^*\in\Xi_h$.</p>
+  </div>
+</section>
+
+<section class="slide full" data-sect="6 · Theory">
+  <h2 class="t">The stress-free state lab</h2>
+  <div data-widget="lab" data-mode="full" data-preset="polar" data-weak="afw1" style="flex:1 1 auto"></div>
+</section>
+
+<section class="slide mid" data-sect="7 · Transient">
+  <h2 class="t">A polar fluid driven towards a stress-free state</h2>
+  <div class="stack">
+    <p>We take a time-dependent version of the 2D polar fluid on $\Omega=(0,1)^2$, starting from rest:</p>
+    \[\begin{aligned}
+      \partial_t\vec{u} - \div\tensor{\sigma} &= \vec{0},\\
+      \tfrac{1}{2\mu}\tensor{\sigma} - \symgrad(\vec{u}) &= \min\{1,t\}\Big[\tfrac{K_F}{2\mu}\big(\nabla\vec{\nu}^\top\nabla\vec{\nu}\big)^D - \tfrac1d(\div\vec{u}_0)\tensor{I}\Big],\\
+      \vec{u} &= \min\{1,t\}\,\vec{u}_0\ \text{ on }\partial\Omega,
+    \end{aligned}\qquad
+    \begin{aligned}
+      \vec{u}_0 &= \delta\begin{pmatrix}-\cos x\cosh y\\ \sin x\sinh y\end{pmatrix},\\
+      K_F &= \delta\sin x\cosh y,\quad \vec{\nu} = (x,\ y)^\top,\\
+      \mu &= 1,\quad \delta = 10^3.
+    \end{aligned}\]
+    <div class="card" data-frag="1">From $t=1$ on the forcing stays fixed, and the exact solution is the stationary, <b>stress-free</b>
+      polar flow. We compare JM<sub>1</sub> (strong symmetry), AFW<sub>1</sub> (weak symmetry) and a primal Scott–Vogelius SV<sub>3</sub>
+      scheme on the Alfeld split, which has no stress space. We use two-stage Radau IIA with $\Delta t = 0.01$ and maxh $=1/40$,
+      in Firedrake and Irksome (<cite data-ref="FarrellKirbyMM21">Farrell et al. 2021</cite>).</div>
+  </div>
+</section>
+
+<section class="slide full" data-sect="7 · Transient">
+  <h2 class="t">The transient run</h2>
+  <div data-widget="transient" style="flex:1 1 auto"
+       data-steps='[{"f":"u","t":0.5},{"f":"sig","t":0.5},{"f":"sig","t":1.5},{"f":"skw","t":1.5}]'></div>
+  <span data-frag="1"></span><span data-frag="2"></span><span data-frag="3"></span>
+</section>
+
+<section class="slide mid" data-sect="7 · Transient">
+  <h2 class="t">What the transient run shows</h2>
+  <div class="stack">
+    <div class="card">
+      <ul class="tick" style="margin:0">
+        <li>All three schemes give the <b>same velocity</b>, to within $2\cdot10^{-4}$ relative error, at all times.</li>
+        <li>Up to $t=1$ the stresses agree too. The lid is still accelerating and the true stress is not zero.</li>
+        <li>After $t=1$ the exact stress is zero. JM<sub>1</sub> relaxes to $\norm{\tensor{\sigma}_h}_\infty\approx 2\cdot10^{-7}$
+          and SV<sub>3</sub> to $3\cdot10^{-3}$, but AFW<sub>1</sub> gets stuck at about $65$.</li>
+        <li>The AFW<sub>1</sub> stress has a skew part, $\norm{\skw\tensor{\sigma}_h}_{L^2}\approx 15.5$, which builds up
+          during the ramp and never decays.</li>
+      </ul>
+    </div>
+    <div class="card alert" data-frag="1">
+      <div class="lab">Material robustness in time</div>
+      Our theory only covers the static problem, but the kernel inclusion still explains what happens here. The weakly
+      symmetric scheme keeps its error after the forcing stops.
+    </div>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="8 · Outlook">
+  <h2 class="t">Antisymmetric stress and artificial torque</h2>
+  <div class="stack">
+    <p>Recall that, without body torques or couple stresses,</p>
+    \[\rho(\partial_t\vec{\eta}+\vec{u}\cdot\nabla\vec{\eta}) = \vec{\varsigma},\qquad (\tensor{\sigma}-\tensor{\sigma}^\top)\vec{v} = \vec{\varsigma}\times\vec{v}.\]
+    <p>So any antisymmetric part of $\tensor{\sigma}_h$ acts as an <b>artificial torque</b> on the discrete material.</p>
+    <div class="card strong" data-frag="1">Strongly symmetric schemes have no antisymmetric part at all, so they produce no spurious
+      torque and no spurious angular momentum.</div>
+    <div class="card alert" data-frag="2">
+      <div class="lab">Beyond the one-constant approximation</div>
+      The one-constant Oseen–Frank energy gives a symmetric Cauchy stress. With the <em>full</em> Oseen–Frank energy,
+      $\tensor{\sigma}$ is <b>not symmetric</b>, and its antisymmetric part carries physical couple stresses. Then we have to
+      model the couple stresses explicitly, and the discrete antisymmetric part has to be correct, not just small.
+      Current weakly symmetric schemes cannot guarantee that.
+    </div>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="8 · Outlook">
+  <h2 class="t">From the balance law to the torque constraint</h2>
+  <div class="cols" style="grid-template-columns:1fr 310px;gap:34px;align-items:center">
+    <div class="stack">
+      <p>Rods turned by a field exert a body torque $\rho\tau$ on the material.</p>
+      \[\rho(\partial_t\vec{\eta}+\vec{u}\cdot\nabla\vec{\eta}) - \div\tensor{\zeta} - \vec{\varsigma} = \rho\vec{\tau},
+        \qquad (\tensor{\sigma}-\tensor{\sigma}^\top)\vec{v} = \vec{\varsigma}\times\vec{v}.\]
+      <div class="card" data-frag="1">
+        <div class="lab">1 · No couple stresses, no spin inertia</div>
+        Take $\tensor{\zeta}\equiv\tensor{0}$, and assume the rods' own angular momentum is negligible, $\vec{\eta}\equiv\vec{0}$.
+        The time derivative drops out and we are left with $-\vec{\varsigma} = \rho\vec{\tau}$, a pointwise constraint on the
+        antisymmetric part of $\tensor{\sigma}$.
+      </div>
+      <div class="card" data-frag="2">
+        <div class="lab">2 · In the plane</div>
+        In 2D, $\vec{\varsigma}$ points out of the plane and $\varsigma = \sigma_{21}-\sigma_{12}$, the couple of the shear stresses
+        in the figure. The torque has to cancel it, so $\sigma_{12}-\sigma_{21} = \rho\tau$.
+      </div>
+      <div class="card" data-frag="3">
+        <div class="lab">3 · In terms of $\skw\tensor{\sigma}$</div>
+        Every skew $2\times 2$ matrix is a multiple of $\tensor{J} = \left(\begin{smallmatrix}0&1\\-1&0\end{smallmatrix}\right)$,
+        and $\skw\tensor{\sigma} = \tfrac12(\sigma_{12}-\sigma_{21})\,\tensor{J}$. So
+        \[\htmlClass{alert}{\skw\tensor{\sigma} = s\,\tensor{J},\quad s = \tfrac12\rho\tau.}\]
+        The $\tfrac12$ appears because $\vec{\varsigma}$ measures $\tensor{\sigma}-\tensor{\sigma}^\top$, which is twice $\skw\tensor{\sigma}$.
+      </div>
+    </div>
+    <figure data-frag="2" style="margin:0">
+      <svg viewBox="0 0 300 300" width="300" style="display:block;margin:0 auto" role="img" aria-label="Shear stresses and a body torque on a small square">
+        <rect x="80" y="80" width="140" height="140" style="fill:var(--panel);stroke:var(--ink2);stroke-width:1.6"/>
+        <g style="stroke:var(--ink2);stroke-width:2.2">
+          <line x1="236" y1="192" x2="236" y2="118"/><line x1="64" y1="108" x2="64" y2="182"/>
+          <line x1="108" y1="64" x2="182" y2="64"/><line x1="192" y1="236" x2="118" y2="236"/>
+        </g>
+        <g style="fill:var(--ink2)">
+          <polygon points="236,104 229.5,120 242.5,120"/><polygon points="64,196 57.5,180 70.5,180"/>
+          <polygon points="196,64 180,57.5 180,70.5"/><polygon points="104,236 120,229.5 120,242.5"/>
+        </g>
+        <g style="fill:var(--ink2);font:italic 18px var(--serif)">
+          <text x="248" y="160">σ₂₁</text><text x="52" y="160" text-anchor="end">σ₂₁</text>
+          <text x="150" y="50" text-anchor="middle">σ₁₂</text><text x="150" y="264" text-anchor="middle">σ₁₂</text>
+        </g>
+        <path d="M 176.05 171.85 A 34 34 0 1 0 123.95 171.85" style="fill:none;stroke:var(--red);stroke-width:2.2"/>
+        <polygon points="128.4,177.2 117.4,173.4 126.6,165.7" style="fill:var(--red)"/>
+        <text x="150" y="157" text-anchor="middle" style="fill:var(--red);font:italic 18px var(--serif)">ρτ</text>
+      </svg>
+      <figcaption>The shear stresses turn a small square of side $h$ anticlockwise with the couple $h^2(\sigma_{21}-\sigma_{12}) = h^2\varsigma$.
+        Its moment of inertia is only $\O(h^4)$, so without spin the couples must balance, $h^2\varsigma + h^2\rho\tau = 0$.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="8 · Outlook">
+  <h2 class="t">A stress that is not symmetric</h2>
+  <div class="stack">
+    <p>Now put the rods in an elastic network. With the torque constraint from the previous slide, the two
+      balance laws read</p>
+    \[\begin{aligned}
+      -\div\tensor{\sigma} &= \vec{f} &&\text{linear momentum},\\
+      \htmlClass{alert}{\skw\tensor{\sigma}} &\htmlClass{alert}{{}= s\,\tensor{J},\quad s = \tfrac12\rho\tau} &&\text{angular momentum},
+    \end{aligned}\]
+    <p>and the constitutive law only fixes the symmetric part,
+      $\tensor{\sigma}^{s} = \sym\tensor{\sigma} = 2\mu\,\symgrad(\vec{u}) + \lambda(\div\vec{u})\tensor{I}$.</p>
+    <p>If the stress were symmetric, nobody would keep the $\tensor{\xi}$ equation. Here it is the balance of angular
+      momentum, with the torque on the right-hand side, so it has to stay. We try three discretisations:</p>
+    <div class="cols c3" style="gap:14px">
+      <div class="card" data-frag="1">
+        <div class="lab">Non-separated</div>
+        A single stress $\tensor{\sigma}_h\in\Sigma_h$, with
+        \[c(\tensor{\sigma}_h,\tensor{\xi}_h) = (s\tensor{J},\tensor{\xi}_h)\quad\forall\,\tensor{\xi}_h\in\Xi_h.\]
+      </div>
+      <div class="card weak" data-frag="2">
+        <div class="lab">Separated, weak symmetry</div>
+        $\tensor{\sigma}_h = \tensor{\sigma}_h^{s} + a_h\tensor{J}$, with $\tensor{\sigma}_h^{s}\in\Sigma_h$ weakly symmetric (AFW)
+        and $a_h$ continuous, $(a_h,b_h) = (s,b_h)$.
+      </div>
+      <div class="card strong" data-frag="2">
+        <div class="lab">Separated, strong symmetry</div>
+        $\tensor{\sigma}_h = \tensor{\sigma}_h^{s} + a_h\tensor{J}$, with $\tensor{\sigma}_h^{s}\in\Sigma_h^{\sym}$ (JM, HZ)
+        and the same $a_h$.
+      </div>
+    </div>
+    <p class="small dim" data-frag="2">In the separated forms the torque enters the momentum equation as a body force,
+      $-\div\tensor{\sigma}_h^{s} = \vec{f} + \curl a_h$, because $\div(a\tensor{J}) = \curl a$.</p>
+  </div>
+</section>
+
+<section class="slide full" data-sect="8 · Outlook">
+  <h2 class="t">The error in the balance of angular momentum</h2>
+  <p class="small" style="margin:0 0 4px">We manufacture a solution with $\vec{u} = L\nabla\psi$ for a fixed, non-polynomial $\psi$. The symmetric
+    stress $\tensor{\sigma}^{s} = L\,\tensor{\sigma}^{s}_1$ grows with $L$, while the torque $\rho\tau = 2s$ stays of size one. Unlike $\delta$,
+    which scaled a stress-free state, $L$ scales an actual stress.</p>
+  <div data-widget="plot" data-kind="torque" style="flex:1 1 auto"
+       data-panels="torque_nonsep_afw_1|non-separated: AFW₁;torque_weak_afw_1|separated, weak: AFW₁ + CG₁;torque_strong_jm_1|separated, strong: JM₁ + CG₁"
+       data-ys="skw_error|‖skw(σ − σₕ)‖ in L²;sym_error|‖sym(σ − σₕ)‖ in L²"
+       data-ylim="1e-5,1e4" data-h="370"></div>
+  <div class="punch alert small" style="margin:6px 0 0">Separating the stress does not fix the problem on its own. Unless $\tensor{\sigma}_h^{s}$ is
+    strongly symmetric, the error in the balance of angular momentum grows like $L$. At order 3, AFW₃ against HZ₃, we see the same.</div>
+</section>
+
+<section class="slide full" data-sect="8 · Outlook">
+  <h2 class="t">What the rods feel</h2>
+  <div data-widget="rods" style="flex:1 1 auto" data-steps='[0,2,3]'></div>
+  <span data-frag="1"></span><span data-frag="2"></span>
+</section>
+
+
+<section class="slide mid" data-sect="8 · Outlook">
+  <h2 class="t">Take-aways</h2>
+  <div class="stack">
+    <div class="card">
+      <div class="lab">Material robustness</div>
+      <ul class="tick" style="margin:0">
+        <li>A scheme should be robust <b>whatever material</b> it simulates, that is, whatever the constitutive relation.</li>
+        <li><b>Strong stress symmetry</b>, and with it <b>conservation of angular momentum</b>, is what makes a scheme material robust.</li>
+        <li>The same kernel inclusion, $\ker\mathcal{B}_h\subseteq\ker\mathcal{B}$, gives pressure robustness, and the decoupled estimate explains what we see in the experiments.</li>
+      </ul>
+    </div>
+    <div class="card alert" data-frag="1">
+      <div class="lab">In practice</div>
+      For <em>anisotropic</em> models, weakly symmetric schemes can fail to be material robust, even at high order. When the
+      constitutive law has a non-trivial kernel, strongly symmetric elements (available in NGSolve and Firedrake) should be the default.
+    </div>
+  </div>
+</section>
+
+<section class="slide mid" data-sect="8 · Outlook">
+  <h2 class="t">Where to look</h2>
+  <div class="stack small">
+    <p><b>This talk.</b> <cite class="brk" data-ref="brubeckParkerZerbinati2026">Brubeck, Parker &amp; Zerbinati, <em>Achieving material robustness via
+      symmetric stress finite element discretizations</em>, Comput. Methods Appl. Mech. Engrg. 461 (2026) 119262</cite>; code on
+      <cite data-ref="BrubeckZerbinatiParker26">Zenodo</cite>.</p>
+    <p><b>Pressure robustness.</b> <cite data-ref="JohnLinkeMerdonNeilanRebholz17">John, Linke, Merdon, Neilan &amp; Rebholz, SIAM Review (2017)</cite>.</p>
+    <p><b>Symmetric tensor elements.</b> <cite data-ref="ArnoldWinther02">Arnold &amp; Winther (2002)</cite>;
+      <cite data-ref="HuZhang15d2">Hu &amp; Zhang (2015)</cite>; <cite data-ref="JohnsonMercier78">Johnson &amp; Mercier (1978)</cite>;
+      <cite data-ref="Gopalakrishnan25">Gopalakrishnan, Guzmán &amp; Lee (2025)</cite>; <cite data-ref="HuLinShi23">Hu, Lin &amp; Shi (2023)</cite>.</p>
+    <p><b>Non-symmetric stress elements.</b> <cite data-ref="ArnoldBrezziDouglas84">Arnold, Brezzi &amp; Douglas (1984)</cite>;
+      <cite data-ref="Stenberg88">Stenberg (1988)</cite>; <cite data-ref="ArnoldFalkWinther07">Arnold, Falk &amp; Winther (2007)</cite>;
+      <cite data-ref="CockburnGopalakrishnanGuzman10">Cockburn, Gopalakrishnan &amp; Guzmán (2010)</cite>.</p>
+    <p><b>MCS, mass-conserving stress-yielding.</b> <cite data-ref="GopalakrishnanLedererSchoberl20ima">Gopalakrishnan, Lederer &amp; Schöberl (2020)</cite>;
+      with weakly imposed symmetry, <cite data-ref="Gopalakrishnan20">Gopalakrishnan, Lederer &amp; Schöberl (2020)</cite>; hybrid,
+      <cite data-ref="GopalakrishnanKoglerLedererSchoberl23">Gopalakrishnan, Kogler, Lederer &amp; Schöberl (2023)</cite>; with exact symmetry,
+      <cite data-ref="LedererMosconi26">Lederer &amp; Mosconi (2026)</cite>.</p>
+    <p><b>Software.</b> <cite data-ref="BrubeckKirby25">Brubeck &amp; Kirby (2025)</cite>, <cite data-ref="FiredrakeUserManual">Firedrake</cite>;
+      <cite data-ref="SchoberlNGSolve14">Schöberl, NGSolve</cite>.</p>
+    <p class="dim tiny">Press <b>B</b> for the full bibliography.</p>
+    <p class="center" style="font-size:40px;margin-top:22px">Thank you!</p>
+  </div>
+</section>
+
+</template>
+
+<script src="data/figures.js"></script>
+<script src="data/bib.js"></script>
+<script src="data/data.js"></script>
+<script src="data/transient.js"></script>
+<script src="data/torque.js"></script>
+<script src="js/katex.min.js"></script>
+<script src="js/auto-render.min.js"></script>
+<script src="js/widgets.js"></script>
+<script src="js/deck.js"></script>
+
+</html>
