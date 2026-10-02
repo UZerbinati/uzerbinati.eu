@@ -5,16 +5,19 @@ order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2026
+  * Simula SCAN Weekly Meeting 
+    01/10
+    Oslo, NO [slides](https://www.uzerbinati.eu/assets/talks/simula-scan26/)
   * I'm organizing a workshop on "Advances in Ordered Fluids and Alignment Phenomena Modeling, Analysis, and Numerical Methods",
     14/09 - 19/09
     Golferenzo, Oltrepò Pavese, IT [more details](https://www.uzerbinati.eu/pages/borgodeigatti), [conference website](https://sites.google.com/view/ordered-fluids/home-page).
   * Trefftz Workshop 2026 
     07/09 - 09/09
     Vienna, AT [more info](https://trefftz2026.univie.ac.at), [slides](https://www.uzerbinati.eu/assets/talks/trefftz26.pdf)
+<!--more-->
   * GNFM Ravello Summer School 2026 
     31/08 - 5/09
     Ravello, IT 
-<!--more-->
   * PDESoft 2026 
     13/07 - 15/07
     Vienna, AT [more info](https://pdesoft2026.conf.tuwien.ac.at), [slides](https://www.uzerbinati.eu/assets/talks/pdesoft26.pdf)
