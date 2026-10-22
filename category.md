@@ -19,7 +19,7 @@ A list of papers, proceedings, and preprints by category.
   [arXiv](https://arxiv.org/abs/2606.31784), 2026.
   3. _A Kinetic Interpretation of Thermomechanical Restrictions of Continua_
   Patrick E. Farrell, Josef Málek, Ondřej Souček, UZ
-  [[arXiv](https://arxiv.org/abs/2602.21384) [IJES](https://doi.org/10.1016/j.ijengsci.2026.104557)], 2026.
+  [[arXiv](https://arxiv.org/abs/2602.21384), [IJES](https://doi.org/10.1016/j.ijengsci.2026.104557)], 2026.
   4. _A Kinetic Theory Approach to Ordered Fluids_
   José A. Carrillo, Patrick E. Farrell, Andrea Medaglia, UZ
 [arXiv](https://arxiv.org/abs/2508.10744), 2025.

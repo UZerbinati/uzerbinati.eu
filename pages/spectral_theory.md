@@ -19,7 +19,12 @@ Prof. Daniele Boffi also presented material related to the topic treated in this
   05/02
   Cambridge, UK ([slides](https://www.uzerbinati.eu/assets/talks/boffi_ini.pdf), [recording of the lecture](https://www.youtube.com/watch?v=8eze46bVgbY), [more info](https://www.newton.ac.uk/seminar/49906/)).
 
-  
+Out of this course and the collaboration with Prof. [Kaibo Hu](https://kaibohu.github.io/), the following paper were produced:
+  1. _Finite element exterior calculus for spectra and pseudospectra of advection-diffusion of differential forms_
+  Daniele Boffi, Kaibo Hu, Yizhou Liang, UZ
+  [arXiv](https://arxiv.org/abs/2610.01501), 2026.
+
+
 This page collects the lecture notes and exercises of the course, as well as the slides and the codes used in in the various presentations.
 
 Course Description:
