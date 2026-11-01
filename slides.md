@@ -5,6 +5,9 @@ order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2026
+  * You can find me any Monday of Michaelmas term teaching Applied Maths at [Oriel College](https://www.oriel.ox.ac.uk/)
+    12/10 - 30/11
+    Oxford, UK [Perks of the commute](https://www.uzerbinati.eu/assets/images/commute.jpeg).
   * I've defended my thesis, titled: "Kinetic modelling of ordered fluids", at University of Oxford !
     09/10
     Oxford, OX [slides](https://www.uzerbinati.eu/assets/talks/viva.pdf)
