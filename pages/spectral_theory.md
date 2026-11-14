@@ -42,7 +42,7 @@ Course Materials:
 - [Lecture 3: Approximation of Compact non-Normal Operators](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture3.pdf)
 - [Lecture 4: Variationally posed eigenvalue problems](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture4.pdf)
 - [Lecture 5: Spectra and Pseudospectra of the Advection-Diffusion Operator](https://www.uzerbinati.eu/assets/teaching/notes/st_lecture5.pdf)
-- [Appendix A: Laplace Eigenproblem on a Pizza Slice](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixA.pdf)
+- [Appendix A: Elliptic Regularity](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixA.pdf)
 - [Appendix B: The Rayleigh quotient](https://www.uzerbinati.eu/assets/teaching/notes/st_appendixB.pdf)
 - [Maxwell's eigenvalue problem and Dynamo theory](https://www.uzerbinati.eu/assets/talks/cambridge.pdf).
 - [Approximation of spectra of advection-diffusion problems](https://www.uzerbinati.eu/assets/talks/boffi_ini.pdf) ([recording of the lecture](https://www.youtube.com/watch?v=8eze46bVgbY), [more info](https://www.newton.ac.uk/seminar/49906/)).

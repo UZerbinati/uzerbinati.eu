@@ -8,7 +8,7 @@ A list of my latest papers, you can read more or look up any paper by [category]
 
   1. _Achieving Material Robustness via Symmetric Stress Finite Element Discretizations_
   Pablo Brubeck, Charles Parker, UZ
-  [[CMAME](https://doi.org/10.1016/j.cma.2026.119262), [arXiv](https://arxiv.org/abs/2605.21425)], 2026.
+  [[CMAME](https://doi.org/10.1016/j.cma.2026.119262), [arXiv](https://arxiv.org/abs/2605.21425), [complementary note](https://www.uzerbinati.eu/assets/notes/materialrobustness_note.pdf)], 2026.
   2. _A Kinetic Interpretation of Thermomechanical Restrictions of Continua_
   Patrick E. Farrell, Josef Málek, Ondřej Souček, UZ
   [[arXiv](https://arxiv.org/abs/2602.21384), [IJES](https://doi.org/10.1016/j.ijengsci.2026.104557)], 2026.

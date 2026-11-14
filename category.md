@@ -37,7 +37,7 @@ A list of papers, proceedings, and preprints by category.
   [arXiv](https://arxiv.org/abs/2610.01501), 2026.
   2. _Achieving Material Robustness via Symmetric Stress Finite Element Discretizations_
   Pablo Brubeck, Charles Parker, UZ
-  [[CMAME](https://doi.org/10.1016/j.cma.2026.119262), [arXiv](https://arxiv.org/abs/2605.21425)], 2026.
+  [[CMAME](https://doi.org/10.1016/j.cma.2026.119262), [arXiv](https://arxiv.org/abs/2605.21425), [complementary note](https://www.uzerbinati.eu/assets/notes/materialrobustness_note.pdf)], 2026.
   3. _Preconditioned normal equations for solving discretised partial differential equations_
   Lorenzo Lazzarino, Yuji Nakatsukasa, UZ
 [arXiv](https://arxiv.org/abs/2502.17626), 2025.
