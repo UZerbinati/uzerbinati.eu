@@ -5,6 +5,12 @@ order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2026
+  * MathMAC Seminar, Charles University
+    18/11
+    Prague, CZ [slides](https://www.uzerbinati.eu/assets/talks/mathmac.pdf)
+  * Simula Internal Talk, "Material robustness on thin domains"
+    23/10
+    Oslo, NO [slides](https://www.uzerbinati.eu/assets/talks/simula_thin.pdf)
   * You can find me any Monday of Michaelmas term teaching Applied Maths at [Oriel College](https://www.oriel.ox.ac.uk/)
     12/10 - 30/11
     Oxford, UK [Perks of the commute](https://www.uzerbinati.eu/assets/images/commute.jpeg).
