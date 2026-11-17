@@ -5,15 +5,16 @@ order: 5
 ---
 I have adopted the ISO 3166-1 alpha-2 convention for country designation.
 ### 2026
+  * You can find me any Monday of Michaelmas term teaching Applied Maths at [Oriel College](https://www.oriel.ox.ac.uk/)
+    12/10 - 30/11
+    Oxford, UK [Perks of the commute](https://www.uzerbinati.eu/assets/images/commute.jpeg).
   * MathMAC Seminar, Charles University
     18/11
     Prague, CZ [slides](https://www.uzerbinati.eu/assets/talks/mathmac.pdf)
   * Simula Internal Talk, "Material robustness on thin domains"
     23/10
     Oslo, NO [slides](https://www.uzerbinati.eu/assets/talks/simula_thin.pdf)
-  * You can find me any Monday of Michaelmas term teaching Applied Maths at [Oriel College](https://www.oriel.ox.ac.uk/)
-    12/10 - 30/11
-    Oxford, UK [Perks of the commute](https://www.uzerbinati.eu/assets/images/commute.jpeg).
+<!--more-->
   * I've defended my thesis, titled: "Kinetic modelling of ordered fluids", at University of Oxford !
     09/10
     Oxford, OX [slides](https://www.uzerbinati.eu/assets/talks/viva.pdf)
@@ -23,7 +24,6 @@ I have adopted the ISO 3166-1 alpha-2 convention for country designation.
   * I'm organizing a workshop on "Advances in Ordered Fluids and Alignment Phenomena Modeling, Analysis, and Numerical Methods",
     14/09 - 19/09
     Golferenzo, Oltrepò Pavese, IT [more details](https://www.uzerbinati.eu/pages/borgodeigatti), [conference website](https://sites.google.com/view/ordered-fluids/home-page).
-<!--more-->
   * Trefftz Workshop 2026 
     07/09 - 09/09
     Vienna, AT [more info](https://trefftz2026.univie.ac.at), [slides](https://www.uzerbinati.eu/assets/talks/trefftz26.pdf)
